@@ -1,0 +1,10 @@
+{
+  "name": "wobble-arena-server",
+  "version": "1.0.0",
+  "description": "Room list and message relay for Wobble Arena",
+  "main": "server.js",
+  "private": true,
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "ws": "^8.18.0" }
+}
