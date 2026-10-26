@@ -476,6 +476,70 @@
   .setrow{display:grid;grid-template-columns:78px 1fr;align-items:center;gap:8px;margin:6px 0;text-align:left;font-weight:800;font-size:13px}.setrow>label{opacity:.65}
   .opt.danger{display:block;width:100%;margin-top:6px;background:rgba(255,90,90,.16);color:#ffd6d6}.opt.danger:hover{background:rgba(255,90,90,.28)}
   @media(max-width:520px){.ongrid{grid-template-columns:1fr}.oncard{min-height:0}.seats{grid-template-columns:1fr}.lobtop .nm.code{font-size:46px}}
+  /* ---- build 67: roomier cards, a livelier menu, the new main menu and the Account page ---- */
+  .card{width:940px;padding:22px 30px 18px;position:relative;z-index:1;background:linear-gradient(180deg,rgba(24,60,76,.96),rgba(11,30,40,.97));box-shadow:0 30px 90px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.09)}
+  .mbody{min-height:min(560px,66vh)}
+  #menu::before{content:'';position:absolute;inset:-25%;pointer-events:none;background:radial-gradient(38% 38% at 18% 28%,rgba(255,207,90,.2),transparent 70%),radial-gradient(34% 34% at 82% 72%,rgba(90,200,255,.2),transparent 70%),radial-gradient(30% 30% at 72% 18%,rgba(190,120,255,.16),transparent 70%),radial-gradient(28% 28% at 25% 85%,rgba(80,230,160,.14),transparent 70%);animation:aur 20s ease-in-out infinite alternate}
+  @keyframes aur{0%{transform:translate3d(-3%,2%,0) rotate(-3deg) scale(1)}100%{transform:translate3d(4%,-3%,0) rotate(5deg) scale(1.12)}}
+  .mhead h1{font-size:38px;letter-spacing:.03em;background:linear-gradient(180deg,#fff7d6,#ffcf5a 55%,#ff9e2c);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 0 rgba(0,0,0,.35)) drop-shadow(0 0 18px rgba(255,191,46,.25))}
+  #greet{font-size:17px;font-weight:700;opacity:.85;margin:2px 2px 12px}
+  #homemain{display:flex;flex-direction:column;gap:12px}
+  .hbtn{position:relative;display:flex;align-items:center;gap:16px;width:100%;box-sizing:border-box;padding:16px 22px;border:0;border-radius:20px;font-family:inherit;color:#102b35;cursor:pointer;text-align:left;overflow:hidden;transition:transform .16s cubic-bezier(.3,1.5,.5,1),filter .15s,box-shadow .15s}
+  .hbtn svg{flex:0 0 auto;width:36px;height:36px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+  .hbtn span{flex:1;min-width:0}.hbtn b{display:block;font-size:24px;font-weight:900;letter-spacing:.04em;line-height:1.1}.hbtn small{display:block;font-size:13px;font-weight:700;opacity:.72;letter-spacing:0;margin-top:2px}
+  .hbtn::after{content:'';position:absolute;top:0;left:-70%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);transition:left .7s}
+  .hbtn:hover{transform:translateY(-3px);filter:brightness(1.06)}.hbtn:hover::after{left:140%}.hbtn:active{transform:translateY(1px) scale(.985)}
+  .hbtn.hero{padding:30px 32px;border-radius:24px;background:linear-gradient(135deg,#ffe58a,#ffc13a 55%,#ff9b2e);box-shadow:0 9px 0 #bd7612,0 0 44px rgba(255,191,46,.38);animation:heroGlow 3.2s ease-in-out infinite}
+  @keyframes heroGlow{50%{box-shadow:0 9px 0 #bd7612,0 0 64px rgba(255,191,46,.6)}}
+  .hbtn.hero svg{width:62px;height:62px}.hbtn.hero b{font-size:44px;letter-spacing:.06em}.hbtn.hero small{font-size:15px}
+  .hbtn.green{background:linear-gradient(135deg,#9af5bd,#4fc888);box-shadow:0 7px 0 #2c8a58;padding:20px 24px}.hbtn.green b{font-size:28px}
+  .hbtn.blue{background:linear-gradient(135deg,#a8d8ff,#5ba6f2);box-shadow:0 6px 0 #3571b4}
+  .hbtn.mint{background:linear-gradient(135deg,#b4f0cc,#74d3a0);box-shadow:0 6px 0 #3e9c6c}
+  .hbtn.purple{background:linear-gradient(135deg,#d9c0ff,#a07be8);box-shadow:0 6px 0 #6c4cb8}
+  .hbtn.gold{background:linear-gradient(135deg,#ffe49a,#f4b940);box-shadow:0 6px 0 #b98418}
+  .hbtn .htag{position:absolute;top:9px;right:12px;font-style:normal;font-size:10px;font-weight:900;letter-spacing:.08em;padding:2px 9px;border-radius:99px;background:rgba(16,43,53,.28)}
+  .hbtn .hpill{position:absolute;top:12px;right:16px;font-style:normal;font-size:12px;font-weight:900;padding:3px 12px;border-radius:99px;background:rgba(16,43,53,.78);color:#fff}.hbtn .hpill:empty{display:none}
+  .hbtn .hpill::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#3ed36a;margin-right:6px;box-shadow:0 0 8px #3ed36a}
+  .hrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .hrow .hbtn{padding:14px 18px}.hrow .hbtn b{font-size:21px}.hrow .hbtn svg{width:30px;height:30px}
+  .hsmall{display:flex;gap:10px;margin-top:16px}.hsmall .opt{flex:1;padding:10px 8px}
+  #pg-home #tip{text-align:center;opacity:.6;margin-top:12px}
+  .onname{display:flex;align-items:center;gap:8px;font-size:14px}.onname span{opacity:.65;font-weight:700}.onname b{font-size:16px;color:var(--gold)}
+  .olink2{background:none;border:0;color:#fff;opacity:.55;text-decoration:underline;font-weight:700;font-size:12.5px;font-family:inherit;cursor:pointer;padding:0}.olink2:hover{opacity:.95}
+  #title-name{display:block;margin:0 auto 12px;width:300px;max-width:80vw;padding:13px 16px;border-radius:14px;border:3px solid rgba(255,255,255,.35);background:rgba(16,43,53,.7);color:#fff;font:800 18px inherit;font-family:inherit;text-align:center;outline:0;position:relative;z-index:2}
+  #title-name:focus{border-color:#ffcf5a}
+  #title-name.shake{animation:tshake .4s;border-color:#ff7a6a}
+  @keyframes tshake{20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+  .acctabs{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}.acctabs .hatb{padding:9px 16px;font-size:14px}
+  .acprof{display:flex;gap:18px;align-items:center;text-align:left;margin-bottom:12px}
+  .acav{flex:0 0 auto;width:84px;height:84px;border-radius:50%;border:4px solid rgba(255,255,255,.4);box-shadow:inset 0 -10px 0 rgba(0,0,0,.18),0 6px 0 rgba(0,0,0,.25)}
+  .acinfo{flex:1;min-width:0}.acinfo .fld{margin:0 0 6px}.acinfo .fld input{font-size:18px}
+  .aclevel{text-align:left}.lvtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}.lvtop b{font-size:20px;color:var(--gold)}.lvtop span{font-weight:800;opacity:.8}
+  .lvbar{height:14px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}.lvbar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#ffcf5a,#ff9e2c);transition:width .6s}
+  .aclevel small{display:block;margin-top:6px;opacity:.7;font-size:12px}
+  .achips{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}.achips div{background:rgba(255,255,255,.09);border-radius:14px;padding:12px 6px;text-align:center}.achips b{display:block;font-size:24px;color:var(--gold)}.achips small{opacity:.7;font-size:12px}
+  .badges{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .badge{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:12px 8px;text-align:center;opacity:.5;filter:grayscale(.9)}
+  .badge.got{opacity:1;filter:none;background:rgba(255,207,90,.13);border-color:rgba(255,207,90,.45)}
+  .badge i{font-style:normal;font-size:30px;display:block}.badge b{display:block;font-size:14px;margin:4px 0 2px}.badge small{display:block;font-size:11.5px;opacity:.75;line-height:1.35}
+  .hrow2{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(255,255,255,.08);border-radius:12px;margin:6px 0;text-align:left}
+  .hrow2 b{flex:0 0 64px;opacity:.8}.hrow2.won b{color:#7ff0a8}.hrow2 span{flex:1;font-weight:700}.hrow2 em{font-style:normal;opacity:.7;font-size:13px}
+  #pg-account .stats{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:700px){.badges{grid-template-columns:1fr 1fr}#pg-account .stats{grid-template-columns:1fr 1fr}.hrow{grid-template-columns:1fr}.hbtn.hero b{font-size:32px}.acprof{flex-direction:column;text-align:center}}
+  @media(max-height:760px){.hbtn.hero{padding:20px 26px}.hbtn.hero b{font-size:36px}.hbtn.green{padding:14px 22px}.hrow .hbtn{padding:11px 16px}.mhead h1{font-size:32px}}
+
+.sumbox{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:6px 0 4px}
+.sumbox div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.sumbox span{font-size:11px;opacity:.65;text-transform:uppercase;letter-spacing:.08em;font-weight:800}
+.sumbox b{font-size:15px}
+@media (max-width:600px){.sumbox{grid-template-columns:1fr}}
+/* build 67: corner icons on the mode cards */
+.modes button{padding-right:70px}
+.modes .mico{position:absolute;top:14px;right:14px;width:42px;height:42px;stroke:var(--gold);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;opacity:.9;transition:transform .2s cubic-bezier(.3,1.6,.5,1),opacity .15s}
+.modes button:hover .mico{transform:scale(1.14) rotate(-6deg);opacity:1}
+.modes button.on .mico{stroke:#fff}
+.modes .mico text{fill:var(--gold)}.modes button.on .mico text{fill:#fff}
+.modes .live{top:auto;bottom:10px}
 </style>
 </head>
 <body>
@@ -525,28 +589,36 @@
 </div>
 <div id="menu">
   <div class="card">
-    <div class="mhead"><h1>Wobble Arena</h1><p>Build 66</p><span id="coinchip" title="Your coins. Earn them from K.O.s and finished matches">&#129689; <b id="coinn">0</b></span></div>
+    <div class="mhead"><h1>Wobble Arena</h1><p>Build 67</p><span id="coinchip" title="Your coins. Earn them from K.O.s and finished matches">&#129689; <b id="coinn">0</b></span></div>
     <div id="netbanner"><span>ONLINE ROOM &middot; code</span><b id="nb-code"></b><span id="nb-info"></span><button class="opt" id="nb-copy">Copy code</button></div>
     <div id="winner"></div>
     <div id="crumbs-top"></div>
     <div class="mbody">
       <div class="tab on" id="pg-home">
-        <div class="homegrid">
-          <div class="hleft">
-            <div id="greet"></div>
-            <div id="pausebox" style="display:none"><div id="pz-online" class="grp" style="display:none;margin:0 0 12px;padding:10px 14px;background:rgba(255,120,90,.25);font-weight:800">⚠ Online match: the game does not pause. Other players can still hit you while this menu is open, so be quick!</div><div class="grp" style="margin:0 0 12px;padding:10px 14px"><h3 style="margin:0 0 6px">Controls</h3><div id="pz-keys"></div></div><button class="big" id="pz-resume" style="background:#8fc7ff;box-shadow:0 7px 0 #4f8fcf">RESUME<small id="pz-sum"></small></button><button class="big alt" id="pz-new" style="display:none;margin-top:10px;background:#bfe8a8;box-shadow:0 7px 0 #7fb064">NEW MATCH<small>You are out. Start again</small></button><button class="big alt" id="pz-menu" style="margin-top:10px;background:#ffb4a8;box-shadow:0 7px 0 #d07a6a">MAIN MENU<small>Leave this match</small></button></div>
-            <button class="big" id="go-play">PLAY<small>Pick a mode, a level and your rules</small></button>
-            <div class="row" id="row-quick" style="gap:10px">
-              <button class="big alt" id="quick">QUICK PLAY<small>Random mode + level</small></button>
-              <button class="big alt" id="resume" style="background:#8fc7ff;box-shadow:0 7px 0 #4f8fcf">RESUME<small id="homesum"></small></button>
-            </div>
-            <div class="row" id="row-locker" style="gap:10px"><button class="big alt" id="go-locker" style="background:#c9a8ff;box-shadow:0 7px 0 #8a68d0">LOCKER<small>Your wobbler, outfits and emotes</small></button><button class="big alt" id="go-shop" style="background:#ffd36a;box-shadow:0 7px 0 #d0a030">SHOP<small id="shopsub">Outfits and emotes</small></button></div>
-            <button class="big alt" id="go-practice" style="background:#9be3b5;box-shadow:0 7px 0 #5fb683">PRACTICE MODE<small>Target dummies and a rack of weapons to try</small></button>
-            <div class="row" style="margin-top:6px"><button class="opt" id="go-stats">Match stats</button><button class="opt" id="go-controls">Settings &amp; controls</button><button class="opt" id="go-me" style="display:none">My wobbler</button><button class="opt" id="go-test">Test guns</button><button class="opt" id="go-restart">Restart match</button><button class="opt" id="go-online">Play online</button></div>
+        <div id="greet"></div>
+        <div id="pausebox" style="display:none"><div id="pz-online" class="grp" style="display:none;margin:0 0 12px;padding:10px 14px;background:rgba(255,120,90,.25);font-weight:800">⚠ Online match: the game does not pause. Other players can still hit you while this menu is open, so be quick!</div><div class="grp" style="margin:0 0 12px;padding:10px 14px"><h3 style="margin:0 0 6px">Controls</h3><div id="pz-keys"></div></div><button class="big" id="pz-resume" style="background:#8fc7ff;box-shadow:0 7px 0 #4f8fcf">RESUME<small id="pz-sum"></small></button><button class="big alt" id="pz-new" style="display:none;margin-top:10px;background:#bfe8a8;box-shadow:0 7px 0 #7fb064">NEW MATCH<small>You are out. Start again</small></button><button class="big alt" id="pz-menu" style="margin-top:10px;background:#ffb4a8;box-shadow:0 7px 0 #d07a6a">MAIN MENU<small>Leave this match</small></button><div class="row" style="margin-top:10px"><button class="opt" id="go-stats">Match stats</button></div></div>
+        <div id="homemain">
+          <button class="hbtn hero" id="go-online"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span><b>PLAY ONLINE</b><small>Quick play, open rooms and friends</small></span><em class="hpill" id="home-pill"></em></button>
+          <button class="hbtn green" id="go-play"><svg viewBox="0 0 24 24"><path d="M6 8h12a4 4 0 0 1 4 4v3a3 3 0 0 1-5.2 2L15 15H9l-1.8 2A3 3 0 0 1 2 15v-3a4 4 0 0 1 4-4z"/><path d="M8 11v3M6.5 12.5h3M16 12h.01M18 13.5h.01"/></svg><span><b>PLAY OFFLINE</b><small>Pick a mode, a level and your rules</small></span></button>
+          <div class="hrow" id="row-quick">
+            <button class="hbtn blue" id="quick"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span><b>QUICK PLAY</b><small>Random mode and level</small></span><em class="htag">OFFLINE</em></button>
+            <button class="hbtn mint" id="go-practice"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg><span><b>PRACTICE</b><small>Dummies and a weapon rack</small></span></button>
           </div>
-          <div class="hright">
-            <div class="feat" id="feat" style="display:none"><div class="th"><img id="feat-img" alt=""></div><span class="ftag">Level of the day</span><b id="feat-name"></b><small id="feat-blurb"></small><button class="chip" id="feat-go">Play this level</button></div>
-            <div class="news" style="display:none"><b>What's new &middot; build 66</b><ul>
+          <div class="hrow" id="row-locker">
+            <button class="hbtn purple" id="go-locker"><svg viewBox="0 0 24 24"><path d="M8 3 3 7l3 3 2-1v12h8V9l2 1 3-3-5-4a4 4 0 0 1-8 0z"/></svg><span><b>LOCKER</b><small>Your wobbler and emotes</small></span></button>
+            <button class="hbtn gold" id="go-shop"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8a3 3 0 0 1 6 0"/></svg><span><b>SHOP</b><small id="shopsub">Outfits and emotes</small></span></button>
+          </div>
+        </div>
+        <div class="hsmall" id="homesmall"><button class="opt" id="go-controls">Settings &amp; controls</button><button class="opt" id="go-account">Account</button><button class="opt" id="go-test">Test guns</button><button class="opt" id="go-me" style="display:none">My wobbler</button></div>
+        <small class="help" id="tip" style="margin-top:4px"></small>
+        <div id="homehide" style="display:none">
+          <div class="feat" id="feat" style="display:none"><div class="th"><img id="feat-img" alt=""></div><span class="ftag">Level of the day</span><b id="feat-name"></b><small id="feat-blurb"></small><button class="chip" id="feat-go">Play this level</button></div>
+          <div class="news" style="display:none"><b>What's new &middot; build 67</b><ul>
+              <li>New main menu: a big Play online button, Play offline, Quick play, Practice, Locker and Shop, with Settings, Controls, Account and Test guns underneath. No scrolling</li>
+              <li>New Account page: your name, level, stats, badges and recent matches. You pick your name once when you first start</li>
+              <li>Making a room is simpler: the Modifiers page sets the fighters, bots (dummies or brawlers), difficulty and score limit, and the lobby just shows a summary</li>
+              <li>Tralalero Tralala and Void Emperor are gone (owners get their coins back). Mode pages have icons</li>
+            </ul><b>Build 66</b><ul>
               <li>Explosive revamp: always 300 health, much stronger explosives, a new Blast Yard map, the Meteor Launcher (Explosive only) and only arenas (small ones, then the big ones)</li>
               <li>New weapon: Trident. The bow is now the Twin Fang Bow (two arrows at once). 5 boomerangs, a new boomerang look, and 2 Uzis in the crate</li>
               <li>Fixes: no-scope at close range, the jump down-strike, the sniper no longer slows you, the revolver is 6 shots plus 3, and bots stay away from edges</li>
@@ -559,8 +631,8 @@
               <li>Pillars are bigger (easier to land on, same gap between them), and hits push you back much less there</li>
               <li>Guns with a wait between shots now show a cooldown ring around the crosshair that fills up when you can fire again (round the scope rim when sniping). Reload still has its own bar</li>
               <li>Pillars: pillars are a little closer, every weapon can dash, only normal guns drop (no nets, explosives, swords, flamethrower, shotguns or the big bat), the Mammoth Pistol is in, and better weapons drop less often</li>
-              <li>New Mythic brainrot outfits: Tralalero Tralala (a blue shark with a toothy grin, back fin, THREE legs and giant sneakers, with the Sneaker Slapper) and Cappuccino Assassino (a ninja with a coffee mug for a head, red headband, scarf and a sword on his back, with the Espresso Katana). Cappuccino Assassino has a reactive face</li>
-              <li>New outfits: Thunder Titan (Legendary: gold storm armour, winged helm, beard and a crackling cape, with the Storm Bolt) and Void Emperor (Mythic: black-violet armour cracked with glowing void light, a horned helm, a floating crown and a cape sigil, with the Void Scythe). Every Legendary and Mythic outfit now has its own spatula</li>
+              <li>New Mythic outfit: Cappuccino Assassino (a ninja with a coffee mug for a head, red headband, scarf and a sword on his back, with the Espresso Katana). He has a reactive face</li>
+              <li>New outfit: Thunder Titan (Legendary: gold storm armour, winged helm, beard and a crackling cape, with the Storm Bolt). Every Legendary and Mythic outfit has its own spatula</li>
               <li>New emotes: Storm Surge (Legendary: crouch, blast lightning at the sky, slam it down) and Supernova (Mythic: curl up, explode into the sky and float in a ring of stars). Ballerina Cappuccina now comes with her own Grand Pirouette emote, which is only available with that outfit and cannot be bought on its own</li>
               <li>Two new exclusive maps: Firing Range (Guns Only: shooting lanes, sandbag walls, a sniper tower and corner nests) and Brawl Pit (Melee Only: a boxing ring, bleachers, tyre stacks and bounce pads). Boomerangs no longer drop in Pillars</li>
               <li>Brand-new backgrounds: every level now has its own sky and horizon (smoother sky colours, bigger sun with rays, a proper moon with craters, twinkling stars and shooting stars at night, fluffier two-tone clouds). Plus distant scenery per level: city skylines, volcanoes with smoke, candy mountains with a rainbow, pagodas and Mount Fuji, floating islands, lighthouses and sailboats, Earth hanging over Moon Base, aurora over the Brawl Pit, a haunted mansion, giant toys in the Playroom and more</li>
@@ -656,14 +728,26 @@
               <li>Net Gun (one shot, pins people flat under a weighted net) and a Kill Cam replay</li>
               <li>Sky scenery, graphics settings, touch controls, Test guns page</li>
             </ul></div>
-            <div class="stats" id="stats">
-              <div><b id="st-kos">0</b><small>K.O.s</small></div><div><b id="st-best">0</b><small>Best streak</small></div>
-              <div><b id="st-wins">0</b><small>Match wins</small></div><div><b id="st-time">0m</b><small>Time played</small></div>
-            </div>
-            <label class="srow" style="font-size:13px">Your name <input id="pname" type="text" maxlength="12" placeholder="You" style="width:100%;padding:7px 10px;border-radius:10px;border:0;font-family:inherit;font-weight:700"></label>
-            <small class="help" id="tip" style="margin-top:4px"></small>
+        </div>
+      </div>
+      <div class="tab" id="pg-account"><h2 class="step">Account</h2>
+        <div class="acctabs" id="ac-tabs"><button class="hatb on" id="at-profile">Profile</button><button class="hatb" id="at-stats">Stats</button><button class="hatb" id="at-badges">Badges</button><button class="hatb" id="at-history">Recent matches</button></div>
+        <div id="ac-profile">
+          <div class="acprof"><i class="acav" id="ac-av"></i><div class="acinfo"><label class="fld"><span>Your name</span><input id="ac-name" type="text" maxlength="12" placeholder="Your name"></label><small class="help" style="margin:0">This is the name other players see in matches and rooms.</small></div></div>
+          <div class="grp aclevel"><div class="lvtop"><b id="ac-lvl">Level 1</b><span id="ac-title">Rookie</span></div><div class="lvbar"><i id="ac-xp"></i></div><small id="ac-xpt"></small></div>
+          <div class="achips"><div><b id="ac-coins">0</b><small>Coins</small></div><div><b id="ac-owned">0</b><small>Outfits owned</small></div><div><b id="ac-badgen">0</b><small>Badges</small></div></div>
+          <div class="row" style="margin-top:12px"><button class="opt" id="ac-locker">Open Locker</button><button class="opt" id="ac-shop">Open Shop</button><button class="opt" id="ac-code">Redeem a code</button></div>
+        </div>
+        <div id="ac-stats" style="display:none">
+          <div class="stats" id="stats">
+            <div><b id="st-kos">0</b><small>K.O.s</small></div><div><b id="st-best">0</b><small>Best streak</small></div>
+            <div><b id="st-wins">0</b><small>Match wins</small></div><div><b id="st-time">0m</b><small>Time played</small></div>
+            <div><b id="st-matches">0</b><small>Matches played</small></div><div><b id="st-rate">0%</b><small>Win rate</small></div>
+            <div><b id="st-kd">0</b><small>K.O.s per match</small></div><div><b id="st-online">0</b><small>Online matches</small></div>
           </div>
         </div>
+        <div id="ac-badges" style="display:none"><div class="badges" id="badge-list"></div></div>
+        <div id="ac-history" style="display:none"><div id="hist-list"></div><div class="row" style="margin-top:10px"><button class="opt" id="ac-last">Open last match analysis</button></div></div>
       </div>
       <div class="tab" id="pg-vs">        <h2 class="step">Versus: how many on each team?</h2>
         <div id="vs-box"><div class="modes" id="row-vs"></div></div>
@@ -704,7 +788,7 @@
 
         <div class="grp">
           <h3>Bots</h3>
-          <label class="srow">How many <b id="bn-val">5</b> <input id="bn" type="range" min="0" max="12" step="1" value="5"></label>
+          <label class="srow"><span id="bn-lbl">How many</span> <b id="bn-val">5</b> <input id="bn" type="range" min="0" max="12" step="1" value="5"></label>
           <div class="row" id="row-behav">
             <button class="opt" id="behav-dummy">Dummies<small>Wander about, barely fight</small></button>
             <button class="opt on" id="behav-brawl">Brawlers<small>They hunt you down</small></button>
@@ -747,7 +831,7 @@
       </div>
       <div class="tab" id="pg-result"><h2 class="step" id="res-title">Match analysis</h2><div id="res"></div></div>
       <div class="tab" id="pg-online"><h2 class="step">Play online</h2>
-        <div class="onhead"><label class="onname"><span>Playing as</span><input id="on-name" type="text" maxlength="12" placeholder="Your name"></label><span id="on-pill" class="pill" title="">Connecting&hellip;</span></div>
+        <div class="onhead"><div class="onname"><span>Playing as</span><b id="on-who">Player</b><button class="olink2" id="on-chg">change</button></div><span id="on-pill" class="pill" title="">Connecting&hellip;</span></div>
         <div class="ongrid">
           <button class="oncard pri" id="oh-quick"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><b>Quick play</b><small>Pick a mode and drop straight into a game</small></button>
           <button class="oncard" id="oh-rooms"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/></svg><b>Browse rooms</b><small id="oh-roomsn">See the games other players opened</small></button>
@@ -788,10 +872,8 @@
         <div class="seats" id="on-roster"></div>
         <div id="on-opts" class="lobset">
           <div class="lobsec">Match settings</div>
-          <div class="setrow"><label>Fighters</label><div class="wrap" id="on-max"></div></div>
-          <div class="setrow"><label>Bots</label><div class="wrap" id="on-bots"></div></div>
-          <div class="setrow" id="on-limrow"><label>Ends at</label><div class="wrap" id="on-lim"></div></div>
-          <div id="on-limnote" class="onsub" style="display:none">This mode ends by itself (lives or the 3-minute clock).</div>
+          <div id="on-sum" class="sumbox"></div>
+          <button class="olink" id="on-edit">Change settings</button>
         </div>
         <div id="on-info" class="onsub" style="display:none"></div>
         <button class="big" id="on-start">START MATCH<small>Empty spots are filled with bots. Friends can still join later.</small></button>
@@ -895,9 +977,10 @@
 <div id="title">
   <div id="logo"></div>
   <p>Wobbly low-poly brawls. Bring your friends (and a bat).</p>
+  <input id="title-name" type="text" maxlength="12" placeholder="Type your name to start" autocomplete="off" spellcheck="false">
   <button id="start">PLAY</button>
   <div class="tc" style="top:10%;--d:75s"></div><div class="tc" style="top:34%;--d:110s;left:-60%;transform:scale(1.4)"></div><div class="tc" style="top:70%;--d:90s;left:-45%"></div>
-  <small id="titlesmall">Build 38 &middot; Esc opens the menu any time (on touch: the MENU button)</small>
+  <small id="titlesmall">Build 67 &middot; Esc opens the menu any time (on touch: the MENU button)</small>
 </div>
 <div id="boot">
   <div id="bootlogo"></div>
@@ -2472,12 +2555,14 @@ const MAP_ORDER = ['test', 'practice', 'dojo', 'blast', 'gunrange', 'brawlpit', 
 for (const m in MODES) if (MODES[m].maps) MODES[m].maps = MODES[m].maps.filter(k => MAPS[k]).sort((a, b) => MAP_ORDER.indexOf(a) - MAP_ORDER.indexOf(b));
 MODES.classic.icon = 'Everything drops'; MODES.sandbox.icon = 'Your level';
 const VS = ['duel', 't2', 't3', 't4'];
-let hostFlow = false;
+let hostFlow = false, editFlow = false;
 const MODE_ORDER = ['classic', 'versus', 'pillars', 'ninja', 'mega', 'giant', 'gungame', 'guns', 'melee', 'explosive', 'lowg', 'sandbox'];   // two to a row, left to right
 const modeSmall = k => MODES[k].desc + (MODES[k].wl ? '<span class="wl">' + MODES[k].wl + '</span>' : '') + (MODES[k].ex ? '<span class="ex">' + MODES[k].ex + '</span>' : '');
-const renderModeButtons = () => { el('row-mode').innerHTML = MODE_ORDER.map(k => k === 'versus' ? '<button id="mode-versus">Versus<small>1v1, 2v2, 3v3 or 4v4 against bots. You choose the size</small></button>' : '<button id="mode-' + k + '">' + MODES[k].name + '<small>' + modeSmall(k) + '</small></button>').join(''); const sb = el('mode-sandbox'); if (sb) sb.classList.add('locked'); };
+const MODE_ICON = {"classic": "<path d=\"M8 3h8a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-3v9h-2v-9H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z\"/><path d=\"M10 6v3M14 6v3\"/>", "versus": "<text x=\"12\" y=\"16.5\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"900\" font-family=\"Inter,Arial,sans-serif\" fill=\"currentColor\" stroke=\"none\">VS</text>", "duel": "<text x=\"12\" y=\"16.5\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"900\" font-family=\"Inter,Arial,sans-serif\" fill=\"currentColor\" stroke=\"none\">1v1</text>", "t2": "<text x=\"12\" y=\"16.5\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"900\" font-family=\"Inter,Arial,sans-serif\" fill=\"currentColor\" stroke=\"none\">2v2</text>", "t3": "<text x=\"12\" y=\"16.5\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"900\" font-family=\"Inter,Arial,sans-serif\" fill=\"currentColor\" stroke=\"none\">3v3</text>", "t4": "<text x=\"12\" y=\"16.5\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"900\" font-family=\"Inter,Arial,sans-serif\" fill=\"currentColor\" stroke=\"none\">4v4</text>", "pillars": "<rect x=\"3\" y=\"12\" width=\"5\" height=\"8\" rx=\"1\"/><rect x=\"9.5\" y=\"5\" width=\"5\" height=\"15\" rx=\"1\"/><rect x=\"16\" y=\"9\" width=\"5\" height=\"11\" rx=\"1\"/>", "ninja": "<path d=\"M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z\"/><circle cx=\"12\" cy=\"12\" r=\"1.8\"/>", "mega": "<path d=\"M12 2l3 6 6.5.9-4.7 4.5 1.2 6.6L12 17l-6 3 1.2-6.6L2.5 8.9 9 8z\"/>", "giant": "<circle cx=\"12\" cy=\"4.5\" r=\"2.5\"/><path d=\"M12 7v9M6 10l6-2 6 2M8.5 22 12 16l3.5 6\"/>", "gungame": "<path d=\"M7 3v18M17 3v18M7 7h10M7 12h10M7 17h10\"/>", "guns": "<path d=\"M3 7h14a2 2 0 0 1 2 2v2h-8l-1 6H6l1-6H3z\"/><path d=\"M19 8h2\"/>", "melee": "<g transform=\"rotate(45 12 12)\"><path d=\"M12 1.5l3 4.5v9H9V6z\"/><path d=\"M6.5 15h11M12 15v5.5\"/><circle cx=\"12\" cy=\"21.5\" r=\"1\"/></g>", "explosive": "<circle cx=\"11\" cy=\"14\" r=\"7\"/><path d=\"M13 7.2c0-2 1.2-3 3.2-3M18.5 2v3M16.8 3.5h3.4\"/>", "lowg": "<path d=\"M20 14A8 8 0 1 1 10 4a6.5 6.5 0 0 0 10 10z\"/>", "sandbox": "<path d=\"M12 3l8 4v10l-8 4-8-4V7zM12 12l8-5M12 12v9M12 12 4 7\"/>"};
+const modeIco = k => MODE_ICON[k] ? '<svg class="mico" viewBox="0 0 24 24">' + MODE_ICON[k] + '</svg>' : '';
+const renderModeButtons = () => { el('row-mode').innerHTML = MODE_ORDER.map(k => k === 'versus' ? '<button id="mode-versus">' + modeIco('versus') + 'Versus<small>1v1, 2v2, 3v3 or 4v4 against bots. You choose the size</small></button>' : '<button id="mode-' + k + '">' + modeIco(k) + MODES[k].name + '<small>' + modeSmall(k) + '</small></button>').join(''); const sb = el('mode-sandbox'); if (sb) sb.classList.add('locked'); };
 renderModeButtons();
-el('row-vs').innerHTML = VS.map(k => '<button id="vs-' + k + '">' + MODES[k].name + '<small>' + modeSmall(k) + '</small></button>').join('');
+el('row-vs').innerHTML = VS.map(k => '<button id="vs-' + k + '">' + modeIco(k) + MODES[k].name + '<small>' + modeSmall(k) + '</small></button>').join('');
 const tcase = t => t.replace(/(^|[\s(\/-])([a-z])/g, (m, a, b) => a + b.toUpperCase());          // every word starts with a capital
 for (const k in WEAPONS) WEAPONS[k].name = tcase(WEAPONS[k].name);
 const wnames = (keys) => keys.filter(k => WEAPONS[k]).map(k => WEAPONS[k].name).join(', ');
@@ -2492,7 +2577,7 @@ for (const m of ['classic', 'duel', 't2', 't3', 't4']) MODES[m].wl = 'All guns a
 MODES.sandbox.wl = 'Fully customisable: modifiers, arena and guns';
 for (const id in MAPS) { const o = MAPS[id].only; if (o && MODES[o] && o !== 'sandbox') MODES[o].ex = (MODES[o].ex ? MODES[o].ex + ' · ' : '') + 'Exclusive map: ' + MAPS[id].name; }   // modes with their own map say so
 MODES.lowg.ex = 'Exclusive maps: Crater Dome, Space Capsule · Exclusive gravity: Drift';
-renderModeButtons(); el('row-vs').innerHTML = VS.map(k => '<button id="vs-' + k + '">' + MODES[k].name + '<small>' + modeSmall(k) + '</small></button>').join('');
+renderModeButtons(); el('row-vs').innerHTML = VS.map(k => '<button id="vs-' + k + '">' + modeIco(k) + MODES[k].name + '<small>' + modeSmall(k) + '</small></button>').join('');
 function GG_NAMES() { return ['smg', 'ak', 'uzi', 'shotgun', 'revolver', 'sniper', 'bow', 'shuriken', 'knife', 'glauncher', 'bat', 'spatula'].map(k => WEAPONS[k].name).join(', '); }
 const giantOn = () => { if (cfg.mode !== 'giant') return false; try { return ui === 'play' || (ui === 'lobby' && inMatch && !matchOver && page !== 'shop' && page !== 'locker' && page !== 'me'); } catch (e) { return true; } };   // giant only while a giant match is on, so the menus, shop and locker show you normal size
 const HEAL_META = { name: 'Health Pack', color: 0x5be37a };
@@ -2590,17 +2675,6 @@ function skinSpatula(g, kind) {                       // the look-alike spatulas
   } else if (kind === 'wrench') {
     a(C(0.06, 0.06, 0.55), 0x1fb5a3, 0, -0.05, 0); a(B(0.1, 1.15, 0.06), 0xffb52e, 0, -0.9, 0); a(B(0.42, 0.18, 0.06), 0xffb52e, 0, -1.55, 0);
     a(B(0.1, 0.32, 0.06), 0xffb52e, -0.16, -1.74, 0); a(B(0.1, 0.32, 0.06), 0xffb52e, 0.16, -1.74, 0); a(S(0.045, 0), 0xffe27a, 0, -0.5, 0.04);
-  } else if (kind === 'sneaker') {                    // a giant blue trainer on a stick: slap them with the sole
-    a(C(0.06, 0.06, 0.5), 0x2a62d8, 0, -0.05, 0); for (const y of [-0.2, 0.0, 0.18]) a(C(0.07, 0.07, 0.04), 0xffffff, 0, y, 0); a(S(0.08, 1), 0xffffff, 0, 0.3, 0);
-    a(C(0.035, 0.04, 0.55), 0xdfe8f2, 0, -0.55, 0);
-    const sn = (geo, col, x, y, z, rx = 0, ry = 0, rz = 0) => { const m = a(geo, col, x, y, z, rx, ry, rz); m.material.flatShading = false; m.material.needsUpdate = true; return m; };
-    sn(B(0.38, 1.1, 0.1), 0xffffff, 0, -1.55, -0.12);                                       // the sole
-    sn(S(0.2, 2), 0x2a62d8, 0, -1.5, 0.0).scale.set(0.95, 2.4, 0.78);                       // the blue upper
-    sn(S(0.15, 2), 0xffffff, 0, -2.0, -0.01).scale.set(1.15, 1.0, 0.9);                     // toe cap
-    sn(B(0.28, 0.1, 0.22), 0x142a4a, 0, -1.02, 0.02);                                       // the opening
-    sn(B(0.2, 0.34, 0.05), 0xffffff, 0, -1.15, 0.14, -0.35);                                // tongue
-    for (let i = 0; i < 4; i++) a(B(0.24, 0.03, 0.04), 0xffffff, 0, -1.2 - i * 0.14, 0.16);   // laces
-    for (const sx of [-1, 1]) { a(B(0.018, 0.5, 0.06), 0xffffff, sx * 0.19, -1.5, 0.02, 0.1, 0, 0); a(B(0.018, 0.22, 0.05), 0xffffff, sx * 0.185, -1.78, 0.03, -0.25, 0, 0); }   // a swoosh each side
   } else if (kind === 'espresso') {                   // a ninja sword made of coffee things: bean pommel, red grip, a saucer for a guard, dark steel with a latte-foam wave
     a(C(0.05, 0.05, 0.55), 0x3a1e0e, 0, -0.1, 0); for (const y of [-0.3, -0.14, 0.02, 0.17]) a(C(0.062, 0.062, 0.045), 0xc4202c, 0, y, 0);
     const pb = a(S(0.1, 1), 0x4a2a14, 0, 0.3, 0); pb.scale.set(0.85, 1.15, 0.85); a(B(0.012, 0.2, 0.1), 0x1c0f07, 0, 0.3, 0.05);                       // a coffee bean
@@ -2615,13 +2689,6 @@ function skinSpatula(g, kind) {                       // the look-alike spatulas
     for (let i = 0; i < PT.length - 1; i++) { const [x0, y0] = PT[i], [x1, y1] = PT[i + 1], dx = x1 - x0, dy = y1 - y0, L = Math.hypot(dx, dy); a(B(0.15, L + 0.06, 0.05), 0xfff06a, (x0 + x1) / 2, (y0 + y1) / 2, 0, 0, 0, Math.atan2(dx, -dy), 0.9); a(B(0.05, L, 0.06), 0xffffff, (x0 + x1) / 2, (y0 + y1) / 2, 0, 0, 0, Math.atan2(dx, -dy), 1.0); }
     tipDown(0.09, 0.22, 0xfff06a, -2.4, 0.4, 0.9);
     a(S(0.035, 0), 0xffffff, 0.22, -1.2, 0.05, 0, 0, 0, 1); a(S(0.03, 0), 0xffffff, -0.2, -1.7, 0.05, 0, 0, 0, 1);
-  } else if (kind === 'scythe') {                     // a black staff with a curved blade of void light
-    a(C(0.04, 0.04, 1.6), 0x241540, 0, -0.75, 0); for (const y of [-0.25, -0.65, -1.05]) a(C(0.058, 0.058, 0.05), 0xcbbdea, 0, y, 0);
-    a(S(0.1, 1), 0xb06bff, 0, -0.04, 0, 0, 0, 0, 0.8); a(C(0.07, 0.05, 0.12), 0xcbbdea, 0, -0.14, 0);
-    const bl = new THREE.TorusGeometry(0.55, 0.05, 6, 22, Math.PI / 2); const m1 = a(bl, 0x3a2570, 0, -2.0, 0); m1.scale.set(1, 1, 0.45);          // blade (a quarter of a circle: out from the tip and curling back)
-    const m2 = a(new THREE.TorusGeometry(0.51, 0.022, 6, 22, Math.PI / 2), 0xff5ae0, 0.0, -2.0, 0.0, 0, 0, 0, 1.0); m2.scale.set(1, 1, 0.5);       // the glowing edge
-    tipDown(0.045, 0.22, 0xff5ae0, -2.1, 0.5, 1.0).position.x = 0.55; a(S(0.05, 0), 0xffffff, 0.0, -1.56, 0.0, 0, 0, 0, 1);
-    for (let i = 0; i < 3; i++) a(new THREE.OctahedronGeometry(0.035, 0), 0xb06bff, 0.3 + i * 0.1, -1.5 - i * 0.18, 0.1, 0.3, i, 0.2, 1);        // void shards trailing off it
   }
 }
 function makeWeaponMesh(key, skin) {
@@ -3065,13 +3132,11 @@ const SKINS = {
   deckhand:{ name: 'Deck Hand', icon: '\u{2693}', col: 0x4a7a9a, tone: 0xd9a273, pants: 0x3a3a44, shoes: 0x2a1d14, noHat: true },      // pirate-ship matches only, not for sale
   tripleT: { name: 'Triple T', icon: '\u{1FAB5}', col: 0xb07a43, tone: 0xb07a43, pants: 0x8a5a2b, shoes: 0x5a3a1c, noBelt: true, noHead: true, noEyes: true, noHat: true, noTorso: true },
   ballerina:{ name: 'Ballerina Cappuccina', icon: '\u2615', col: 0xf1c9a5, tone: 0xf1c9a5, pants: 0xf3cfb3, shoes: 0xffc4dc, thin: 0.68, noBelt: true, noHead: true, noEyes: true, noHat: true, noTorso: true },
-  tralalero:{ name: 'Tralalero Tralala', icon: '\u{1F988}', col: 0x4a86d6, tone: 0x4a86d6, pants: 0x4a86d6, shoes: 0x2a62d8, noBelt: true, noHead: true, noEyes: true, noHat: true, noTorso: true },
   assassino:{ name: 'Cappuccino Assassino', icon: '\u{1F375}', col: 0x17171f, tone: 0x17171f, pants: 0x17171f, shoes: 0x17171f, noBelt: true, noHead: true, noEyes: true, noHat: true, noTorso: true },
   thunder: { name: 'Thunder Titan', icon: '\u26A1', col: 0x2b49c4, tone: 0xe0ac7f, pants: 0x1a2f86, shoes: 0xf2c230, noBelt: true, noTorso: true, noHat: true },
-  voidEmp: { name: 'Void Emperor', icon: '\u{1F451}', col: 0x241540, tone: 0x3a2570, pants: 0x1c1034, shoes: 0x8a4ce8, noBelt: true, noHead: true, noEyes: true, noHat: true, noTorso: true },
   hero:    { name: 'Captain Comet', icon: '\u{1F9B8}', col: 0x2a56c8, tone: 0xf1c9a5, pants: 0x2a56c8, shoes: 0xd32f2f },
 };
-const SKIN_SHOP = { cowboy: [400, 'uncommon'], pirate: [500, 'uncommon'], wizard: [850, 'epic'], astro: [700, 'rare'], robot: [700, 'rare'], shadow: [800, 'rare'], knight: [900, 'epic'], samurai: [1000, 'epic'], vampire: [1100, 'epic'], hero: [1500, 'legendary'], fire: [450, 'uncommon'], detective: [500, 'uncommon'], pilot: [550, 'uncommon'], scientist: [650, 'rare'], racer: [650, 'rare'], viking: [750, 'rare'], jester: [850, 'epic'], pharaoh: [1200, 'epic'], tripleT: [3500, 'mythic'], ballerina: [3500, 'mythic'], tralalero: [3500, 'mythic'], assassino: [3500, 'mythic'], thunder: [2000, 'legendary'], voidEmp: [4000, 'mythic'] };
+const SKIN_SHOP = { cowboy: [400, 'uncommon'], pirate: [500, 'uncommon'], wizard: [850, 'epic'], astro: [700, 'rare'], robot: [700, 'rare'], shadow: [800, 'rare'], knight: [900, 'epic'], samurai: [1000, 'epic'], vampire: [1100, 'epic'], hero: [1500, 'legendary'], fire: [450, 'uncommon'], detective: [500, 'uncommon'], pilot: [550, 'uncommon'], scientist: [650, 'rare'], racer: [650, 'rare'], viking: [750, 'rare'], jester: [850, 'epic'], pharaoh: [1200, 'epic'], tripleT: [3500, 'mythic'], ballerina: [3500, 'mythic'], assassino: [3500, 'mythic'], thunder: [2000, 'legendary'] };
 const CODE_SKINS = { dev: 'mythic', beta: 'legendary' };            // only from a redeem code, never in the shop
 const FREE_SKINS = ['hoodie', 'skater', 'chef', 'suit', 'builder', 'sporty', 'jacket', 'dress'];
 const SKIN_KEYS = Object.keys(SKINS).filter(k => k !== 'deckhand');   // the Deck Hand only turns up on the pirate ship
@@ -3424,71 +3489,6 @@ function buildSkinParts(f, key) {
     SMc(add(body, new THREE.TorusGeometry(0.66, 0.04, 6, 36), 0xffd0e4, 0, 0.06, 0, PI / 2, 0, 0));                                             // ruffled edge
     for (const k of [0, 1]) { for (const rz of [0.5, -0.5]) add(f.legs[k], B(0.04, 0.5, 0.03), 0xffc4dc, 0, -0.62, 0.11, 0.1, 0, rz * 0.5); add(f.legs[k], C(0.1, 0.1, 0.05, 10), 0xffc4dc, 0, -0.42, 0); }   // pointe-shoe ribbons wrapped up the shin
     add(neck, S(0.09, 1), PK, 0, 0.68, -0.4, 0, 0, 0, 1, 1, 0.8); for (const sx of [-1, 1]) add(neck, S(0.06, 1), PK, sx * 0.08, 0.68, -0.4, 0, 0, 0, 1, 1, 0.8);    // a pink bow at the back of the cup
-  } else if (key === 'tralalero') {                   // Tralalero Tralala: an upright blue shark with a toothy grin, a big back fin, THREE legs and giant trainers
-    fo.ears = false; fo.nose = false; fo.mouth = false;
-    const SH = 0x4a86d6, SH2 = 0x2f5fae, WH = 0xeef5fc, DK = 0x10243f, SNK = 0x2a62d8, TNG = 0xe8707f;
-    const prof = [[0, -0.03], [0.33, -0.03], [0.4, 0.08], [0.44, 0.35], [0.455, 0.62], [0.42, 0.82], [0.32, 0.93], [0, 0.96]];
-    sm(add(body, latheP(prof), SH, 0, 0, 0));                                                                       // one smooth blue body
-    sm(add(body, S(0.36, 2), WH, 0, 0.43, 0.32, 0, 0, 0, 0.78, 1.18, 0.42));                                         // pale shark belly down the front
-    sm(add(body, new THREE.TorusGeometry(0.36, 0.035, 8, 30), SH2, 0, 0.06, 0, PI / 2, 0, 0));                        // a darker hem where the body meets the legs
-    const SPH1 = new THREE.SphereGeometry(1, 36, 24);                                                                 // the head is a streamlined shark head: a rounded skull with a long blunt snout, not a ball
-    const E1 = { x: 0.38, y: 0.36, z: 0.42, cy: 0.3, cz: -0.05 }, E2 = { x: 0.27, y: 0.2, z: 0.4, cy: 0.2, cz: 0.22 }, E3 = { x: 0.26, y: 0.12, z: 0.39, cy: 0.1, cz: 0.22 };   // skull, snout, pale underjaw
-    sm(add(neck, SPH1, SH, 0, E1.cy, E1.cz, 0, 0, 0, E1.x, E1.y, E1.z)); sm(add(neck, SPH1, SH, 0, E2.cy, E2.cz, 0, 0, 0, E2.x, E2.y, E2.z)); sm(add(neck, SPH1, WH, 0, E3.cy, E3.cz, 0, 0, 0, E3.x, E3.y, E3.z));
-    const ez = (E, x, y) => E.cz + E.z * Math.sqrt(Math.max(0, 1 - (x / E.x) ** 2 - ((y - E.cy) / E.y) ** 2));
-    const hfz = (x, y) => Math.max(ez(E1, x, y), ez(E2, x, y));                                                       // the real front surface of skull + snout at (x, y)
-    const hfx = (y, z) => E1.x * Math.sqrt(Math.max(0, 1 - ((z - E1.cz) / E1.z) ** 2 - ((y - E1.cy) / E1.y) ** 2));  // the skull's side surface
-    const yawAt = (x, y) => -Math.atan((hfz(x + 0.03, y) - hfz(x - 0.03, y)) / 0.06);
-    f.faceSets = null;                                                                                                // a fixed face, like the real thing: it does not react
-    const fs = (set, m) => { if (set !== 'normal') { m.parent.remove(m); parts.pop(); } return m; };                  // only the 'normal' pieces are built
-    for (const sx of [-1, 1]) {
-      const ex = sx * 0.25, ey = 0.43, zz = hfz(ex, ey), ya = yawAt(ex, ey);
-      sm(add(neck, S(0.075, 2), 0xffffff, ex, ey, zz - 0.012, 0, ya, 0, 1, 1.15, 0.6));                                // eyes: smallish, white, with a dark pupil
-      sm(add(neck, S(0.038, 2), 0x0b1020, ex + sx * 0.005, ey - 0.005, zz + 0.022, 0, ya, 0, 1, 1.1, 0.7));
-      add(neck, S(0.011, 1), 0xffffff, ex + sx * 0.012, ey + 0.02, zz + 0.045, 0, ya, 0);
-      const by = 0.53, bz = hfz(ex, by) + 0.003, bya = yawAt(ex, by);
-      fs('hurt', add(neck, B(0.17, 0.045, 0.035), SH2, ex, by - 0.01, bz, 0, bya, -sx * 0.4));                         // hurt: worried brows
-      fs('happy', add(neck, B(0.17, 0.045, 0.035), SH2, ex, by + 0.04, hfz(ex, by + 0.04) + 0.003, 0, bya, sx * 0.08));     // excited: brows high
-      fs('panic', add(neck, B(0.17, 0.045, 0.035), SH2, ex, by + 0.05, hfz(ex, by + 0.05) + 0.003, 0, bya, -sx * 0.5));     // panic: high and worried
-      fs('panic', add(neck, B(0.05, 0.1, 0.04), 0x6ec6ff, sx * 0.34, 0.5, hfz(sx * 0.34, 0.5), 0, sx * 0.9, sx * 0.2));  // a sweat drop each side
-      for (let j = 0; j < 3; j++) { const gz = -0.2 - j * 0.07; add(neck, B(0.012, 0.13, 0.03), SH2, sx * (hfx(0.3, gz) + 0.003), 0.3, gz, 0, 0, sx * 0.35); }   // gill slits behind the eyes
-      add(neck, S(0.015, 1), DK, sx * 0.07, 0.33, hfz(sx * 0.07, 0.33));                                              // nostrils on top of the snout
-    }
-    const cz = (x, y) => ez(E3, x, y), sfz = (x, y) => Math.max(hfz(x, y), cz(x, y));                                  // the mouth sits on whichever is further forward: snout or underjaw
-    const yawS = (x, y) => -Math.atan((sfz(x + 0.03, y) - sfz(x - 0.03, y)) / 0.06);
-    const mouth = (set, th, curve, ns, tu, tl, tongue) => {                                                          // the grin is a row of little dark pieces that follow the curve of the head, with teeth along its edges
-      for (let i = -ns; i <= ns; i++) {
-        const x = i * 0.058, u = x / 0.34, yc = 0.16 + curve * u * u, z0 = sfz(x, yc), yw = yawS(x, yc), rz = Math.atan(2 * curve * u / 0.34);
-        fs(set, add(neck, B(0.07, th, 0.05), DK, x, yc, z0 - 0.012, 0, yw, rz));
-      }
-      for (let i = -ns; i < ns; i++) {
-        const x = (i + 0.5) * 0.058, u = x / 0.34, yc = 0.16 + curve * u * u, z0 = sfz(x, yc), yw = yawS(x, yc);
-        if (tu) fs(set, add(neck, C(0.03, 0, tu, 4), 0xffffff, x, yc + th / 2 - tu / 2 + 0.004, z0 + 0.004, 0, yw + PI / 4, 0));        // teeth hang from the top lip
-      }
-      if (tl) for (let i = -ns + 1; i < ns; i++) {
-        const x = i * 0.058, u = x / 0.34, yc = 0.16 + curve * u * u, z0 = sfz(x, yc), yw = yawS(x, yc);
-        fs(set, add(neck, C(0, 0.027, tl, 4), 0xffffff, x, yc - th / 2 + tl / 2 - 0.004, z0 + 0.004, 0, yw + PI / 4, 0));               // ...and rise from the bottom lip
-      }
-      if (tongue) fs(set, add(neck, S(0.075, 1), TNG, 0, 0.16 - th / 2 + 0.04, sfz(0, 0.12) - 0.012, 0, 0, 0, 1.4, 0.5, 0.5));
-    };
-    mouth('normal', 0.085, 0.05, 3, 0.075, 0.045, false);                                                              // normal: a wide toothy smile
-    mouth('hurt', 0.11, 0, 3, 0.07, 0.07, false);                                                                     // hurt: gritted teeth
-    mouth('happy', 0.19, 0.05, 3, 0.08, 0.05, true);                                                                  // excited: wide open, tongue out
-    mouth('panic', 0.24, 0, 2, 0.065, 0.04, true);                                                                     // panic: a screaming round mouth
-    const fin = poly([[0, 0], [0.04, 0.2], [0.14, 0.42], [0.3, 0.6], [0.44, 0.74], [0.42, 0.5], [0.4, 0.28], [0.46, 0.12], [0.55, 0]], 0.07);   // a tall swept-back dorsal fin
-    sm(dbl(add(neck, fin, SH2, 0, 0.56, 0.1, 0, PI / 2, 0, 0.9, 0.9, 1)));
-    sm(dbl(add(neck, poly([[0, 0], [0.02, 0.1], [0.12, 0.2], [0.22, 0.26], [0.2, 0.12], [0.26, 0]], 0.05), SH2, 0, 0.58, -0.42, 0, PI / 2, 0, 0.8, 0.8, 1)));   // a small second fin behind it
-    sm(dbl(add(body, poly([[0, 0], [0.1, 0.1], [0.24, 0.22], [0.42, 0.34], [0.3, 0.14], [0.36, 0], [0.18, -0.06]], 0.06), SH2, 0, 0.15, -0.36, 0, PI / 2, 0, 1.1, 1.2, 1)));    // a stubby tail fin
-    for (const sx of [-1, 1]) { sm(add(body, S(0.16, 2), SH2, sx * 0.5, 0.78, 0, 0, 0, 0, 1.0, 0.7, 0.9)); }          // shoulder pads in the darker blue
-    const sneaker = (par, x, z) => {                                                                                  // a big chunky trainer: white sole, blue upper, white toe cap, laces and a side swoosh
-      sm(add(par, B(0.36, 0.1, 0.66), 0xffffff, x, -0.76, z + 0.13));
-      sm(add(par, S(0.2, 2), SNK, x, -0.65, z + 0.1, 0, 0, 0, 0.95, 0.7, 1.55));
-      sm(add(par, S(0.14, 2), 0xffffff, x, -0.7, z + 0.37, 0, 0, 0, 1.15, 0.8, 1.0));
-      add(par, B(0.2, 0.15, 0.04), 0xffffff, x, -0.5, z - 0.02, -0.5, 0, 0);
-      for (let i = 0; i < 3; i++) add(par, B(0.22, 0.018, 0.035), 0xffffff, x, -0.515 - i * 0.012, z + 0.1 + i * 0.075);
-      for (const sx of [-1, 1]) { add(par, B(0.016, 0.05, 0.3), 0xffffff, x + sx * 0.19, -0.66, z + 0.12, 0.3, 0, 0); add(par, B(0.016, 0.03, 0.12), 0xffffff, x + sx * 0.188, -0.63, z - 0.06, -0.3, 0, 0); }
-    };
-    for (let k = 0; k < 2; k++) sneaker(f.legs[k], 0, 0);
-    sm(add(f.legs[0], C(0.145, 0.115, 0.8, 22), SH, 0.2, -0.4, 0.16)); sneaker(f.legs[0], 0.2, 0.16);                    // the famous third leg
   } else if (key === 'assassino') {                   // Cappuccino Assassino: a ninja with a coffee mug for a head, a red headband, scarf and a sword on his back
     fo.ears = false; fo.nose = false; fo.mouth = false;
     const MUG = 0xfaf4ea, MUG2 = 0xdcd0bf, COF = 0x4a2a14, FOAM = 0xf3dfc2, BK = 0x17171f, BK2 = 0x2a2a36, RED = 0xc4202c, RED2 = 0x8f1620, STEEL = 0xc9d2dc, DK = 0x22160f, CLOTH = 0xf0ece4;
@@ -3565,49 +3565,6 @@ function buildSkinParts(f, key) {
     for (const sx of [-1, 1]) sm(add(neck, S(0.065, 1), WHITE, sx * 0.07, 0.22, hz(0.22, sx * 0.07) + 0.04, 0, 0, sx * 0.3, 1.5, 0.7, 0.9));    // moustache
     for (let k = 0; k < 2; k++) { pm(sm(add(f.legs[k], C(0.17, 0.145, 0.3, 14), GOLD, 0, -0.58, 0)), { r: 0.35, m: 0.7 }); pm(sm(add(f.legs[k], S(0.11, 1), GOLD, 0, -0.38, 0.12)), { r: 0.35, m: 0.7 }); }   // greaves and knee guards
     for (const a of [f.armL, f.arm]) pm(sm(add(a, C(0.128, 0.118, 0.2, 14), GOLD, 0, -0.5, 0)), { r: 0.35, m: 0.7 });   // gold bracers
-  } else if (key === 'voidEmp') {                     // Void Emperor: black-violet armour cracked with glowing void light, a horned helm and a crown that floats above it
-    fo.ears = false; fo.nose = false; fo.mouth = false;
-    const V1 = 0x241540, V2 = 0x3a2570, V3 = 0x6a3fc0, VIO = 0xb06bff, MAG = 0xff5ae0, SIL = 0xcbbdea;
-    const prof = [[0, -0.03], [0.33, -0.03], [0.4, 0.08], [0.43, 0.35], [0.47, 0.65], [0.43, 0.84], [0.3, 0.95], [0, 0.98]];
-    pm(sm(add(body, latheP(prof), V1, 0, 0, 0)), { r: 0.3, m: 0.85 });                                                  // glossy black-violet armour
-    pm(sm(add(body, S(0.4, 2), V2, 0, 0.6, 0.1, 0, 0, 0, 0.98, 0.8, 0.98)), { r: 0.3, m: 0.85 });                      // chest plate
-    pm(sm(add(body, new THREE.TorusGeometry(0.16, 0.035, 8, 24), SIL, 0, 0.6, 0.495)), { r: 0.25, m: 0.9 });          // ring round a glowing core
-    gl(body, S(0.11, 2), VIO, 0, 0.6, 0.5, 0, 0, 0, 1, 1, 0.7); gl(body, S(0.05, 1), 0xffffff, 0, 0.6, 0.555, 0, 0, 0, 1, 1, 0.6);
-    for (let i = 0; i < 8; i++) { const a = i * PI / 4 + 0.2, rr = 0.26 + (i % 2) * 0.08, x = Math.sin(a) * rr, y = 0.6 + Math.cos(a) * rr * 0.9; gl(body, B(0.018, 0.13, 0.014), VIO, x, y, Math.sqrt(Math.max(0.01, 0.46 * 0.46 - x * x)) + 0.002, 0, Math.atan2(x, 0.46), -a); }   // cracks of void light
-    pm(sm(add(body, new THREE.TorusGeometry(0.44, 0.055, 8, 32), V3, 0, 0.12, 0, PI / 2, 0, 0)), { r: 0.3, m: 0.85 }); gl(body, new THREE.OctahedronGeometry(0.075, 0), MAG, 0, 0.12, 0.47, 0, 0, 0, 1, 1.4, 0.7);
-    for (const sx of [-1, 1]) {
-      pm(sm(add(body, S(0.24, 2), V2, sx * 0.54, 0.88, 0, 0, 0, 0, 1.2, 0.75, 1.2)), { r: 0.3, m: 0.85 });              // great pauldrons
-      for (const [dx, dy, dz, rz, rx, len] of [[0.12, 0.2, 0, 0.9, 0, 0.5], [0.06, 0.24, 0.17, 0.45, 0.5, 0.36], [0.06, 0.24, -0.17, 0.45, -0.5, 0.36]]) pm(add(body, C(0, 0.075, len, 5), SIL, sx * (0.54 + dx), 0.88 + dy, dz, rx, 0, -sx * rz), { r: 0.25, m: 0.9 });   // spikes
-      gl(body, S(0.045, 1), VIO, sx * 0.62, 0.95, 0.13);
-    }
-    add(body, B(1.0, 1.35, 0.05), V1, 0, 0.33, -0.52, 0.1, 0, 0); for (const sx of [-1, 1]) add(body, B(0.045, 1.35, 0.07), V3, sx * 0.5, 0.33, -0.52, 0.1, 0, 0); add(body, B(1.0, 0.06, 0.07), V3, 0, 1.0, -0.5, 0.1, 0, 0);     // a long cape with violet edges
-    for (let i = 0; i < 6; i++) add(body, C(0.085, 0, 0.26, 3), V1, -0.42 + i * 0.168, -0.44, -0.55, PI, 0, 0);                              // torn hem
-    gl(body, new THREE.TorusGeometry(0.2, 0.018, 6, 28), VIO, 0, 0.55, -0.56, 0, 0, 0); gl(body, new THREE.OctahedronGeometry(0.09, 0), MAG, 0, 0.55, -0.57, 0, 0, 0, 1, 1.3, 0.5); for (let i = 0; i < 6; i++) { const a = i * PI / 3; gl(body, B(0.014, 0.1, 0.012), VIO, Math.sin(a) * 0.29, 0.55 + Math.cos(a) * 0.29, -0.56, 0, 0, -a); }     // a void sigil on the back
-    for (const [x, y, z] of [[-0.8, 0.9, 0.1], [0.82, 0.55, -0.15], [-0.7, 0.2, 0.25], [0.75, 1.15, 0.05], [-0.62, 1.2, -0.2], [0.65, 0.05, 0.3]]) gl(body, new THREE.OctahedronGeometry(0.05, 0), VIO, x, y, z, 0.4, y * 4, 0.3, 1, 1.5, 1);   // loose shards of void
-    pm(sm(add(neck, new THREE.SphereGeometry(0.4, 36, 24), V1, 0, 0.32, 0, 0, 0, 0, 1.0, 1.08, 1.06)), { r: 0.28, m: 0.85 });   // the helm
-    const EX = 0.4, EY2 = 0.432, EZ = 0.424, ez = (x, y) => EZ * Math.sqrt(Math.max(0.0001, 1 - (x / EX) ** 2 - ((y - 0.32) / EY2) ** 2)), eya = (x, y) => -Math.atan((ez(x + 0.03, y) - ez(x - 0.03, y)) / 0.06);
-    pm(sm(add(neck, new THREE.TorusGeometry(0.41, 0.025, 6, 30), SIL, 0, 0.55, 0, PI / 2, 0, 0)), { r: 0.25, m: 0.9 });                         // a silver brow band
-    for (const sx of [-1, 1]) {                                                                                          // curling horns
-      pm(add(neck, C(0.03, 0.08, 0.34, 8), SIL, sx * 0.36, 0.6, 0, 0, 0, -sx * 1.0), { r: 0.25, m: 0.9 });
-      pm(add(neck, C(0.0, 0.032, 0.34, 8), SIL, sx * 0.56, 0.84, 0, 0, 0, -sx * 0.35), { r: 0.25, m: 0.9 });
-    }
-    f.faceSets = { normal: [], hurt: [], happy: [], panic: [] }; f.faceNow = null;
-    const fs = (set, m) => { f.faceSets[set].push(m); m.visible = set === 'normal'; return m; };
-    for (const sx of [-1, 1]) {
-      const ex = sx * 0.15, ey = 0.36, zz = ez(ex, ey), ya = eya(ex, ey);
-      fs('normal', gl(neck, B(0.17, 0.052, 0.03), MAG, ex, ey, zz, 0, ya, sx * 0.4));                                      // normal: angry glowing slits
-      for (const r of [0.65, -0.65]) fs('hurt', gl(neck, B(0.15, 0.04, 0.03), 0xff6a5a, ex, ey, zz, 0, ya, r));            // hurt: X eyes
-      for (const r of [0.6, -0.6]) fs('happy', gl(neck, B(0.1, 0.045, 0.03), MAG, ex - r * sx * 0.04, ey + 0.01, zz, 0, ya, -r * sx));   // happy: ^ ^
-      fs('panic', gl(neck, S(0.065, 1), 0xffffff, ex, ey, zz - 0.005, 0, ya, 0, 1, 1.15, 0.45)); fs('panic', gl(neck, S(0.025, 1), MAG, ex, ey, zz + 0.012, 0, ya, 0));   // panic: wide eyes
-    }
-    fs('normal', gl(neck, B(0.15, 0.018, 0.025), VIO, 0, 0.16, ez(0, 0.16) + 0.002));                                      // a thin glowing mouth line
-    fs('hurt', gl(neck, B(0.15, 0.04, 0.025), 0xff6a5a, 0, 0.15, ez(0, 0.15) + 0.002));
-    fs('happy', gl(neck, B(0.22, 0.07, 0.025), MAG, 0, 0.16, ez(0, 0.16) + 0.002)); for (let i = -2; i <= 2; i++) fs('happy', add(neck, B(0.012, 0.075, 0.03), V1, i * 0.04, 0.16, ez(0, 0.16) + 0.012));
-    fs('panic', gl(neck, S(0.06, 1), MAG, 0, 0.15, ez(0, 0.15) + 0.002, 0, 0, 0, 1, 1.4, 0.4));
-    gl(neck, new THREE.TorusGeometry(0.3, 0.014, 6, 30), VIO, 0, 0.98, 0, PI / 2, 0, 0);                                    // the crown floats above the helm, held up by its own glow
-    for (let k = 0; k < 5; k++) { const a = k * 2 * PI / 5; pm(add(neck, C(0, 0.07, k % 2 ? 0.3 : 0.4, 4), 0xe8c050, Math.cos(a) * 0.3, 1.12 + (k % 2 ? 0 : 0.05), Math.sin(a) * 0.3), { r: 0.3, m: 0.9 }); gl(neck, S(0.025, 1), MAG, Math.cos(a) * 0.3, k % 2 ? 1.28 : 1.38, Math.sin(a) * 0.3); }
-    for (let k = 0; k < 2; k++) { pm(sm(add(f.legs[k], C(0.17, 0.145, 0.3, 14), V2, 0, -0.58, 0)), { r: 0.3, m: 0.85 }); gl(f.legs[k], S(0.055, 1), VIO, 0, -0.4, 0.15); for (const sx of [-1, 1]) pm(add(f.legs[k], C(0, 0.04, 0.14, 4), SIL, sx * 0.1, -0.72, 0.1, 0.5, 0, -sx * 0.5), { r: 0.25, m: 0.9 }); }
-    for (const a of [f.armL, f.arm]) pm(sm(add(a, C(0.128, 0.118, 0.2, 14), V2, 0, -0.5, 0)), { r: 0.3, m: 0.85 });
   } else if (key === 'hero') {
     add(body, B(0.85, 1.0, 0.06), 0xd32f2f, 0, 0.3, -0.46, 0.14); add(body, B(0.6, 0.12, 0.08), 0xd32f2f, 0, 0.84, -0.4, 0.2);
     add(body, B(0.22, 0.22, 0.03), 0xffd23f, 0, 0.62, rAt(0.62) + 0.04, 0, 0, 0.78); add(body, B(0.1, 0.1, 0.03), 0xd32f2f, 0, 0.62, rAt(0.62) + 0.06, 0, 0, 0.78);
@@ -3807,9 +3764,9 @@ function redeem(raw) {
   look.skin = c.skin; applyLook(); save(); sfx('pickup');
   return c.name + ' unlocked: the ' + SKINS[c.skin].name + ' outfit (now equipped) and the ' + EMOTES[c.emote].name + ' emote.';
 }
-const SKIN_SPAT = { wizard: 'wand', knight: 'sword', samurai: 'katana', vampire: 'cane', jester: 'sceptre', pharaoh: 'crook', hero: 'comet', dev: 'neon', beta: 'wrench', tripleT: 'tung', ballerina: 'princess', tralalero: 'sneaker', assassino: 'espresso', thunder: 'bolt', voidEmp: 'scythe' };   // epic and better outfits swap the plain spatula for one that matches (looks only, same moves)
-const SPAT_NAME = { wand: 'Star Wand', sword: 'Silver Sword', katana: 'Crimson Katana', cane: 'Ruby Cane', sceptre: 'Jester Sceptre', crook: 'Golden Crook', comet: 'Comet Blade', neon: 'Neon Blade', wrench: 'Golden Wrench', tung: 'Tung Bat', princess: 'Princess Wand', sneaker: 'Sneaker Slapper', espresso: 'Espresso Katana', bolt: 'Storm Bolt', scythe: 'Void Scythe' };
-const REACTIVE = { tripleT: true, ballerina: true, assassino: true, voidEmp: true };
+const SKIN_SPAT = { wizard: 'wand', knight: 'sword', samurai: 'katana', vampire: 'cane', jester: 'sceptre', pharaoh: 'crook', hero: 'comet', dev: 'neon', beta: 'wrench', tripleT: 'tung', ballerina: 'princess', assassino: 'espresso', thunder: 'bolt' };   // epic and better outfits swap the plain spatula for one that matches (looks only, same moves)
+const SPAT_NAME = { wand: 'Star Wand', sword: 'Silver Sword', katana: 'Crimson Katana', cane: 'Ruby Cane', sceptre: 'Jester Sceptre', crook: 'Golden Crook', comet: 'Comet Blade', neon: 'Neon Blade', wrench: 'Golden Wrench', tung: 'Tung Bat', princess: 'Princess Wand', espresso: 'Espresso Katana', bolt: 'Storm Bolt' };
+const REACTIVE = { tripleT: true, ballerina: true, assassino: true };
 const emoteTag = k => (SKIN_EMOTES[k] || []).map(id => '<small class="inc">\u{1F381} Comes with the ' + EMOTES[id].name + ' emote. That emote is only for this outfit and can\'t be bought on its own</small>').join('');
 const reactTag = k => REACTIVE[k] ? '<small class="react">\u2728 Reactive face \u2728</small>' : '';
 const spatOf = k => SKIN_SPAT[k] ? SPAT_NAME[SKIN_SPAT[k]] : null;
@@ -6243,7 +6200,7 @@ shuffleBotNames();
 /* ---- scoring, kill feed, match end ---- */
 let matchOver = false, feedItems = [], feedKey = '';
 const nameOf = f => f.isPlayer ? (settings.name || 'You') : f.botName;
-const stats = { kos: 0, best: 0, streak: 0, wins: 0, matches: 0, secs: 0 };
+const stats = { kos: 0, best: 0, streak: 0, wins: 0, matches: 0, secs: 0, deaths: 0, onl: 0, hist: [] };
 tweenNum.v = {};
 function tweenNum(id, to) {                        // numbers count up when you open the menu
   const e = el(id), from = tweenNum.v[id] || 0; tweenNum.v[id] = to; e.textContent = to;
@@ -6252,8 +6209,46 @@ function tweenNum(id, to) {                        // numbers count up when you 
   requestAnimationFrame(f);
 }
 function statsText() {
-  tweenNum('st-kos', stats.kos); tweenNum('st-best', stats.best); tweenNum('st-wins', stats.wins);
+  tweenNum('st-kos', stats.kos); tweenNum('st-best', stats.best); tweenNum('st-wins', stats.wins); tweenNum('st-matches', stats.matches); tweenNum('st-online', stats.onl);
   const m = Math.floor(stats.secs / 60); el('st-time').textContent = m >= 60 ? Math.floor(m / 60) + 'h ' + (m % 60) + 'm' : m + 'm';
+  el('st-rate').textContent = stats.matches ? Math.round(stats.wins / stats.matches * 100) + '%' : '-';
+  el('st-kd').textContent = stats.matches ? (stats.kos / stats.matches).toFixed(1) : '-';
+}
+/* ---- account: name, level, badges, recent matches ---- */
+const xpOf = () => stats.kos * 10 + stats.wins * 50 + stats.matches * 20 + Math.floor(stats.secs / 60);
+const lvOf = xp => Math.floor(Math.sqrt(xp / 60)) + 1;
+const LV_TITLES = ['Rookie', 'Rookie', 'Brawler', 'Brawler', 'Fighter', 'Fighter', 'Veteran', 'Veteran', 'Champion', 'Champion', 'Legend'];
+const BADGES = [
+  ['\u{1F44A}', 'First Blood', 'Get your first K.O.', () => stats.kos >= 1],
+  ['\u{1F4AF}', 'Centurion', 'Get 100 K.O.s', () => stats.kos >= 100],
+  ['\u{1F525}', 'On Fire', 'Reach a 5 K.O. streak', () => stats.best >= 5],
+  ['\u{1F30B}', 'Unstoppable', 'Reach a 10 K.O. streak', () => stats.best >= 10],
+  ['\u{1F3C6}', 'Winner', 'Win a match', () => stats.wins >= 1],
+  ['\u{1F451}', 'Champion', 'Win 10 matches', () => stats.wins >= 10],
+  ['\u{1F3AE}', 'Regular', 'Play 10 matches', () => stats.matches >= 10],
+  ['⏱️', 'Dedicated', 'Play for 1 hour in total', () => stats.secs >= 3600],
+  ['\u{1F310}', 'Online Debut', 'Finish an online match', () => stats.onl >= 1],
+  ['\u{1F91D}', 'Social Butterfly', 'Finish 10 online matches', () => stats.onl >= 10],
+  ['\u{1F45A}', 'Fashionista', 'Own 12 outfits', () => wallet.skins.length >= 12],
+  ['\u{1FA99}', 'Saver', 'Hold 1000 coins', () => wallet.coins >= 1000],
+];
+let acTab = 'profile';
+function acShow(t) {
+  acTab = t;
+  for (const k of ['profile', 'stats', 'badges', 'history']) { el('ac-' + k).style.display = k === t ? 'block' : 'none'; el('at-' + k).classList.toggle('on', k === t); }
+  if (t === 'stats') statsText();
+}
+function renderAccount() {
+  el('ac-name').value = settings.name || '';
+  el('ac-av').style.background = '#' + (SKINS[look.skin] ? SKINS[look.skin].col : look.color).toString(16).padStart(6, '0');
+  const xp = xpOf(), lv = lvOf(xp), lo = 60 * (lv - 1) * (lv - 1), hi = 60 * lv * lv;
+  el('ac-lvl').textContent = 'Level ' + lv; el('ac-title').textContent = LV_TITLES[Math.min(lv - 1, LV_TITLES.length - 1)];
+  el('ac-xp').style.width = Math.round((xp - lo) / (hi - lo) * 100) + '%'; el('ac-xpt').textContent = (hi - xp) + ' XP to level ' + (lv + 1) + '. You earn XP from K.O.s, matches, wins and time played.';
+  el('ac-coins').textContent = wallet.coins; el('ac-owned').textContent = wallet.skins.length;
+  const got = BADGES.filter(b => b[3]()).length; el('ac-badgen').textContent = got + '/' + BADGES.length;
+  el('badge-list').innerHTML = BADGES.map(b => { const on = b[3](); return '<div class="badge' + (on ? ' got' : '') + '"><i>' + b[0] + '</i><b>' + b[1] + '</b><small>' + b[2] + '</small></div>'; }).join('');
+  el('hist-list').innerHTML = stats.hist.length ? stats.hist.map(h => '<div class="hrow2' + (h.w ? ' won' : '') + '"><b>' + (h.w ? 'Win' : 'Played') + '</b><span>' + escH(h.m) + (h.map ? ' · ' + escH(h.map) : '') + (h.o ? ' · online' : '') + '</span><em>' + h.ko + ' K.O.s · ' + h.d + ' deaths</em></div>').join('') : '<div class="rm0">No finished matches yet. Play one and it shows up here.</div>';
+  acShow(acTab); statsText();
 }
 const colOf = f => cfg.teams && f.team >= 0 ? '#' + TEAM_COL[f.team].toString(16).padStart(6, '0') : '#' + (SKINS[f.skinKey] ? SKINS[f.skinKey].col : f.isPlayer ? 0x39b5a8 : f.botColor).toString(16).padStart(6, '0');
 let pot = null, bombMesh = null, potBeep = 0, shrink = null;
@@ -6389,6 +6384,7 @@ function addKo(killer, victim) {
 }
 function endMatch(w) {
   matchOver = true; stats.matches++; const won = cfg.teams ? w.team === player.team : w.isPlayer; if (won) stats.wins++;
+  try { stats.deaths += player.st.deaths | 0; if (net && net.started) stats.onl++; stats.hist.unshift({ m: MODES[cfg.mode].name, map: (MAPS[currentMap] || {}).name || '', ko: player.ko | 0, d: player.st.deaths | 0, w: won ? 1 : 0, o: net && net.started ? 1 : 0 }); stats.hist.length = Math.min(stats.hist.length, 8); } catch (e) { /* stats are a bonus */ }
   addCoins(40 + (won ? 60 : 0), won ? 'match win' : 'match done'); save();
   endWinner = w; endT = 3.4; endMsg = false;                 // the game keeps running for a moment so you see the final K.O.
   sfx('pickup');
@@ -6797,10 +6793,10 @@ function setUi(st) {
 }
 
 /* ---- menu tabs, level categories, custom level editor, new settings ---- */
-const PAGES = ['home', 'mode', 'vs', 'map', 'mods', 'controls', 'me', 'result', 'test', 'online', 'onquick', 'onrooms', 'oncreate', 'onjoin', 'onlobby', 'shop', 'locker'];
+const PAGES = ['home', 'mode', 'vs', 'map', 'mods', 'controls', 'me', 'result', 'test', 'online', 'onquick', 'onrooms', 'oncreate', 'onjoin', 'onlobby', 'account', 'shop', 'locker'];
 const ONL = ['online', 'onquick', 'onrooms', 'oncreate', 'onjoin', 'onlobby'];
-const PAGE_NAME = { home: 'Main menu', mode: 'Game mode', vs: 'Team size', map: 'Level', mods: 'Modifiers', controls: 'Settings', me: 'My wobbler', result: 'Match analysis', test: 'Test guns', online: 'Play online', onquick: 'Play online · Quick play', onrooms: 'Play online · Open rooms', oncreate: 'Play online · Create a room', onjoin: 'Play online · Join with a code', onlobby: 'Play online · Room lobby', shop: 'Emote shop', locker: 'Locker' };
-const NEXT = { mode: 'map', vs: 'map', map: 'mods' }, PREV = { result: 'home', mode: 'home', vs: 'mode', map: 'mode', mods: 'map', controls: 'home', me: 'home', test: 'home', online: 'home', onquick: 'online', onrooms: 'online', oncreate: 'online', onjoin: 'online', onlobby: 'home', shop: 'home', locker: 'home' };
+const PAGE_NAME = { home: 'Main menu', mode: 'Game mode', vs: 'Team size', map: 'Level', mods: 'Modifiers', controls: 'Settings', me: 'My wobbler', result: 'Match analysis', test: 'Test guns', online: 'Play online', onquick: 'Play online · Quick play', onrooms: 'Play online · Open rooms', oncreate: 'Play online · Create a room', onjoin: 'Play online · Join with a code', onlobby: 'Play online · Room lobby', account: 'Account', shop: 'Emote shop', locker: 'Locker' };
+const NEXT = { mode: 'map', vs: 'map', map: 'mods' }, PREV = { result: 'home', mode: 'home', vs: 'mode', map: 'mode', mods: 'map', controls: 'home', me: 'home', test: 'home', online: 'home', onquick: 'online', onrooms: 'online', oncreate: 'online', onjoin: 'online', onlobby: 'home', account: 'home', shop: 'home', locker: 'home' };
 let page = 'home';
 const vsFlow = () => VS.includes(cfg.mode) && !hostFlow;                        // Versus gets its own team-size page between the mode and the level
 const nextOf = pg => pg === 'mode' ? (vsFlow() ? 'vs' : 'map') : NEXT[pg];
@@ -6816,7 +6812,7 @@ document.addEventListener('click', e => {
     b.appendChild(sp); setTimeout(() => sp.remove(), 650); } catch (err) { /* cosmetic */ }
 });
 let lastHpShown = 100;
-const STAG = '.mcard,.modes button,.grp,.stats div,.feat,.big,.rhi div,.onp,.pod,.skinb,.news,.tog,.oncard,.seat';
+const STAG = '.mcard,.modes button,.grp,.stats div,.feat,.big,.rhi div,.onp,.pod,.skinb,.news,.tog,.oncard,.seat,.hbtn,.achips div,.badge';
 function showPage(pg) {
   if (pg === 'online' && net) pg = 'onlobby';                    // in a room: the lobby is the online page
   try { updateCoins(); refreshRef(); } catch (e) { /* cosmetic */ }
@@ -6833,10 +6829,13 @@ function showPage(pg) {
   if (pg === 'home') refreshHome();
   if (pg === 'map') updateMapList();
   netBannerUpdate();
+  if (pg === 'account') renderAccount();
   if (pg === 'result') { renderResult(); try { netRematchUi(); } catch (e) { /* cosmetic */ } }
   if (pg === 'test') renderTestChips();
   if (hostFlow && !['mode', 'vs', 'map', 'mods'].includes(pg)) hostFlow = false;
-  el('play').textContent = hostFlow && pg === 'mods' ? 'CREATE ROOM' : el('play').textContent;
+  if (editFlow && pg !== 'mods') editFlow = false;
+  el('play').textContent = hostFlow && pg === 'mods' ? 'CREATE ROOM' : editFlow && pg === 'mods' ? 'SAVE SETTINGS' : el('play').textContent;
+  { const rf = (hostFlow || editFlow) && pg === 'mods'; el('bn').max = rf ? 7 : 12; if (rf && cfg.count > 7) setBotCfg({ count: 7 }); el('bn-lbl').textContent = rf ? 'Bots in the room (players take their seats)' : 'How many'; el('row-ffa').style.display = rf ? 'none' : ''; }
   { const mv = el('mode-versus'), ms = el('mode-sandbox'), mp = el('mode-pillars'), mg = el('mode-gungame'); if (mg) mg.style.display = hostFlow ? 'none' : ''; if (mv) mv.style.display = hostFlow ? 'none' : ''; if (ms) ms.style.display = hostFlow ? 'none' : ''; if (mp) mp.style.display = ''; }
   if (ONL.includes(pg)) { netShowLobby(); netPill(); if (!net) { srvConnect(() => {}); if (pg === 'online' || pg === 'onquick' || pg === 'onrooms') setTimeout(netRefreshRooms, 50); } }
   if (pg === 'shop') renderShop();
@@ -6849,20 +6848,18 @@ function applyPauseUi() {                            // while a game is paused: 
   const p = inMatch && !matchOver && ui === 'lobby';
   const pb = el('pausebox'); if (pb) pb.style.display = p ? 'block' : 'none';
   const po = el('pz-online'); if (po) po.style.display = p && net && net.started ? 'block' : 'none';
-  for (const id of ['go-play', 'row-quick', 'row-locker', 'go-practice', 'go-test', 'go-online']) { const e = el(id); if (e) e.style.display = p ? 'none' : ''; }
+  for (const id of ['homemain', 'go-account', 'go-test']) { const e = el(id); if (e) e.style.display = p ? 'none' : ''; }
   const sm = el('pz-sum'); if (sm) sm.textContent = MODES[cfg.mode].name + ' \u00b7 ' + MAPS[currentMap].name;
 }
 const TIPS = ['Hold the scope key and left-click: you can shoot while scoped.', 'Spring Glove does no damage, but it launches people off the edge.', 'Boomerangs come back for the catch, but every throw uses one of your 5, even a miss.', 'Shuriken: both hands throw, and the stars curve into your target.', 'Try the Build Your Own level: B places a block, N removes one.', 'Turn the radar on in Settings to see who is above or below you.', 'Underground levels are dark: use the pillars as cover.', 'Free-for-all makes the bots fight each other too.', 'Gravity and knockback can be changed in Modifiers.'];
 function refreshHome() {
   el('greet').textContent = 'Welcome back' + (settings.name ? ', ' + settings.name : '') + '!';
-  el('homesum').textContent = MODES[cfg.mode].name + ' · ' + MAPS[currentMap].name;
-  el('pname').value = settings.name || ''; statsText();
+  statsText(); srvConnect(() => netPill());
   const ids = Object.keys(MAPS).filter(i => i !== 'test' && i !== 'practice' && !MAPS[i].only), fid = ids[Math.floor(Date.now() / 86400000) % ids.length], im = el('mimg-' + fid);
   el('feat-name').textContent = MAPS[fid].name; el('feat-blurb').textContent = MAPS[fid].blurb; if (im && im.src) el('feat-img').src = im.src;
   el('feat-go').onclick = () => { const m = Object.keys(MODES).find(k => k !== 'sandbox' && (!MODES[k].maps || MODES[k].maps.includes(fid))) || 'classic'; if (!mapAllowed(fid) || cfg.mode === 'sandbox') setBotCfg({ mode: m }); loadMap(fid); showPage('mods'); };
   el('tip').textContent = 'Tip: ' + TIPS[Math.floor(Math.random() * TIPS.length)];
 }
-el('pname').oninput = e => { settings.name = e.target.value.slice(0, 12); };
 el('quick').onclick = () => {
   leaveTest();
   const modes = Object.keys(MODES).filter(k => k !== 'sandbox'), m = modes[Math.floor(Math.random() * modes.length)];
@@ -6924,7 +6921,12 @@ el('t-none').onclick = () => { testSel = new Set(); renderTestChips(); };
 const isTM = id => id === 'test' || id === 'practice';
 function leaveTest() { if (!isTM(currentMap) || !testPrev) return; const t = testPrev; testPrev = null; setBotCfg({ mode: t.mode }); loadMap(MAPS[t.map] && !isTM(t.map) ? t.map : 'arena'); }
 el('go-test').onclick = () => showPage('test');
-el('go-restart').onclick = () => { loadMap(currentMap); el('play').onclick(); };
+el('go-account').onclick = () => showPage('account');
+for (const k of ['profile', 'stats', 'badges', 'history']) el('at-' + k).onclick = () => acShow(k);
+el('ac-name').oninput = e => { settings.name = e.target.value.slice(0, 12); save(); netPill(); };
+el('ac-name').onkeydown = e => { e.stopPropagation(); if (e.key === 'Enter') e.target.blur(); }; el('ac-name').onkeyup = e => e.stopPropagation();
+el('ac-locker').onclick = () => showPage('locker'); el('ac-shop').onclick = () => showPage('shop'); el('ac-last').onclick = () => showPage('result');
+el('ac-code').onclick = () => { showPage('controls'); setTimeout(() => { try { el('code-in').scrollIntoView({ block: 'center' }); el('code-in').focus(); } catch (e) { /* cosmetic */ } }, 60); };
 el('test-go').onclick = () => { if (!testPrev) testPrev = { mode: cfg.mode, map: currentMap }; setBotCfg({ mode: 'classic' }); loadMap('test'); el('play').onclick(); };
 el('code-go').onclick = () => { el('code-msg').textContent = redeem(el('code-in').value); el('code-in').value = ''; };
 el('code-in').onkeydown = e => { e.stopPropagation(); if (e.key === 'Enter') el('code-go').onclick(); };
@@ -6936,7 +6938,7 @@ el('go-stats').onclick = () => showPage('result');
 el('go-me').onclick = () => showPage('locker');
 el('go-shop').onclick = () => showPage('shop');
 el('go-locker').onclick = () => showPage('locker');
-el('back').onclick = () => { if (hostFlow && page === 'mode') { hostFlow = false; showPage('oncreate'); } else showPage(prevOf(page) || 'home'); };
+el('back').onclick = () => { if (editFlow) { editFlow = false; showPage('onlobby'); return; } if (hostFlow && page === 'mode') { hostFlow = false; showPage('oncreate'); } else showPage(prevOf(page) || 'home'); };
 el('next').onclick = () => showPage(nextOf(page) || 'home');
 const CATS = [['all', 'All'], ['arena', 'Arena'], ['sky', 'Sky'], ['rooms', 'Rooms'], ['obstacle', 'Obstacle'], ['sandbox', 'Sandbox']];
 let catFilter = 'all';
@@ -7100,8 +7102,17 @@ document.addEventListener('keydown', e => {
   }
 });
 
-el('start').onclick = () => { initAudio(); setUi('lobby'); };
-document.addEventListener('keydown', e => { if (ui === 'title' && (e.code === 'Enter' || e.code === 'Space')) { initAudio(); setUi('lobby'); } });
+function startGame() {                                              // the first time, the game asks for your name (it can be changed later in Account)
+  if (!settings.name) {
+    const n = String(el('title-name').value || '').trim().slice(0, 12);
+    if (!n) { const t = el('title-name'); t.classList.remove('shake'); void t.offsetWidth; t.classList.add('shake'); try { t.focus(); } catch (e) { /* x */ } return; }
+    settings.name = n; save();
+  }
+  initAudio(); setUi('lobby');
+}
+el('start').onclick = startGame;
+el('title-name').onkeydown = e => { e.stopPropagation(); if (e.key === 'Enter') startGame(); }; el('title-name').onkeyup = e => e.stopPropagation();
+document.addEventListener('keydown', e => { if (ui === 'title' && settings.name && (e.code === 'Enter' || e.code === 'Space')) startGame(); });
 el('bootlogo').innerHTML = 'WOBBLE ARENA'.split('').map((ch, i) => '<span style="animation-delay:' + (i * 0.09).toFixed(2) + 's">' + (ch === ' ' ? '&nbsp;' : ch) + '</span>').join('');
 el('logo').innerHTML = 'WOBBLE ARENA'.split('').map((ch, i) => '<span style="animation-delay:' + (i * 0.09).toFixed(2) + 's">' + (ch === ' ' ? '&nbsp;' : ch) + '</span>').join('');
 el('bn').oninput = () => { setBotCfg({ count: +el('bn').value }); loadMap(currentMap); };
@@ -7170,6 +7181,7 @@ function load() {
     if (d.wallet && typeof d.wallet === 'object') {
       if (Number.isFinite(d.wallet.coins)) wallet.coins = Math.max(0, Math.floor(d.wallet.coins));
       if (Array.isArray(d.wallet.owned)) wallet.owned = ['wobble'].concat(d.wallet.owned.filter(k => EMOTES[k] && k !== 'wobble' && d.wallet.owned.indexOf(k) === d.wallet.owned.lastIndexOf(k)));
+      if (Array.isArray(d.wallet.skins)) for (const [k, pr] of [['tralalero', 3500], ['voidEmp', 4000]]) if (d.wallet.skins.includes(k)) wallet.coins += pr;      // two outfits were removed in build 67: owners get their coins back
       if (Array.isArray(d.wallet.skins)) wallet.skins = ['none'].concat(d.wallet.skins.filter(k => SKINS[k] && d.wallet.skins.indexOf(k) === d.wallet.skins.lastIndexOf(k)));
       for (const k of FREE_SKINS) if (!wallet.skins.includes(k)) wallet.skins.push(k);
       for (const k of wallet.skins) for (const id of SKIN_EMOTES[k] || []) if (!wallet.owned.includes(id)) wallet.owned.push(id);      // outfits you already own bring their own emotes with them
@@ -7190,7 +7202,8 @@ function load() {
     if (!mapAllowed(currentMap)) currentMap = (MODES[cfg.mode].maps || Object.keys(MAPS).filter(mapAllowed))[0];
     if (d.sens) { settings.sens = d.sens; el('sens').value = d.sens; }
     if (d.ice !== undefined) { settings.ice = d.ice; el('ice').value = d.ice; }
-    if (d.stats) for (const k of Object.keys(stats)) if (k !== 'streak' && Number.isFinite(d.stats[k])) stats[k] = Math.max(0, d.stats[k]);
+    if (d.stats) for (const k of Object.keys(stats)) if (k !== 'streak' && k !== 'hist' && Number.isFinite(d.stats[k])) stats[k] = Math.max(0, d.stats[k]);
+    if (d.stats && Array.isArray(d.stats.hist)) stats.hist = d.stats.hist.slice(0, 8).filter(h => h && typeof h === 'object').map(h => ({ m: String(h.m || '').slice(0, 24), map: String(h.map || '').slice(0, 24), ko: h.ko | 0, d: h.d | 0, w: h.w ? 1 : 0, o: h.o ? 1 : 0 }));
     if (d.set && typeof d.set.name === 'string') settings.name = d.set.name.slice(0, 12);
     if (d.set) { const t = d.set, n = (k, a, b) => { if (Number.isFinite(t[k])) settings[k] = clamp(t[k], a, b); };
       if (['low', 'medium', 'high'].includes(t.quality)) settings.quality = t.quality;
@@ -7236,7 +7249,7 @@ el('settings-reset').onclick = () => askConfirm('Reset ALL settings (keys, sensi
 });
 
 /* ============================== online play (test) ============================== */
-const NET_PREFIX = 'wobble-arena-', NET_HZ = 30, NET_MAX = 8, NET_BUILD = 'b66.4', PUB_SLOTS = 24;   // PUB_SLOTS: public rooms live at fixed spots (pub0, pub1, ...) so anybody can look them up
+const NET_PREFIX = 'wobble-arena-', NET_HZ = 30, NET_MAX = 8, NET_BUILD = 'b67.0', PUB_SLOTS = 24;   // PUB_SLOTS: public rooms live at fixed spots (pub0, pub1, ...) so anybody can look them up
 const slotCap = () => net.started && net.slots ? net.slots.length : NET_MAX;
 function netStatus(t) {
   t = t || ''; const busy = /(\u2026|\.\.\.)$/.test(t); if (t && !busy) netUnlock();
@@ -7288,7 +7301,16 @@ function netBannerUpdate() {                                        // the "you 
 let netPending = false, netPendT = 0;                               // one connection attempt at a time (double clicks do nothing)
 const netLock = () => { if (netPending && performance.now() - netPendT < 20000) return false; netPending = true; netPendT = performance.now(); return true; };
 const netUnlock = () => { netPending = false; };
-function rosterMsg() { const sc = netMode(cfg.mode), mp = MAPS[currentMap]; return { t: 'roster', roster: net.roster, max: net.optMax, bots: net.optBots, lim: net.optLim, modeName: MODES[sc].name, map: mp ? mp.name : '' }; }
+const BHV_NAME = { dummy: 'Dummies', brawl: 'Brawlers' }, DIFF_NAME = { easy: 'Easy', normal: 'Normal', hard: 'Hard', insane: 'Insane' };
+function roomOpts() { const pil = netMode(cfg.mode) === 'pillars', c = cfg.count; return { max: pil ? 8 : c > 0 ? Math.max(2, Math.min(8, c + 1)) : 4, bots: pil || c > 0, lim: [0, 5, 10, 20].includes(cfg.limit) ? cfg.limit : 0, bhv: cfg.behav === 'dummy' ? 'dummy' : 'brawl' }; }
+function roomSumParts() {
+  const sc = netMode(cfg.mode), self = MODES[sc].lives || sc === 'pillars', diff = net.host ? cfg.diff : (net.hdiff || 'normal'), bhv = net.bhv || 'brawl';
+  return [['Fighters', 'up to ' + net.optMax], ['Bots', net.optBots ? BHV_NAME[bhv] + (bhv === 'brawl' ? ', ' + DIFF_NAME[diff] : '') : 'none (players only)'], ['Ends', self ? 'by itself' : net.optLim ? 'first to ' + net.optLim : 'free play']];
+}
+const roomSumText = () => roomSumParts().map(([k, v]) => k.toLowerCase() === 'ends' ? 'ends ' + v : v + (k === 'Fighters' ? ' fighters' : k === 'Bots' ? ' bots' : '')).join(', ');
+const roomSumHtml = () => roomSumParts().map(([k, v]) => '<div><span>' + k + '</span><b>' + escH(v) + '</b></div>').join('');
+function applyRoomOpts() { if (!net || !net.host || net.started) return; const o = roomOpts(); net.optMax = o.max; net.optBots = o.bots; net.optLim = o.lim; net.bhv = o.bhv; netAllConns(rosterMsg()); netShowLobby(); }
+function rosterMsg() { const sc = netMode(cfg.mode), mp = MAPS[currentMap]; return { t: 'roster', roster: net.roster, max: net.optMax, bots: net.optBots, lim: net.optLim, bhv: net.bhv || 'brawl', diff: net.host ? cfg.diff : undefined, modeName: MODES[sc].name, map: mp ? mp.name : '' }; }
 function netShowLobby() {
   const inRoom = !!net;
   el('hud').classList.toggle('net', !!(net && net.started)); netBannerUpdate(); if (inRoom) netUnlock();
@@ -7314,9 +7336,8 @@ function netShowLobby() {
   el('on-opts').style.display = setup ? 'block' : 'none';
   el('on-start').style.display = setup ? 'block' : 'none';
   const wait = el('on-info'); wait.style.display = !host && !st ? 'block' : 'none';
-  wait.textContent = 'Waiting for the host to start the match. ' + (net.optMax ? 'Up to ' + net.optMax + ' fighters' : '') + (net.optMax ? (net.optBots ? ', bots fill the empty spots.' : ', players only.') : '');
-  [2, 3, 4, 6, 8].forEach(n => el('on-max' + n).classList.toggle('on', net.optMax === n)); el('on-botsOn').classList.toggle('on', net.optBots); el('on-botsOff').classList.toggle('on', !net.optBots); [0, 10, 20].forEach(n => el('on-lim' + n).classList.toggle('on', net.optLim === n));
-  { const self = MODES[netMode(cfg.mode)].lives || netMode(cfg.mode) === 'pillars'; el('on-limrow').style.display = self ? 'none' : ''; el('on-limnote').style.display = self && setup ? 'block' : 'none'; }
+  wait.textContent = 'Waiting for the host to start the match. ' + roomSumText() + '.';
+  el('on-sum').innerHTML = roomSumHtml();
   el('on-go').style.display = st ? 'block' : 'none';
   el('netinfo').style.display = st ? 'block' : 'none';
   netInfoText();
@@ -7343,6 +7364,8 @@ function netPill() {                                                  // small s
   const b = el('on-pill'); if (!b) return;
   const t = srvOk === true ? 'Online' + (srvOnline > 1 ? ' · ' + srvOnline + ' playing' : '') : srvOk === false ? 'Direct mode' : 'Connecting…';
   b.textContent = t; b.className = 'pill ' + (srvOk === true ? 'good' : srvOk === false ? 'warn' : '');
+  const hp = el('home-pill'); if (hp) { hp.textContent = srvOk === true ? (srvOnline > 1 ? srvOnline + ' online' : 'Online') : ''; hp.style.display = srvOk === true ? '' : 'none'; }
+  const ow = el('on-who'); if (ow) ow.textContent = settings.name || 'Player';
   b.title = srvOk === true ? 'Connected to the game server' : srvOk === false ? 'No game server found, so the game connects players directly (peer-to-peer)' : 'Looking for the game server';
 }
 function srvConnect(cb) {
@@ -7399,7 +7422,7 @@ function netHost(opts) {
 }
 function netHostSrv(opts) {
   const pub = !!opts.pub;
-  const n = { host: true, id: 0, code: '', srv: true, vc: {}, peer: null, conns: {}, roster: [Object.assign({ id: 0 }, cleanInfo(myInfo(), 0))], started: false, ghosts: {}, ai: {}, slotKind: ['human', 'bot', 'bot', 'bot'], slots: null, sendT: 0, cid: 0, optMax: opts.max || 4, optBots: true, optLim: 0, limit: 0, pub, roomName: String(opts.name || (settings.name || 'Player') + '\'s room').slice(0, 24), rv: new Set(), rvList: [], rvTotal: 0 };
+  const n = { host: true, id: 0, code: '', srv: true, vc: {}, peer: null, conns: {}, roster: [Object.assign({ id: 0 }, cleanInfo(myInfo(), 0))], started: false, ghosts: {}, ai: {}, slotKind: ['human', 'bot', 'bot', 'bot'], slots: null, sendT: 0, cid: 0, optMax: opts.max || 4, optBots: opts.bots !== false, optLim: opts.lim | 0, bhv: opts.bhv === 'dummy' ? 'dummy' : 'brawl', limit: 0, pub, roomName: String(opts.name || (settings.name || 'Player') + '\'s room').slice(0, 24), rv: new Set(), rvList: [], rvTotal: 0 };
   srvAsk({ op: 'create', pub, info: srvInfo(n) }, ['created', 'nocreate'], 7000, m => {
     netUnlock();
     if (net) { if (m && m.op === 'created') srvTx({ op: 'leave' }); return; }
@@ -7446,7 +7469,7 @@ function netHostPeer(opts) {
       });
       peer.on('open', () => {
         opened = true;
-        net = { host: true, id: 0, code, peer, conns: {}, roster: [Object.assign({ id: 0 }, cleanInfo(myInfo(), 0))], started: false, ghosts: {}, ai: {}, slotKind: ['human', 'bot', 'bot', 'bot'], slots: null, sendT: 0, cid: 0, optMax: opts.max || 4, optBots: true, optLim: 0, limit: 0, pub, roomName: String(opts.name || (settings.name || 'Player') + '\'s room').slice(0, 24), rv: new Set(), rvList: [], rvTotal: 0 };
+        net = { host: true, id: 0, code, peer, conns: {}, roster: [Object.assign({ id: 0 }, cleanInfo(myInfo(), 0))], started: false, ghosts: {}, ai: {}, slotKind: ['human', 'bot', 'bot', 'bot'], slots: null, sendT: 0, cid: 0, optMax: opts.max || 4, optBots: opts.bots !== false, optLim: opts.lim | 0, bhv: opts.bhv === 'dummy' ? 'dummy' : 'brawl', limit: 0, pub, roomName: String(opts.name || (settings.name || 'Player') + '\'s room').slice(0, 24), rv: new Set(), rvList: [], rvTotal: 0 };
         if (opts.pre) net.prevCfg = opts.pre;
         net.out = hostOut;
         peer.on('connection', c => { c.on('data', m => hostRecv(c, m)); c.on('close', () => hostDrop(c)); c.on('error', () => hostDrop(c)); });
@@ -7535,7 +7558,7 @@ function clientRecv(m) {
   if (!net) return;
   if (net.id < 0 && !['welcome', 'full', 'badver', 'kick'].includes(m.t)) return;          // nothing counts until the host has welcomed me
   if (m.t === 'welcome') { net.id = m.id; if (m.name) net.roomName = String(m.name).slice(0, 24); net.pub = !!m.pub; netShowLobby(); return; }
-  if (m.t === 'roster') { net.roster = m.roster; if (m.max) { net.optMax = m.max | 0; net.optBots = !!m.bots; net.optLim = m.lim | 0; net.hinfo = { modeName: String(m.modeName || '').slice(0, 24), map: String(m.map || '').slice(0, 24) }; } netShowLobby(); return; }
+  if (m.t === 'roster') { net.roster = m.roster; if (m.max) { net.optMax = m.max | 0; net.optBots = !!m.bots; net.optLim = m.lim | 0; net.bhv = m.bhv === 'dummy' ? 'dummy' : 'brawl'; net.hdiff = DIFFS[m.diff] ? m.diff : 'normal'; net.hinfo = { modeName: String(m.modeName || '').slice(0, 24), map: String(m.map || '').slice(0, 24) }; } netShowLobby(); return; }
   if (m.t === 'full') { const q = net.quick, tr = net.tries + 1, pre = net.prevCfg; netLeave('That room is full.'); if (q && tr < 3) setTimeout(() => netQuickPlay(q, tr, pre), 400); return; }
   if (m.t === 'badver') { netLeave('That room is running a different version of the game. Refresh the page to get the newest one.'); return; }
   if (m.t === 'kick') { netLeave(m.msg || 'You were removed from the room.'); showPage('online'); return; }
@@ -7586,7 +7609,7 @@ function netStartMatch(slots, mapId, custom, isHost, limit, rules) {
   net.slots = slots; net.slotKind = slots.map(x => x.kind); net.started = true; net.map = MAPS[mapId] ? mapId : 'arena';
   if (mapId === 'custom' && custom) for (const k of ['size', 'obs', 'plat', 'walls', 'pads', 'seed', 'theme', 'ice']) if (custom[k] !== undefined) cfg.custom[k] = custom[k];
   if (isHost && !rules) { net.pp = null; rules = ruleSnap(); }                          // the host plays by the rules it picked (before, they were thrown away and everything ran as Classic)
-  { const r = rules || {}; const rm = netMode(r.mode); net.limit = MODES[rm].lives || rm === 'pillars' ? 0 : limit || 0; setBotCfg({ mode: rm, behav: 'brawl', ffa: true, count: slots.length - 1, limit: net.limit, hp: [100, 150, 200, 300, 500].includes(r.hp) ? r.hp : 100, crate: CRATE_RATE[r.crate] ? r.crate : cfg.crate, wstate: r.wstate && typeof r.wstate === 'object' ? r.wstate : cfg.wstate, grav: [0.5, 1, 1.5].includes(r.grav) || (r.mode === 'lowg' && r.grav === 0.15) ? r.grav : 1, kb: [0.5, 1, 1.5, 2, 3].includes(r.kb) ? r.kb : 1, inf: !!r.inf }); }
+  { const r = rules || {}; const rm = netMode(r.mode); net.limit = MODES[rm].lives || rm === 'pillars' ? 0 : limit || 0; setBotCfg({ mode: rm, behav: isHost && net.bhv === 'dummy' ? 'dummy' : 'brawl', ffa: true, count: slots.length - 1, limit: net.limit, hp: [100, 150, 200, 300, 500].includes(r.hp) ? r.hp : 100, crate: CRATE_RATE[r.crate] ? r.crate : cfg.crate, wstate: r.wstate && typeof r.wstate === 'object' ? r.wstate : cfg.wstate, grav: [0.5, 1, 1.5].includes(r.grav) || (r.mode === 'lowg' && r.grav === 0.15) ? r.grav : 1, kb: [0.5, 1, 1.5, 2, 3].includes(r.kb) ? r.kb : 1, inf: !!r.inf }); }
   loadMap(net.map);
   net.pp = null;                                                     // Pillars: who starts on which pillar is shuffled by the host every match and sent to everybody
   if (cfg.mode === 'pillars') {
@@ -7859,7 +7882,7 @@ function netEnterMatch() { setUi('lobby'); showPage('online'); try { el('play').
 { const ti = setInterval(() => { if (ONL.includes(page) && page !== 'onlobby' && !net && !document.hidden) netRefreshRooms(); }, 10000); if (ti && ti.unref) ti.unref(); }
 el('go-online').onclick = () => showPage('online');
 el('oh-quick').onclick = () => showPage('onquick'); el('oh-rooms').onclick = () => showPage('onrooms'); el('oh-create').onclick = () => showPage('oncreate'); el('oh-join').onclick = () => showPage('onjoin');
-el('on-modes').innerHTML = MODE_ORDER.filter(k => MODES[k] && netMode(k) === k).map(k => '<button id="onq-' + k + '">' + escH(MODES[k].name) + '<small>' + escH(MODES[k].desc || '') + '</small><em class="live" id="onl-' + k + '"></em></button>').join('');
+el('on-modes').innerHTML = MODE_ORDER.filter(k => MODES[k] && netMode(k) === k).map(k => '<button id="onq-' + k + '">' + modeIco(k) + escH(MODES[k].name) + '<small>' + escH(MODES[k].desc || '') + '</small><em class="live" id="onl-' + k + '"></em></button>').join('');
 for (const k of MODE_ORDER) { const b = MODES[k] && netMode(k) === k && el('onq-' + k); if (b) b.onclick = () => netQuickPlay(k); }
 el('on-refresh').onclick = () => netRefreshRooms(true);
 let createPub = true;
@@ -7872,28 +7895,20 @@ el('on-host').onclick = () => {                                    // hosting st
 };
 el('on-diag').onclick = () => netDiag();
 el('on-join').onclick = () => { const c = el('on-code').value.trim().toUpperCase(); if (c.length < 4) { netStatus('Type the 5-letter code your friend sees.'); return; } netJoin(c); };
-el('on-code').onkeydown = e => { e.stopPropagation(); if (e.key === 'Enter') el('on-join').onclick(); }; el('on-code').onkeyup = e => e.stopPropagation(); el('on-rname').onkeydown = e => e.stopPropagation(); el('on-rname').onkeyup = e => e.stopPropagation(); el('on-name').onkeydown = e => e.stopPropagation(); el('on-name').onkeyup = e => e.stopPropagation();
+el('on-code').onkeydown = e => { e.stopPropagation(); if (e.key === 'Enter') el('on-join').onclick(); }; el('on-code').onkeyup = e => e.stopPropagation(); el('on-rname').onkeydown = e => e.stopPropagation(); el('on-rname').onkeyup = e => e.stopPropagation();
 el('on-code').oninput = e => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''); };
 el('on-start').onclick = () => netStartHosted();
 el('on-go').onclick = () => el('play').onclick();
 el('on-leave').onclick = () => netLeave('You left the room.');
 el('on-copy').onclick = () => el('nb-copy').onclick();
 el('nb-copy').onclick = () => { if (!net) return; try { navigator.clipboard.writeText(net.code).then(() => toast('Code copied: ' + net.code)).catch(() => toast('Room code: ' + net.code)); } catch (e) { toast('Room code: ' + net.code); } };
-el('on-max').innerHTML = [2, 3, 4, 6, 8].map(n => '<button class="hatb" id="on-max' + n + '">' + n + '</button>').join('');
-el('on-bots').innerHTML = '<button class="hatb" id="on-botsOn">Bots on</button><button class="hatb" id="on-botsOff">Bots off (players only)</button>';
-el('on-botsOn').onclick = () => { if (net && net.host && !net.started) { net.optBots = true; netAllConns(rosterMsg()); netShowLobby(); } };
-el('on-botsOff').onclick = () => { if (net && net.host && !net.started) { net.optBots = false; netAllConns(rosterMsg()); netShowLobby(); } };
-el('on-lim').innerHTML = [[0, 'Endless'], [10, 'First to 10'], [20, 'First to 20']].map(([n, t]) => '<button class="hatb" id="on-lim' + n + '">' + t + '</button>').join('');
-[2, 3, 4, 6, 8].forEach(n => { el('on-max' + n).onclick = () => { if (net && net.host && !net.started) { net.optMax = n; netAllConns(rosterMsg()); netShowLobby(); } }; });
-[0, 10, 20].forEach(n => { el('on-lim' + n).onclick = () => { if (net && net.host && !net.started) { net.optLim = n; netAllConns(rosterMsg()); netShowLobby(); } }; });
-// your name
-el('on-name').value = settings.name || '';
-el('on-name').oninput = e => { settings.name = e.target.value.slice(0, 12); el('pname').value = settings.name; save(); };
-el('pname').addEventListener('input', () => { el('on-name').value = settings.name || ''; });
+el('on-edit').onclick = () => { if (!net || !net.host || net.started) return; editFlow = true; showPage('mods'); };
+// your name lives in the Account page; the online hub just shows it
+el('on-chg').onclick = () => showPage('account');
 
-load(); applyQuality(); applyLook(); syncRules(); syncSettings(); syncCustom(); applyCat('all'); showPage('home');
+load(); applyQuality(); applyLook(); syncRules(); syncSettings(); syncCustom(); applyCat('all'); showPage('home'); el('title-name').style.display = settings.name ? 'none' : 'block';
 // remember choices when the player hits Play
-const _play = el('play').onclick; el('play').onclick = () => { if (hostFlow && page === 'mods') { hostFlow = false; save(); showPage('oncreate'); netHost({ pub: netOpt.pub, name: netOpt.name, pre: netOpt.pre }); return; } if (net && net.started && matchOver && page === 'result') { if (!net.myVote) { net.myVote = true; if (net.host) netVote(0); else netSend({ t: 'rv' }); } netRematchUi(); return; } save(); _play(); }; el('resume').onclick = el('play').onclick; el('pz-resume').onclick = el('play').onclick;
+const _play = el('play').onclick; el('play').onclick = () => { if (editFlow && page === 'mods') { editFlow = false; save(); applyRoomOpts(); showPage('onlobby'); return; } if (hostFlow && page === 'mods') { hostFlow = false; save(); const ro = roomOpts(); showPage('oncreate'); netHost({ pub: netOpt.pub, name: netOpt.name, pre: netOpt.pre, max: ro.max, bots: ro.bots, lim: ro.lim, bhv: ro.bhv }); return; } if (net && net.started && matchOver && page === 'result') { if (!net.myVote) { net.myVote = true; if (net.host) netVote(0); else netSend({ t: 'rv' }); } netRematchUi(); return; } save(); _play(); }; el('pz-resume').onclick = el('play').onclick;
 el('pz-new').onclick = () => { inMatch = false; loadMap(currentMap); setUi('lobby'); el('play').onclick(); };
 el('pz-menu').onclick = () => { if (net && net.started) netLeave('You left the match.'); inMatch = false; leaveTest(); loadMap(currentMap); setUi('lobby'); showPage('home'); };
 
@@ -8648,6 +8663,23 @@ function frame(now) {
   fpsN++; if (now - fpsT0 >= 500) { if (settings.fps) el('fps').textContent = Math.round(fpsN * 1000 / (now - fpsT0)) + ' FPS'; fpsN = 0; fpsT0 = now; }
   renderer.render(scene, camera);
 }
+
+/* ---- online matches keep running when the tab is hidden: browsers stop drawing frames in a background tab, which froze you in place (and made you unhittable) until you came back.
+   A worker's timer is not slowed down like the page's own timers, so it drives the simulation (no drawing) while the tab is hidden ---- */
+function bgTick() {
+  if (!(typeof document !== 'undefined' && document.hidden) || !(net && net.started) || kcActive) return;
+  const now = performance.now(); const dt = Math.min(Math.max((now - last) / 1000, 0), 0.1); last = now;
+  acc += dt; let n = 0;
+  while (acc >= SIM && n++ < 14 && !kcActive) { simStep(SIM); acc -= SIM; }
+  for (const f of fighters) f.applyPose();
+  if (!kcActive) for (const f of fighters) f.meleeSweep();
+}
+try {
+  if (typeof Worker === 'function' && typeof Blob === 'function' && typeof URL !== 'undefined' && URL.createObjectURL) {
+    const w = new Worker(URL.createObjectURL(new Blob(['setInterval(function(){postMessage(0)},25)'], { type: 'text/javascript' })));
+    w.onmessage = bgTick;
+  } else setInterval(bgTick, 100);
+} catch (e) { setInterval(bgTick, 100); }
 
 setBotCfg({});
 loadMap(currentMap);
