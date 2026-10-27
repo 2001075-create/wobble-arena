@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <title>Wobble Arena</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Wobble Arena: wobbly low-poly brawls with bots and friends. Free, plays in your browser.">
+<meta name="theme-color" content="#102b35">
+<meta property="og:title" content="Wobble Arena">
+<meta property="og:description" content="Wobbly low-poly brawls. Bring your friends (and a bat).">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23102b35'/%3E%3Ccircle cx='32' cy='24' r='11' fill='%23ffcf5a'/%3E%3Crect x='20' y='36' width='24' height='18' rx='9' fill='%2339b5a8'/%3E%3Ccircle cx='28' cy='23' r='2' fill='%23102b35'/%3E%3Ccircle cx='36' cy='23' r='2' fill='%23102b35'/%3E%3C/svg%3E">
 <style>
   html,body{margin:0;height:100%;overflow:hidden;background:#bfe3f2;font-family:system-ui,-apple-system,Segoe UI,sans-serif;user-select:none}
   canvas{display:block}
@@ -562,6 +567,57 @@
 .acacct button{padding:8px 14px;border-radius:10px;border:0;background:rgba(255,255,255,.14);color:#fff;font-weight:800;font-size:13px;font-family:inherit;cursor:pointer}.acacct button.pri{background:#ffcf5a;color:#102b35}
 .scmsg{min-height:18px;font-weight:800;font-size:13px;margin-top:8px}.scmsg.bad{color:#ff9a8a}.scmsg.good{color:#8be9a8}
 .opt.danger{border-color:rgba(255,120,100,.6);color:#ffb0a2}
+
+  /* ---- build 69: settings tabs + search, switches, slider fill, ripples, developer panel ---- */
+  .tog button{font-size:0 !important;min-width:0 !important;width:52px;height:28px;padding:0 !important;border:0 !important;border-radius:20px !important;position:relative;background:rgba(255,255,255,.16) !important;flex:none;transition:background .2s,box-shadow .2s}
+  .tog button::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.35);transition:transform .24s cubic-bezier(.3,1.6,.5,1)}
+  .tog button.on{background:#34c985 !important;box-shadow:0 0 14px rgba(52,201,133,.5)}
+  .tog button.on::after{transform:translateX(24px)}
+  .tog button:active::after{width:28px}.tog button.on:active::after{transform:translateX(18px)}
+  .tog{padding:3px 0}.tog:hover span{color:#fff}
+  input[type=range]{background:linear-gradient(90deg,var(--gold,#ffcf5a) var(--p,50%),rgba(255,255,255,.2) var(--p,50%)) !important}
+  .stbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:4px 0 12px;position:sticky;top:-2px;z-index:6;padding:8px 0 10px;background:linear-gradient(rgba(14,38,48,.97) 70%,rgba(14,38,48,0))}
+  .stabs{display:flex;gap:6px;flex:1 1 280px}
+  .stabs button{flex:1;padding:9px 8px;border-radius:12px;border:2px solid transparent;background:rgba(255,255,255,.09);color:#fff;font:800 13px system-ui,sans-serif;cursor:pointer;transition:background .15s,border-color .15s,transform .15s,box-shadow .15s;position:relative;overflow:hidden}
+  .stabs button:hover{background:rgba(255,255,255,.16);transform:translateY(-1px)}
+  .stabs button.on{background:rgba(255,210,74,.2);border-color:#ffd24a;color:#ffe9a0;box-shadow:0 0 16px rgba(255,210,74,.25)}
+  #ssearch{flex:0 1 200px;min-width:120px;box-sizing:border-box;padding:9px 12px;border-radius:12px;border:2px solid rgba(255,255,255,.2);background:rgba(0,0,0,.25);color:#fff;font:700 13px system-ui,sans-serif;outline:none;transition:border-color .15s,box-shadow .15s}
+  #ssearch:focus{border-color:#ffd24a;box-shadow:0 0 0 3px rgba(255,210,74,.2)}
+  .tabbed .grp[data-tab]{display:none}
+  .tabbed[data-sv=controls] .grp[data-tab=controls],.tabbed[data-sv=video] .grp[data-tab=video],.tabbed[data-sv=audio] .grp[data-tab=audio],.tabbed[data-sv=more] .grp[data-tab=more],.tabbed.searching .grp[data-tab]{display:block}
+  .tabbed .grp[data-tab]{animation:grpIn .3s cubic-bezier(.2,.9,.3,1.1) both}
+  @keyframes grpIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .rip{position:absolute;border-radius:50%;pointer-events:none;background:rgba(255,255,255,.45);transform:scale(0);animation:ripple .55s ease-out forwards}
+  .tabbed:not([data-sv=controls])>small.help,.tabbed.searching>small.help{display:none}
+  @keyframes ripple{to{transform:scale(1);opacity:0}}
+  #menu{--mx:0;--my:0}
+  #menu::before{translate:calc(var(--mx) * 26px) calc(var(--my) * 18px);transition:translate .4s ease-out}
+  #bolt{position:absolute;inset:0;background:rgba(214,226,255,.92);opacity:0;pointer-events:none;mix-blend-mode:screen;transition:opacity .12s}
+  #glare{position:absolute;inset:0;opacity:0;pointer-events:none;mix-blend-mode:screen}
+  #crash{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(8,18,26,.82);color:#fff;font:800 20px system-ui,sans-serif;z-index:80;text-align:center}
+  .rm *,.rm *::before,.rm *::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
+  #dev{position:fixed;right:12px;top:12px;width:372px;max-width:calc(100vw - 24px);max-height:calc(100vh - 24px);display:none;flex-direction:column;z-index:70;background:rgba(9,17,25,.94);color:#d6f2ff;border:1px solid rgba(110,215,255,.38);border-radius:14px;box-shadow:0 12px 44px rgba(0,0,0,.55);font:600 12px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);text-align:left;user-select:text}
+  #dev.on{display:flex;animation:devIn .22s cubic-bezier(.2,.9,.3,1.1)}
+  @keyframes devIn{from{opacity:0;transform:translateY(-10px) scale(.97)}to{opacity:1;transform:none}}
+  #dev .dh{display:flex;align-items:center;gap:8px;padding:8px 10px;cursor:move;border-bottom:1px solid rgba(110,215,255,.2)}
+  #dev .dh b{color:#7fe3ff;letter-spacing:.06em}
+  #dev .dh span{flex:1;text-align:right;color:#8fb3c4;font-size:11px}
+  #dev button{font:700 11px ui-monospace,Menlo,Consolas,monospace;color:#d6f2ff;background:rgba(110,215,255,.12);border:1px solid rgba(110,215,255,.3);border-radius:8px;padding:5px 9px;cursor:pointer;transition:background .15s}
+  #dev button:hover{background:rgba(110,215,255,.28)}
+  #dev button.on{background:#1f9d6c;border-color:#5fe3ab;color:#fff}
+  #dev .dtabs{display:flex;gap:4px;padding:8px 10px 0}
+  #dev .dtabs button{border-radius:8px 8px 0 0;border-bottom:0;flex:1;padding:6px 4px}
+  #dev .dtabs button.on{background:rgba(110,215,255,.3);border-color:#7fe3ff}
+  #dev .db{padding:10px;overflow:auto;display:flex;flex-direction:column;gap:8px}
+  #dev pre{margin:0;white-space:pre-wrap;word-break:break-word;font:inherit;color:#bfe6f5}
+  #dev .drow{display:flex;flex-wrap:wrap;gap:6px}
+  #dev select,#dev input[type=text]{background:#0d2330;color:#d6f2ff;border:1px solid rgba(110,215,255,.3);border-radius:8px;padding:5px;font:inherit;min-width:0}
+  #dev input[type=range]{width:100%}
+  #dev canvas{width:100%;height:64px;background:#06101a;border-radius:8px;display:block}
+  #dev .lg{max-height:260px;overflow:auto;background:#06101a;border-radius:8px;padding:6px}
+  #dev .lg div{border-bottom:1px solid rgba(255,255,255,.06);padding:2px 0}
+  #dev .lg .e{color:#ff8f8f}#dev .lg .w{color:#ffd37a}
+  #dev h4{margin:2px 0 0;color:#7fe3ff;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
 </style>
 </head>
 <body>
@@ -590,7 +646,7 @@
   <div id="lowhp"></div>
   <div id="killcam"><i class="kcb t"></i><i class="kcb b"></i><div id="kc-vig"></div><div id="kc-flash"></div><div class="kcmain"><b>KILL CAM</b><span id="kc-cap"></span><span id="kc-who"></span><div class="kcbar"><div id="kc-fill"></div></div><small>Respawning in a moment…</small></div></div>
   <div id="fps"></div>
-  <div id="flash"></div>
+  <div id="flash"></div><div id="bolt"></div><div id="glare"></div>
   <div id="tags"></div>
   <div id="dmgs"></div>
   <div id="lcol"><div id="netinfo"></div><div id="ko">K.O.s: <span id="kocount">0</span></div><div id="board"></div></div>
@@ -614,7 +670,7 @@
 </div>
 <div id="menu">
   <div class="card">
-    <div class="mhead"><h1>Wobble Arena</h1><p>Build 68</p><span id="coinchip" title="Your coins. Earn them from K.O.s and finished matches">&#129689; <b id="coinn">0</b></span></div>
+    <div class="mhead"><h1>Wobble Arena</h1><p>Build 69</p><span id="coinchip" title="Your coins. Earn them from K.O.s and finished matches">&#129689; <b id="coinn">0</b></span></div>
     <div id="netbanner"><span>ONLINE ROOM &middot; code</span><b id="nb-code"></b><span id="nb-info"></span><button class="opt" id="nb-copy">Copy code</button></div>
     <div id="winner"></div>
     <div id="crumbs-top"></div>
@@ -639,7 +695,12 @@
         <small class="help" id="tip" style="margin-top:4px"></small>
         <div id="homehide" style="display:none">
           <div class="feat" id="feat" style="display:none"><div class="th"><img id="feat-img" alt=""></div><span class="ftag">Level of the day</span><b id="feat-name"></b><small id="feat-blurb"></small><button class="chip" id="feat-go">Play this level</button></div>
-          <div class="news" style="display:none"><b>What's new &middot; build 68</b><ul>
+          <div class="news" style="display:none"><b>What's new &middot; build 69</b><ul>
+              <li>Settings has tabs (Controls, Video, Audio &amp; HUD, More) and a search box, with new switches. New options: frame-rate limit, auto resolution, sky effects, menu sounds and reduce motion</li>
+              <li>Menus feel nicer: button ripples, click sounds and a soft parallax. Skies got horizon haze, sun glare and lightning in stormy levels</li>
+              <li>Behind the scenes: a crash guard keeps the game running if something glitches, saves keep a backup, graphics recover after a reset, and a Copy bug report button helps testers</li>
+              <li>New developer panel (F2 once you use the developer code): live performance graph, cheats, tools, network info and a log</li>
+            </ul><b>Build 68</b><ul>
               <li>Accounts: sign up with a username, email and password, and your coins, outfits, controls and stats are saved to it and follow you to any device. Log out any time from Account</li>
               <li>Guests can still play, but nothing is saved and online play is locked</li>
               <li>If the host leaves an online room, the longest-standing player becomes the host and everyone stays in the room</li>
@@ -929,7 +990,8 @@
         <div id="tchips"></div>
       </div>
       <div class="tab" id="pg-controls"><h2 class="step">Settings &amp; controls</h2>
-        <div class="grp"><h3>Controls at a glance</h3><div id="ctrl-ref"></div>
+        <div class="stbar"><div class="stabs" id="stabs"></div><input id="ssearch" type="search" placeholder="Search settings..." autocomplete="off" spellcheck="false"></div><div id="snone" class="help" style="display:none;text-align:center;margin:18px 0">Nothing matches that. Try another word.</div>
+        <div class="grp" data-tab="controls"><h3>Controls at a glance</h3><div id="ctrl-ref"></div>
           <h3>Aiming</h3>
           <label>Mouse sensitivity <input id="sens" type="range" min="0.3" max="3" step="0.05" value="1"></label>
           <div class="tog"><span>Invert Y (up/down)</span><button id="inv-tog">Off</button></div>
@@ -947,33 +1009,49 @@
           </div>
           <small class="help">Right mouse also scopes. Hold the scope key, then use left click to shoot.</small>
         </div>
-        <div class="grp">
+        <div class="grp" data-tab="video">
           <h3>Camera</h3>
           <label>Field of view <b id="fov-v"></b> <input id="fov" type="range" min="55" max="105" step="1" value="72"></label>
           <label>Camera distance <b id="cdist-v"></b> <input id="cdist" type="range" min="0.6" max="1.6" step="0.05" value="1"></label>
           <label>Screen shake <b id="shake-v"></b> <input id="shake" type="range" min="0" max="1.5" step="0.1" value="1"></label>
         </div>
-        <div class="grp">
+        <div class="grp" data-tab="audio">
           <h3>Sound &amp; screen</h3>
           <label>Volume <b id="vol-v"></b> <input id="vol" type="range" min="0" max="1" step="0.05" value="0.5"></label>
+          <div class="tog"><span>Menu click sounds</span><button id="uisnd-tog">On</button></div>
           <div class="tog"><span>Damage numbers</span><button id="dmg-tog">On</button></div>
           <div class="tog"><span>Kill feed</span><button id="feed-tog">On</button></div>
           <div class="tog"><span>Map (mini-map) &middot; press N in game</span><button id="radar-tog">On</button></div>
           <div class="tog"><span>Show chat messages (online, no word filter)</span><button id="chat-tog">On</button></div>
+          <div class="tog"><span>Reduce motion (calmer menus, no screen wobble)</span><button id="rm-tog">Off</button></div>
         </div>
-        <div class="grp">
-          <h3>Graphics &amp; HUD</h3>
+        <div class="grp" data-tab="video">
+          <h3>Graphics</h3>
           <div class="row" id="row-quality"><button class="opt" id="q-low">Low<small>Fastest, no shadows</small></button><button class="opt" id="q-medium">Medium<small>Balanced</small></button><button class="opt" id="q-high">High<small>Prettiest</small></button></div>
+          <h3 style="margin-top:12px">Smoothness</h3>
+          <div class="row" id="row-fpscap"><button class="opt" id="fc-0">Unlimited<small>Max speed</small></button><button class="opt" id="fc-30">30<small>Saves battery</small></button><button class="opt" id="fc-60">60<small>Smooth</small></button><button class="opt" id="fc-120">120<small>Fast screens</small></button></div>
+          <div class="tog"><span>Auto resolution (drops sharpness a little when the game lags)</span><button id="autores-tog">On</button></div>
+          <small class="help" id="autores-note"></small>
+          <h3 style="margin-top:12px">Scenery</h3>
           <div class="tog"><span>Scenery (clouds, birds, drifting specks)</span><button id="scenery-tog">On</button></div>
+          <div class="tog"><span>Sky effects (haze, aurora, lightning)</span><button id="skyfx-tog">On</button></div>
           <div class="tog"><span>FPS counter</span><button id="fps-tog">Off</button></div>
           <div class="tog"><span>Kill cam (replay of how you got K.O.'d)</span><button id="killcam-tog">On</button></div>
-          <h3 style="margin-top:12px">Crosshair</h3>
+          </div>
+        <div class="grp" data-tab="video">
+          <h3>Crosshair</h3>
           <div class="wrap" id="cross-colors"></div>
           <label>Crosshair size <b id="csize-v"></b> <input id="csize" type="range" min="0.6" max="1.8" step="0.1" value="1"></label>
-          <h3 style="margin-top:12px">Redeem code</h3>
+          </div>
+        <div class="grp" data-tab="more">
+          <h3>Redeem code</h3>
           <div class="row" style="gap:8px"><input id="code-in" type="text" placeholder="Enter a code" autocomplete="off" spellcheck="false" style="flex:1;padding:10px 12px;border-radius:12px;border:2px solid rgba(255,255,255,.3);background:rgba(0,0,0,.25);color:#fff;font:inherit;min-width:0"><button class="opt" id="code-go">Redeem</button></div>
           <small class="help" id="code-msg" style="margin-top:4px"></small>
+          <h3 style="margin-top:14px">Help &amp; tools</h3>
+          <div class="row" style="gap:8px"><button class="opt" id="bug-copy">Copy bug report</button><button class="opt" id="dev-open" style="display:none">Developer panel</button></div>
+          <small class="help" id="bug-msg">Something broke? Press the button and paste the text to whoever makes the game. It has no passwords or personal info.</small>
           <button class="opt" id="settings-reset" style="margin-top:8px">Reset ALL settings to default</button>
+          <small class="help" id="build-note" style="margin-top:6px"></small>
         </div>
         <small class="help">
           Defaults: <b>WASD</b> move · <b>Shift</b> sprint · <b>Space</b> jump · <b>C</b> squat · <b>Click</b> attack · <b>Right click / scope key</b> aim · <b>1 2 3</b> weapons<br>
@@ -1024,7 +1102,7 @@
     <div id="tt-why">A free account saves your coins, outfits, controls and stats, and lets you play online with friends.</div>
   </div>
   <div class="tc" style="top:10%;--d:75s"></div><div class="tc" style="top:34%;--d:110s;left:-60%;transform:scale(1.4)"></div><div class="tc" style="top:70%;--d:90s;left:-45%"></div>
-  <small id="titlesmall">Build 68 &middot; Esc opens the menu any time</small>
+  <small id="titlesmall">Build 69 &middot; Esc opens the menu any time</small>
 </div>
 <div id="boot">
   <div id="bootlogo"></div>
@@ -1033,6 +1111,8 @@
   <div id="boottip"></div>
 </div>
 
+<div id="dev"><div class="dh" id="dv-head"><b>DEV</b><span id="dv-fps"></span><button id="dv-x">x</button></div><div class="dtabs" id="dv-tabs"></div><div class="db" id="dv-body"></div></div>
+<div id="crash"><div>The graphics hiccuped.<br><small style="font-weight:600;opacity:.8">Hang on, getting them back...</small></div></div>
 <script type="importmap">
 { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
 </script>
@@ -1053,7 +1133,19 @@ const tmpA = V(), tmpB = V(), tmpC = V(), tmpD = V(), tmpE = V(), tmpV = V();
 
 const DEF_BINDS = { map: 'KeyN', chat: 'Enter', forward: 'KeyW', back: 'KeyS', left: 'KeyA', right: 'KeyD', jump: 'Space', sprint: 'ShiftLeft', squat: 'KeyC', scope: 'KeyZ', spatula: 'KeyQ', shove: 'KeyE', kick: 'KeyF', taunt: 'KeyT', emote2: 'KeyG', emote3: 'KeyH', dash: 'KeyV', slot1: 'Digit1', slot2: 'Digit2', slot3: 'Digit3', reload: 'KeyR' };
 let net = null, netApply = false;       // online play (null = offline)
-const settings = { name: '', sens: 1, floppy: 2.2, ice: 0.6, fov: 72, camDist: 1, invertY: false, vol: 0.5, shake: 1, binds: Object.assign({}, DEF_BINDS), binds2: {}, multi: false, shared: false, quality: 'high', scenery: true, fps: false, killcam: true, crossColor: '#ffffff', crossSize: 1, scopeMode: 'hold', dmgNums: true, feed: true, radar: true, autoSwitch: false, chat: true };
+const settings = { name: '', sens: 1, floppy: 2.2, ice: 0.6, fov: 72, camDist: 1, invertY: false, vol: 0.5, shake: 1, binds: Object.assign({}, DEF_BINDS), binds2: {}, multi: false, shared: false, quality: 'high', scenery: true, fps: false, killcam: true, crossColor: '#ffffff', crossSize: 1, scopeMode: 'hold', dmgNums: true, feed: true, radar: true, autoSwitch: false, chat: true, fpsCap: 0, autoRes: true, skyFx: true, uiSounds: true, reduceMotion: false };
+
+/* ---- build 69, behind the scenes: error log, performance counters, developer switches ---- */
+const DEVLOG = [];
+function devLog(kind, msg) { try { DEVLOG.push({ t: Date.now(), k: kind, m: String(msg).slice(0, 300) }); if (DEVLOG.length > 150) DEVLOG.shift(); } catch (e) { /* log is optional */ } }
+const PERF = { ms: new Float32Array(120), i: 0, avg: 16.7, max: 16.7, fps: 60, scale: 1, lowN: 0, hiN: 0, errs: 0, srvRtt: -1, steps: 0, stepsPS: 0 };
+let basePR = 1;
+const DEVS = { god: false, ammo: false, freeze: false, ts: 1, wire: false, nofog: false };      // developer-panel switches (off for everybody else)
+try {
+  window.addEventListener('error', e => { PERF.errs++; devLog('error', (e && e.message ? e.message : 'error') + (e && e.filename ? ' @' + String(e.filename).split('/').pop() + ':' + e.lineno : '')); });
+  window.addEventListener('unhandledrejection', e => { PERF.errs++; devLog('error', 'promise: ' + (e && e.reason && e.reason.message ? e.reason.message : e && e.reason)); });
+  for (const k of ['error', 'warn']) { const orig = console[k]; console[k] = function () { devLog('console.' + k, Array.prototype.join.call(arguments, ' ')); return orig.apply(console, arguments); }; }
+} catch (e) { /* no window in a test */ }
 el('sens').oninput = e => { settings.sens = +e.target.value; };
 el('ice').oninput = e => { settings.ice = +e.target.value; };
 
@@ -1832,9 +1924,11 @@ function setBackdrop(m, id) {
   backdrop.dome.visible = !indoor; backdrop.sunG.visible = !indoor && !night;
   backdrop.far.visible = !indoor;
   if (indoor) clearFar(); else buildFar(env.scene || 'mountains', m, env, id);
+  try { hazeApply(m, env, indoor, night); } catch (e) { devLog('sky', 'haze: ' + e); }
 }
 function updateBackdrop(dt) {
   backdrop.t += dt;
+  skyFxTick(dt);
   const cp = camera.position;
   backdrop.dome.position.copy(cp); backdrop.stars.position.copy(cp);
   if (backdrop.stars.visible) {
@@ -2318,7 +2412,7 @@ MAPS.pirate = {
 };
 MAPS.haunted = {
   name: 'Haunted Hollow', cat: 'obstacle', tags: ['Night', 'Spooky', 'Cover'], blurb: 'A foggy graveyard under a full moon. Hide behind tombstones, climb the crypt and watch the green wisps float by.',
-  env: { stars: true, moonColor: 0xf6f0c8, moonSize: 1.5, speck: 'wisp', peaks: true }, hemi: 0.65, sunI: 0.8,
+  env: { stars: true, moonColor: 0xf6f0c8, moonSize: 1.5, speck: 'wisp', peaks: true, aurora: [0x44ffb0, 0x6a8cff] }, hemi: 0.65, sunI: 0.8,
   sky: 0x2a2145, skyTop: 0x0b0716, voidColor: 0x241c3a, hills: [0x2f2548, 0x3a2d58, 0x251c3b, 0x44356a], shadow: 40, orbit: 44, orbitH: 26, fog: [34, 130],
   spawns: [[-16, 16], [16, -16], [-16, -16], [16, 16], [0, 18], [0, -18]], player: [0, 18], bots: [[-16, 16], [16, -16], [-16, -16], [16, 16], [0, -18]], wander: 17,
   drops: [[-18, 0], [18, 0], [0, -11], [0, 11], [-9, -17], [9, 17], [-9, 17], [9, -17], [0, 0, 3.2]],
@@ -2347,7 +2441,7 @@ MAPS.beach = {
 };
 MAPS.dojo = {
   name: 'Moonlit Dojo', cat: 'obstacle', tags: ['Ninja', 'Night', 'Cover'], only: 'ninja', blurb: 'Built for ninjas. A raised dojo with a pagoda roof, stairs on every side, low garden walls and corner pavilions to dash between and hide behind. Lanterns and cherry blossom in the moonlight.',
-  env: { stars: true, moonColor: 0xf6f0c8, moonSize: 1.5, speck: 'petal', speckColor: 0xffb6d0, peaks: true }, hemi: 0.72, sunI: 0.85,
+  env: { stars: true, moonColor: 0xf6f0c8, moonSize: 1.5, speck: 'petal', speckColor: 0xffb6d0, peaks: true, aurora: [0xff8ec8, 0xa890ff] }, hemi: 0.72, sunI: 0.85,
   sky: 0x3a2a5e, skyTop: 0x120a2c, voidColor: 0x1d1236, hills: [0x2c2250, 0x382b62, 0x241b44, 0x45367a], shadow: 44, orbit: 50, orbitH: 30,
   spawns: [[-18, 18], [18, -18], [-18, -18], [18, 18], [0, 19], [0, -19]], player: [0, 19], bots: [[-18, 18], [18, -18], [-18, -18], [18, 18], [0, -19]], wander: 18,
   drops: [[-20, 0], [20, 0], [0, 12], [0, -12], [-11, -16], [11, 16], [-11, 16], [11, -16], [0, 0, 1.8]],
@@ -2444,7 +2538,7 @@ const floatRock = (x, z, w, d, h, y, c1, c2) => {                       // a dri
   const r = new THREE.Mesh(new THREE.IcosahedronGeometry(Math.min(w, d) * 0.42, 0), lm(mixHex(c1, 0x000000, 0.25))); r.position.set(x, y - 0.55, z); r.scale.set(1.05, 0.8, 1.05); r.castShadow = true; addDecor(r);
   return y + h + 0.15;
 };
-const MAP_LOWG_NIGHT = { stars: true, moonColor: 0x6fa3ff, moonSize: 1.7, speck: 'star' };
+const MAP_LOWG_NIGHT = { stars: true, moonColor: 0x6fa3ff, moonSize: 1.7, speck: 'star', aurora: [0x6fe8ff, 0x9a7aff] };
 MAPS.craterdome = {
   name: 'Crater Dome', cat: 'arena', tags: ['Low-G', 'Moon', 'Floating'], only: 'lowg', ceil: 24,
   blurb: 'Built for Moon Drift. A lunar crater under a glass dome with Earth hanging in the sky. Leap off the moon rocks and float up to the drifting asteroid platforms, and bounce off the glass.',
@@ -4461,6 +4555,7 @@ class Fighter {
     }
     if (attacker && attacker.isGhost && !netApply) return false;          // other players' shots only look real here; the damage arrives as a message
     if (this.dead || this.invuln > 0) return false;
+    if (DEVS.god && this.isPlayer && !net) return false;                   // developer panel: god mode (offline only)
     if (attacker && isFriend(attacker, this)) return false;                // teammates can't hurt each other
     { const dm = MODES[cfg.mode].dmgMul; if (dm !== undefined) dmg *= dm; if (giantOn() && attacker && attacker.weapon === 'mammoth') dmg *= 0.65; }       // Giant: double damage, but the Mammoth Pistol only gets a bit more
     if (attacker && attacker !== this && attacker.rageT > 0) dmg *= 1.5;           // damage boost
@@ -5252,6 +5347,7 @@ function spawnDrop(forceKey, at, spotOverride) {
   else if (at) spot = [at.x, at.z];                         // a weapon laid out on the floor (Test / Practice maps)
   else {
     const spots = MAPS[currentMap].drops;
+    if (!spots || !spots.length) return null;                 // maps without crate spots (Pillars) have no crates
     const used = new Set(pickups.map(p => p.spot));
     spot = spots[Math.floor(Math.random() * spots.length)];
     for (let i = 0; i < 12 && used.has(spot); i++) spot = spots[Math.floor(Math.random() * spots.length)];
@@ -6873,6 +6969,7 @@ function showPage(pg) {
   if (pg === 'map') updateMapList();
   netBannerUpdate();
   if (pg === 'account') renderAccount();
+  if (pg === 'controls') devShowButton();
   if (pg === 'result') { renderResult(); try { netRematchUi(); } catch (e) { /* cosmetic */ } }
   if (pg === 'test') renderTestChips();
   if (hostFlow && !['mode', 'vs', 'map', 'mods'].includes(pg)) hostFlow = false;
@@ -6972,7 +7069,7 @@ el('ac-name').onkeydown = e => { e.stopPropagation(); if (e.key === 'Enter') e.t
 el('ac-locker').onclick = () => showPage('locker'); el('ac-shop').onclick = () => showPage('shop'); el('ac-last').onclick = () => showPage('result');
 el('ac-code').onclick = () => { showPage('controls'); setTimeout(() => { try { el('code-in').scrollIntoView({ block: 'center' }); el('code-in').focus(); } catch (e) { /* cosmetic */ } }, 60); };
 el('test-go').onclick = () => { if (!testPrev) testPrev = { mode: cfg.mode, map: currentMap }; setBotCfg({ mode: 'classic' }); loadMap('test'); el('play').onclick(); };
-el('code-go').onclick = () => { el('code-msg').textContent = redeem(el('code-in').value); el('code-in').value = ''; };
+el('code-go').onclick = () => { el('code-msg').textContent = redeem(el('code-in').value); el('code-in').value = ''; try { devShowButton(); } catch (e) { /* cosmetic */ } };
 el('code-in').onkeydown = e => { e.stopPropagation(); if (e.key === 'Enter') el('code-go').onclick(); };
 el('code-in').onkeyup = e => e.stopPropagation();
 el('go-practice').onclick = () => { if (!testPrev) testPrev = { mode: cfg.mode, map: currentMap }; setBotCfg({ mode: 'classic' }); loadMap('practice'); el('play').onclick(); };
@@ -7025,6 +7122,7 @@ function syncSettings() {
   el('feed').style.display = settings.feed ? 'flex' : 'none';
   el('radar').style.display = settings.radar ? 'block' : 'none';
   if (master) master.gain.value = 0.9 * settings.vol;
+  syncPro();
 }
 const BIND_LABELS = [['map', 'Map on / off'], ['chat', 'Chat (online)'], ['forward', 'Move forward'], ['back', 'Move back'], ['left', 'Move left'], ['right', 'Move right'], ['jump', 'Jump'], ['sprint', 'Sprint'], ['squat', 'Squat'], ['scope', 'Scope / aim'], ['spatula', 'Quick spatula'], ['shove', 'Shove'], ['kick', 'Kick'], ['taunt', 'Emote 1'], ['emote2', 'Emote 2'], ['emote3', 'Emote 3'], ['dash', 'Dash (Ninja mode)'], ['slot1', 'Weapon slot 1'], ['slot2', 'Weapon slot 2'], ['slot3', 'Weapon slot 3'], ['reload', 'Reload']];
 let rebinding = null;                                  // 'action' (first key) or 'action:2' (second key)
@@ -7197,7 +7295,7 @@ el('ag-name').onkeydown = e => { e.stopPropagation(); if (e.key === 'Enter') el(
 function authSuccess(r, carried) {                                   // we are in: keep the token and the saved progress, then start over clean with a reload
   try {
     const old = legacyBlob(); if (old && !localStorage.getItem('wobbleArenaOld')) localStorage.setItem('wobbleArenaOld', JSON.stringify(old));      // never throw away what was on this device
-    if (r.data) localStorage.setItem('wobbleArena', JSON.stringify(r.data)); else localStorage.removeItem('wobbleArena');
+    if (r.data) localStorage.setItem('wobbleArena', JSON.stringify(r.data)); else rmSave();
     localStorage.setItem('wobbleAuth', JSON.stringify({ user: r.user.username, token: r.token, email: r.user.email, t: r.t || 0, dirty: false }));
     sessionStorage.setItem('waSkip', '1');
   } catch (e) { el('au-err').textContent = 'Your browser would not let the game remember you. Check that cookies and site data are allowed.'; auBusy = false; el('au-go').disabled = false; return; }
@@ -7225,7 +7323,7 @@ async function doLogout() {
     if (acct.dirty) { askConfirm('Your latest progress could not be saved (no connection). If you log out now it will be lost. Log out anyway?', () => finish()); return; }
     finish();
   };
-  const finish = async () => { try { await api('POST', '/api/logout', {}, acct.token, 4000); } catch (e) { /* offline is fine */ } try { localStorage.removeItem('wobbleAuth'); localStorage.removeItem('wobbleArena'); sessionStorage.removeItem('waSkip'); } catch (e) { /* x */ } location.reload(); };
+  const finish = async () => { try { await api('POST', '/api/logout', {}, acct.token, 4000); } catch (e) { /* offline is fine */ } try { localStorage.removeItem('wobbleAuth'); rmSave(); sessionStorage.removeItem('waSkip'); } catch (e) { /* x */ } location.reload(); };
   askConfirm('Log out of ' + acct.user + '? Everything is saved to your account, so you can log back in any time.', go);
 }
 el('tt-out').onclick = doLogout;
@@ -7250,7 +7348,7 @@ el('sc-delete').onclick = () => {
   askConfirm('Delete the account ' + acct.user + ' for good? Your coins, outfits and stats will be gone.', async () => {
     m.textContent = 'Deleting…'; m.className = 'scmsg good'; const r = await api('POST', '/api/delete', { password: pw }, acct.token);
     if (!r.ok) { m.textContent = r.msg || 'Could not delete it.'; m.className = 'scmsg bad'; return; }
-    try { localStorage.removeItem('wobbleAuth'); localStorage.removeItem('wobbleArena'); } catch (e) { /* x */ } location.reload();
+    try { localStorage.removeItem('wobbleAuth'); rmSave(); } catch (e) { /* x */ } location.reload();
   });
 };
 for (const id of ['sc-old', 'sc-new', 'sc-del']) { el(id).onkeydown = e => e.stopPropagation(); el(id).onkeyup = e => e.stopPropagation(); }
@@ -7333,9 +7431,22 @@ function authLoad() {
   try { const a = JSON.parse(localStorage.getItem('wobbleAuth') || 'null'); if (a && typeof a.token === 'string' && /^[0-9a-f]{64}$/.test(a.token) && typeof a.user === 'string') { acct.user = a.user; acct.token = a.token; acct.email = String(a.email || ''); acct.t = +a.t || 0; acct.dirty = !!a.dirty; } } catch (e) { /* no storage */ }
 }
 function authKeep() { try { if (acct.user) localStorage.setItem('wobbleAuth', JSON.stringify({ user: acct.user, token: acct.token, email: acct.email, t: acct.t, dirty: acct.dirty })); else localStorage.removeItem('wobbleAuth'); } catch (e) { /* ignore */ } }
+let bakT = 0;
+function rmSave() { try { localStorage.removeItem('wobbleArena'); localStorage.removeItem('wobbleArena.bak'); } catch (e) { /* x */ } }
+function readSave() {                                               // the save, or (if it is damaged) the last good copy
+  let raw = null; try { raw = localStorage.getItem('wobbleArena'); } catch (e) { /* no storage */ }
+  if (!raw) return null;
+  try { const d = JSON.parse(raw); if (d && typeof d === 'object') return d; } catch (e) { devLog('save', 'save was unreadable, trying the backup'); }
+  try { const b = JSON.parse(localStorage.getItem('wobbleArena.bak') || 'null'); if (b && typeof b === 'object') { devLog('save', 'restored from the backup'); return b; } } catch (e) { /* none */ }
+  return null;
+}
 function save() {
   if (!acct.user) return;                                            // guests (and people who have not chosen yet) save nothing
-  try { localStorage.setItem('wobbleArena', JSON.stringify(snapshot())); } catch (e) { /* private mode etc */ }
+  try {
+    const now = Date.now(), prev = bakT && now - bakT < 60000 ? null : localStorage.getItem('wobbleArena');
+    if (prev && prev.length > 20) { try { JSON.parse(prev); localStorage.setItem('wobbleArena.bak', prev); bakT = now; } catch (e) { /* do not back up a damaged save */ } }
+    localStorage.setItem('wobbleArena', JSON.stringify(snapshot()));
+  } catch (e) { /* private mode etc */ }
   cloudDirty();
 }
 let pushTimer = 0;
@@ -7357,7 +7468,7 @@ function cloudBeacon() {                                              // the pag
 }
 function authExpired() {
   if (acct.expired) return; acct.expired = true; acct.user = null; acct.token = ''; authKeep();
-  try { localStorage.removeItem('wobbleArena'); } catch (e) { /* x */ }
+  try { rmSave(); } catch (e) { /* x */ }
   toast('Your login ran out. Please log in again.'); openAuth('login', 'Your login ran out, so nothing is being saved. Log in again to keep playing with your account.');
 }
 function apiBases() { return srvUrls().map(u => u.replace(/^ws/, 'http').replace(/\/ws\/?$/, '')); }
@@ -7377,7 +7488,7 @@ async function api(method, path, body, token, ms) {
 }
 function load() {
   try {
-    const d = JSON.parse(localStorage.getItem('wobbleArena') || 'null');
+    const d = readSave();
     if (!d) return;
     if (d.wallet && typeof d.wallet === 'object') {
       if (Number.isFinite(d.wallet.coins)) wallet.coins = Math.max(0, Math.floor(d.wallet.coins));
@@ -7410,7 +7521,8 @@ function load() {
       if (['low', 'medium', 'high'].includes(t.quality)) settings.quality = t.quality;
       if (CROSS_COLORS.includes(t.crossColor)) settings.crossColor = t.crossColor; n('crossSize', 0.6, 1.8);
       n('fov', 55, 105); n('camDist', 0.6, 1.6); n('shake', 0, 1.5); n('vol', 0, 1);
-      for (const k of ['invertY', 'dmgNums', 'feed', 'radar', 'scenery', 'fps', 'killcam', 'autoSwitch', 'chat']) if (typeof t[k] === 'boolean') settings[k] = t[k];
+      for (const k of ['invertY', 'dmgNums', 'feed', 'radar', 'scenery', 'fps', 'killcam', 'autoSwitch', 'chat', 'autoRes', 'skyFx', 'uiSounds', 'reduceMotion']) if (typeof t[k] === 'boolean') settings[k] = t[k];
+      if ([0, 30, 60, 120].includes(t.fpsCap)) settings.fpsCap = t.fpsCap;
       if (['KeyZ', 'KeyX', 'KeyC', 'KeyV'].includes(t.scopeKey)) settings.binds.scope = t.scopeKey;
       if (typeof t.multi === 'boolean') settings.multi = t.multi;
       if (typeof t.shared === 'boolean') settings.shared = t.shared;
@@ -7421,7 +7533,8 @@ function load() {
 }
 function applyQuality() {
   const q = settings.quality, dpr = window.devicePixelRatio || 1, sh = q !== 'low', ms = q === 'high' ? 2048 : 1024;
-  renderer.setPixelRatio(q === 'low' ? 1 : q === 'medium' ? Math.min(dpr, 1.5) : Math.min(dpr, 2));
+  basePR = q === 'low' ? 1 : q === 'medium' ? Math.min(dpr, 1.5) : Math.min(dpr, 2); PERF.scale = 1;
+  renderer.setPixelRatio(basePR);
   renderer.setSize(window.innerWidth, window.innerHeight);
   const was = renderer.shadowMap.enabled; renderer.shadowMap.enabled = sh; sun.castShadow = sh;
   if (sun.shadow.mapSize.x !== ms) { sun.shadow.mapSize.set(ms, ms); if (sun.shadow.map) { sun.shadow.map.dispose(); sun.shadow.map = null; } }
@@ -7450,7 +7563,7 @@ el('settings-reset').onclick = () => askConfirm('Reset ALL settings (keys, sensi
 });
 
 /* ============================== online play (test) ============================== */
-const NET_PREFIX = 'wobble-arena-', NET_HZ = 30, NET_MAX = 8, NET_BUILD = 'b68.0', PUB_SLOTS = 24;   // PUB_SLOTS: public rooms live at fixed spots (pub0, pub1, ...) so anybody can look them up
+const NET_PREFIX = 'wobble-arena-', NET_HZ = 30, NET_MAX = 8, NET_BUILD = 'b69.0', PUB_SLOTS = 24;   // PUB_SLOTS: public rooms live at fixed spots (pub0, pub1, ...) so anybody can look them up
 const slotCap = () => net.started && net.slots ? net.slots.length : NET_MAX;
 function netStatus(t) {
   t = t || ''; const busy = /(\u2026|\.\.\.)$/.test(t); if (t && !busy) netUnlock();
@@ -7600,6 +7713,7 @@ function srvAsk(msg, ops, ms, fn) {                                   // send so
 }
 const mkVc = cid => ({ open: true, _cid: cid, send(m) { srvTx({ op: 'to', cid, m }); }, close() { if (this.open) { this.open = false; srvTx({ op: 'close', cid }); } } });
 function srvRecv(m) {
+  if (m.op === 'pong') { if (typeof m.ts === 'number') PERF.srvRtt = Math.max(0, Math.round(performance.now() - m.ts)); return; }
   if (m.op === 'hi' || m.op === 'rooms') { if (typeof m.online === 'number') { srvOnline = m.online; netPill(); } }
   if (m.op === 'msg') { if (!net || !net.srv) return; if (net.host) { const vc = net.vc[m.from]; if (vc) hostRecv(vc, m.m); } else clientRecv(m.m); return; }
   if (m.op === 'peer') { if (!net || !net.srv || !net.host) return; if (m.ev === 'open') net.vc[m.cid] = mkVc(m.cid); else { const vc = net.vc[m.cid]; if (vc) { vc.open = false; delete net.vc[m.cid]; hostDrop(vc); } } return; }
@@ -8400,8 +8514,9 @@ function simStep(dt) {
   simTime += dt; if (ui === 'play') stats.secs += dt;
   updatePotato(dt); updatePillars(dt); updateShrink(dt);
   const netPre = net && net.started ? netSnap() : null;
+  if (DEVS.ammo && !net) { const sl = player.slots[player.slot]; if (sl && sl.ammo < 60) sl.ammo = 60; }
   playerControl(dt);
-  for (const b of bots) if (!b.isGhost) botThink(b, dt);
+  for (const b of bots) if (!b.isGhost && !(DEVS.freeze && !net)) botThink(b, dt);
   if (netPre) netStep(dt, netPre);
   for (const f of fighters) { f.timers(dt); if (!f.isGhost) f.physics(dt); }
   updatePads(dt);
@@ -8471,7 +8586,7 @@ function updateCamera(dt) {
 
   camera.position.copy(camPos);
   if (cam.shake > 0.002) {
-    const shk = cam.shake * settings.shake; camera.position.x += rand(-1, 1) * shk; camera.position.y += rand(-1, 1) * shk; camera.position.z += rand(-1, 1) * shk;
+    const shk = cam.shake * settings.shake * (settings.reduceMotion ? 0 : 1); camera.position.x += rand(-1, 1) * shk; camera.position.y += rand(-1, 1) * shk; camera.position.z += rand(-1, 1) * shk;
     cam.shake *= Math.exp(-9 * dt);
   } else cam.shake = 0;
   camera.lookAt(tmpA.copy(camPos).add(camFwd));
@@ -8838,21 +8953,24 @@ function kcCamera(dt) {
 let fpsN = 0, fpsT0 = 0;
 function frame(now) {
   requestAnimationFrame(frame);
+  if (settings.fpsCap && now - lastDraw < 1000 / settings.fpsCap - 2) return;     // frame-rate limit: skip this one (the next frame just takes a bigger step)
+  if (ctxLost) { last = now; return; }
+  lastDraw = now; perfTick(prevNow ? now - prevNow : 16.7, now); prevNow = now;
   const dt = Math.min((now - last) / 1000, 0.05); last = now;
-  if (page === 'map') heroTick(now);
-  previewTick(now);
-  if (kcActive && locked) kcStep(dt);              // opening the menu pauses the replay; it carries on when you come back
-  updateCamera(dt);
-  if ((locked || (net && net.started)) && !kcActive) { acc += Math.min(dt, 0.1); while (acc >= SIM && !kcActive) { simStep(SIM); acc -= SIM; } }   // the game pauses while the menu is open (but not online: the match goes on and you stay hittable)
-  else acc = 0;
-  for (const f of fighters) f.applyPose();
-  if (!kcActive) for (const f of fighters) f.meleeSweep();
-  updateAimRing(dt);
-  updateFx(dt);
-  updateHud(dt);
-  updateBackdrop(dt);
-  fpsN++; if (now - fpsT0 >= 500) { if (settings.fps) el('fps').textContent = Math.round(fpsN * 1000 / (now - fpsT0)) + ' FPS'; fpsN = 0; fpsT0 = now; }
-  renderer.render(scene, camera);
+  try {
+    if (page === 'map') heroTick(now);
+    previewTick(now);
+    if (kcActive && locked) kcStep(dt);              // opening the menu pauses the replay; it carries on when you come back
+    updateCamera(dt);
+    if ((locked || (net && net.started)) && !kcActive) { acc += Math.min(dt, 0.1) * (DEVS.ts !== 1 && devLive() ? DEVS.ts : 1); while (acc >= SIM && !kcActive) { simStep(SIM); simCount++; acc -= SIM; } }   // the game pauses while the menu is open (but not online: the match goes on and you are still in it)
+    else acc = 0;
+    for (const f of fighters) f.applyPose();
+    if (!kcActive) for (const f of fighters) f.meleeSweep();
+  } catch (e) { acc = 0; crashNote('game', e); }
+  try { updateAimRing(dt); updateFx(dt); updateHud(dt); updateBackdrop(dt); } catch (e) { crashNote('visuals', e); }
+  fpsN++; if (now - fpsT0 >= 500) { if (settings.fps) el('fps').textContent = Math.round(fpsN * 1000 / (now - fpsT0)) + ' FPS' + (net && net.started && net.ping !== undefined ? ' \u00b7 ' + net.ping + ' ms' : ''); fpsN = 0; fpsT0 = now; }
+  if (devOpen && now - devT > 250) { devT = now; try { devUpdate(); } catch (e) { devLog('dev', e); } }
+  try { renderer.render(scene, camera); } catch (e) { crashNote('render', e); }
 }
 
 /* ---- online matches keep running when the tab is hidden: browsers stop drawing frames in a background tab, which froze you in place (and made you unhittable) until you came back.
@@ -8871,6 +8989,247 @@ try {
     w.onmessage = bgTick;
   } else setInterval(bgTick, 100);
 } catch (e) { setInterval(bgTick, 100); }
+
+
+/* ============================== build 69: smoothness, crash guard, sky effects, settings tabs, developer panel ============================== */
+let perfAcc = 0, perfN = 0, perfT0 = 0, ctxLost = false, lastDraw = 0, prevNow = 0, simCount = 0, crashAt = 0;
+const crashN = {};
+function crashNote(where, e) {
+  if (typeof globalThis !== 'undefined' && globalThis.__wobbleStrict) throw e;               // test runs want the real error, not a swallowed one                                      // a bug in one part of a frame must not freeze the whole game: log it, tell the player once, carry on
+  PERF.errs++; crashN[where] = (crashN[where] || 0) + 1; const n = crashN[where];
+  if (n <= 5 || n % 200 === 0) { devLog('crash', where + ': ' + (e && e.stack ? String(e.stack).split('\n').slice(0, 3).join(' | ') : e)); try { console.error('[wobble] ' + where, e); } catch (x) { /* ok */ } }
+  const t = Date.now(); if (t - crashAt > 15000) { crashAt = t; try { toast('Something glitched, but the game kept going. (Settings > More > Copy bug report)'); } catch (x) { /* ok */ } }
+}
+function applyScale() { try { renderer.setPixelRatio(basePR * PERF.scale); renderer.setSize(window.innerWidth, window.innerHeight); } catch (e) { /* cosmetic */ } }
+function perfTick(ms, now) {                                        // frame timing + auto resolution
+  PERF.ms[PERF.i++ % 120] = ms; perfAcc += ms; perfN++;
+  if (!perfT0) perfT0 = now;
+  if (now - perfT0 < 1000) return;
+  const avg = perfAcc / Math.max(1, perfN); PERF.avg = avg; PERF.fps = 1000 / Math.max(0.1, avg); let mx = 0; for (let i = 0; i < 120; i++) if (PERF.ms[i] > mx) mx = PERF.ms[i]; PERF.max = mx;
+  PERF.stepsPS = simCount; simCount = 0; perfAcc = 0; perfN = 0; perfT0 = now;
+  const playing = (locked || (net && net.started)) && !(typeof document !== 'undefined' && document.hidden), target = settings.fpsCap ? 1000 / settings.fpsCap : 16.7;
+  if (settings.autoRes && playing) {
+    if (avg > Math.max(26, target * 1.45)) { PERF.lowN++; PERF.hiN = 0; } else if (avg < target * 1.12) { PERF.hiN++; PERF.lowN = 0; } else { PERF.lowN = 0; PERF.hiN = 0; }
+    if (PERF.lowN >= 2 && PERF.scale > 0.55) { PERF.scale = Math.max(0.55, +(PERF.scale - 0.1).toFixed(2)); PERF.lowN = 0; applyScale(); devLog('perf', 'resolution ' + Math.round(PERF.scale * 100) + '%'); }
+    else if (PERF.hiN >= 8 && PERF.scale < 1) { PERF.scale = Math.min(1, +(PERF.scale + 0.1).toFixed(2)); PERF.hiN = 0; applyScale(); devLog('perf', 'resolution ' + Math.round(PERF.scale * 100) + '%'); }
+  } else if (!settings.autoRes && PERF.scale !== 1) { PERF.scale = 1; applyScale(); }
+  try { if (page === 'controls') { const n = el('autores-note'); if (n) n.textContent = settings.autoRes ? 'Sharpness now: ' + Math.round(PERF.scale * 100) + '% · ' + Math.round(PERF.fps) + ' FPS' : ''; } } catch (e) { /* cosmetic */ }
+}
+try {
+  renderer.domElement.addEventListener('webglcontextlost', e => { e.preventDefault(); ctxLost = true; devLog('gl', 'context lost'); const c = el('crash'); if (c) c.style.display = 'flex'; });
+  renderer.domElement.addEventListener('webglcontextrestored', () => { ctxLost = false; devLog('gl', 'context restored'); const c = el('crash'); if (c) c.style.display = 'none'; try { applyQuality(); } catch (e) { /* ok */ } toast('Graphics are back!'); });
+} catch (e) { /* no canvas events in a test */ }
+
+/* ---- sky effects: horizon haze, lightning in stormy levels, sun glare ---- */
+const fxSky = { haze: null, lt: { wait: 6, on: false }, glare: 0, rgb: [255, 220, 150], storm: false, indoor: false, night: false };
+try {
+  fxSky.haze = new THREE.Group();
+  for (let i = 0; i < 3; i++) {
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(300, 300, 22 + i * 26, 32, 1, true), new THREE.MeshBasicMaterial({ color: 0xbfe3f2, transparent: true, opacity: 0.26 - i * 0.07, side: THREE.BackSide, fog: false, depthWrite: false }));
+    m.position.y = 9 + i * 13; m.renderOrder = -16; fxSky.haze.add(m);
+  }
+  scene.add(fxSky.haze);
+} catch (e) { fxSky.haze = null; }
+function hazeApply(m, env, indoor, night) {
+  fxSky.storm = env.clouds === 'dark'; fxSky.indoor = indoor; fxSky.night = night;
+  const c = night ? mixHex(m.sky, 0x6a5aa0, 0.35) : env.mid !== undefined ? mixHex(env.mid, 0xffffff, 0.2) : mixHex(m.sky, 0xffffff, 0.45);
+  if (fxSky.haze) fxSky.haze.children.forEach((h, i) => { h.material.color.setHex(c); h.material.opacity = (night ? 0.2 : 0.26) - i * 0.06; });
+  const sc = env.sunColor !== undefined ? env.sunColor : env.sunElev !== undefined ? 0xffcf90 : 0xfff6d2; fxSky.rgb = [sc >> 16 & 255, sc >> 8 & 255, sc & 255];
+}
+function skyFxTick(dt) {
+  const on = settings.skyFx && settings.scenery && !fxSky.indoor;
+  if (fxSky.haze) { fxSky.haze.visible = on; fxSky.haze.position.set(camera.position.x, 0, camera.position.z); }
+  const g = el('glare'), b = el('bolt');
+  if (g && g.style) {                                                // sun glare: a warm bloom when you look towards the sun
+    let k = 0, px = 50, py = 30;
+    if (on && !fxSky.night && locked) {
+      const d = camFwd.x * backdrop.sunDir.x + camFwd.y * backdrop.sunDir.y + camFwd.z * backdrop.sunDir.z;
+      k = clamp((d - 0.8) / 0.2, 0, 1);
+      if (k > 0) { try { const v = V().copy(backdrop.sunDir).multiplyScalar(300).add(camera.position); v.project(camera); if (v.z < 1) { px = (v.x * 0.5 + 0.5) * 100; py = (-v.y * 0.5 + 0.5) * 100; } } catch (e) { /* stub */ } }
+    }
+    fxSky.glare += (k - fxSky.glare) * Math.min(1, dt * 5);
+    if (fxSky.glare > 0.01 || g._on) { const r = fxSky.rgb; g.style.opacity = (fxSky.glare * 0.6).toFixed(3); g.style.background = 'radial-gradient(circle at ' + px.toFixed(1) + '% ' + py.toFixed(1) + '%,rgba(' + r[0] + ',' + r[1] + ',' + r[2] + ',.95),rgba(' + r[0] + ',' + r[1] + ',' + r[2] + ',.25) 28%,transparent 62%)'; g._on = fxSky.glare > 0.01; }
+  }
+  const L = fxSky.lt;
+  if (on && fxSky.storm && locked && !L.on && (L.wait -= dt) <= 0) {      // lightning: a double flash, then thunder that arrives late
+    L.on = true; L.wait = 7 + Math.random() * 11;
+    for (const [t, o] of [[0, 0.55], [90, 0.1], [160, 0.45], [420, 0]]) setTimeout(() => { if (b && b.style) b.style.opacity = String(o); }, t);
+    setTimeout(() => { L.on = false; }, 600); setTimeout(() => { try { sfx('thunder'); } catch (e) { /* ok */ } }, 500 + Math.random() * 900);
+  }
+}
+SFX.thunder = () => { noise(1.4, 0.55, 420); noise(0.5, 0.35, 900, 0.1); tone(70, 28, 1.2, 'sine', 0.3); };
+
+/* ---- bug report: what a tester pastes to the maker (no passwords, emails or names) ---- */
+function bugReport() {
+  const s = Object.assign({}, settings); delete s.name; delete s.binds; delete s.binds2;
+  const o = { game: 'Wobble Arena', build: NET_BUILD, when: new Date().toISOString(), browser: typeof navigator !== 'undefined' ? navigator.userAgent : '', screen: window.innerWidth + 'x' + window.innerHeight + ' @' + (window.devicePixelRatio || 1),
+    signedIn: !!acct.user, mode: cfg.mode, map: currentMap, online: net ? { host: !!net.host, started: !!net.started, ping: net.ping } : null, server: srvOk,
+    perf: { fps: Math.round(PERF.fps), avgMs: +PERF.avg.toFixed(1), worstMs: +PERF.max.toFixed(1), resolution: Math.round(PERF.scale * 100) + '%', errors: PERF.errs }, settings: s, log: DEVLOG.slice(-40).map(l => new Date(l.t).toISOString().slice(11, 19) + ' ' + l.k + ' ' + l.m) };
+  return JSON.stringify(o, null, 1);
+}
+function copyText(txt, done) {
+  const fallback = () => { try { const ta = document.createElement('textarea'); ta.value = txt; ta.style.cssText = 'position:fixed;left:-999px'; document.body.appendChild(ta); ta.select(); const ok = document.execCommand('copy'); document.body.removeChild(ta); done(!!ok); } catch (e) { done(false); } };
+  try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => done(true), fallback); else fallback(); } catch (e) { fallback(); }
+}
+el('bug-copy').onclick = () => copyText(bugReport(), ok => { el('bug-msg').textContent = ok ? 'Copied! Paste it in a message to whoever makes the game.' : 'Could not copy. Try again, or send a screenshot instead.'; });
+
+/* ---- new settings: frame cap, auto resolution, sky effects, menu sounds, reduce motion ---- */
+function syncPro() {
+  for (const n of [0, 30, 60, 120]) { const b = el('fc-' + n); if (b) b.classList.toggle('on', settings.fpsCap === n); }
+  tog('autores-tog', settings.autoRes); tog('skyfx-tog', settings.skyFx); tog('uisnd-tog', settings.uiSounds); tog('rm-tog', settings.reduceMotion);
+  try { document.documentElement.classList.toggle('rm', !!settings.reduceMotion); } catch (e) { /* cosmetic */ }
+  const bn = el('build-note'); if (bn) bn.textContent = 'Build ' + NET_BUILD.slice(1, 3) + ' · ' + (acct.user ? 'saved to your account' : 'guest (nothing is saved)');
+  try { for (const r of document.querySelectorAll('input[type=range]')) r.style.setProperty('--p', ((+r.value - +r.min) / ((+r.max - +r.min) || 1) * 100).toFixed(1) + '%'); } catch (e) { /* cosmetic */ }
+}
+for (const n of [0, 30, 60, 120]) el('fc-' + n).onclick = () => { settings.fpsCap = n; syncPro(); save(); };
+el('autores-tog').onclick = () => { settings.autoRes = !settings.autoRes; if (!settings.autoRes) { PERF.scale = 1; applyScale(); } syncPro(); save(); };
+el('skyfx-tog').onclick = () => { settings.skyFx = !settings.skyFx; syncPro(); save(); };
+el('uisnd-tog').onclick = () => { settings.uiSounds = !settings.uiSounds; if (settings.uiSounds) { initAudio(); sfx('click'); } syncPro(); save(); };
+el('rm-tog').onclick = () => { settings.reduceMotion = !settings.reduceMotion; syncPro(); save(); };
+try { document.addEventListener('input', e => { const r = e.target; if (r && r.type === 'range' && r.style) r.style.setProperty('--p', ((+r.value - +r.min) / ((+r.max - +r.min) || 1) * 100).toFixed(1) + '%'); }); } catch (e) { /* cosmetic */ }
+
+/* ---- settings page: tabs + search ---- */
+let setSearch = () => {};
+function initSettingsUi() {
+  const pg = el('pg-controls'), tabs = el('stabs'), inp = el('ssearch');
+  if (!pg || !pg.setAttribute || !pg.querySelectorAll || !tabs) return;
+  const T = [['controls', 'Controls'], ['video', 'Video'], ['audio', 'Audio & HUD'], ['more', 'More']];
+  tabs.innerHTML = T.map(([k, n]) => '<button id="st-' + k + '">' + n + '</button>').join('');
+  let curTab = 'controls';
+  const show = k => { curTab = k; pg.setAttribute('data-sv', k); for (const [id] of T) el('st-' + id).classList.toggle('on', id === k); try { localStorage.setItem('wobbleSetTab', k); } catch (e) { /* ok */ } };
+  const rows = [...pg.querySelectorAll('.grp .tog, .grp label, .grp .brow')].map(r => ({ r, t: (r.textContent || '').toLowerCase() }));
+  const grps = [...pg.querySelectorAll('.grp[data-tab]')].map(g => ({ g, h: ((g.querySelector('h3') || {}).textContent || '').toLowerCase() }));
+  setSearch = q => {
+    q = String(q || '').trim().toLowerCase(); pg.classList.toggle('searching', !!q);
+    for (const [id] of T) el('st-' + id).classList.toggle('on', !q && id === curTab);
+    let any = !q;
+    for (const { r, t } of rows) r.style.display = !q || t.includes(q) ? '' : 'none';
+    for (const { g, h } of grps) {
+      if (!q) { g.style.display = ''; continue; }
+      const hit = h.includes(q) || [...g.querySelectorAll('.tog, label, .brow')].some(r => (r.textContent || '').toLowerCase().includes(q));
+      if (h.includes(q)) for (const r of g.querySelectorAll('.tog, label, .brow')) r.style.display = '';
+      g.style.display = hit ? 'block' : 'none'; if (hit) any = true;
+    }
+    el('snone').style.display = any ? 'none' : 'block';
+  };
+  T.forEach(([k]) => { el('st-' + k).onclick = () => { inp.value = ''; setSearch(''); show(k); }; });
+  inp.oninput = () => setSearch(inp.value); inp.onkeydown = e => { e.stopPropagation(); if (e.key === 'Escape') { inp.value = ''; setSearch(''); inp.blur(); } }; inp.onkeyup = e => e.stopPropagation();
+  pg.classList.add('tabbed'); let k0 = 'controls'; try { k0 = localStorage.getItem('wobbleSetTab') || 'controls'; } catch (e) { /* ok */ } show(T.some(([k]) => k === k0) ? k0 : 'controls');
+}
+try { initSettingsUi(); } catch (e) { devLog('init', 'settings ui: ' + e); }
+
+/* ---- menu feel: ripples on buttons, click sounds, a little parallax ---- */
+try {
+  const menu = el('menu');
+  if (menu && menu.addEventListener) {
+    menu.addEventListener('pointerdown', e => {
+      const b = e.target && e.target.closest ? e.target.closest('button') : null; if (!b || b.disabled) return;
+      if (settings.uiSounds) { initAudio(); sfx('click'); }
+      if (settings.reduceMotion || !b.matches || !b.matches('.big,.opt,.stabs button,#back,#next,.hbtn')) return;
+      const r = b.getBoundingClientRect(), d = Math.max(r.width, r.height) * 2, s = document.createElement('span');
+      s.className = 'rip'; s.style.cssText = 'width:' + d + 'px;height:' + d + 'px;left:' + (e.clientX - r.left - d / 2) + 'px;top:' + (e.clientY - r.top - d / 2) + 'px';
+      if (getComputedStyle(b).position === 'static') b.style.position = 'relative'; b.style.overflow = 'hidden'; b.appendChild(s); setTimeout(() => { try { s.remove(); } catch (x) { /* ok */ } }, 600);
+    });
+    menu.addEventListener('pointermove', e => { if (settings.reduceMotion) return; menu.style.setProperty('--mx', ((e.clientX / window.innerWidth - 0.5) * 2).toFixed(3)); menu.style.setProperty('--my', ((e.clientY / window.innerHeight - 0.5) * 2).toFixed(3)); });
+  }
+} catch (e) { devLog('init', 'menu feel: ' + e); }
+
+/* ---- developer panel (F2, or Settings > More). Unlocked by redeeming the developer code ---- */
+const devUnlocked = () => { try { return wallet.codes.includes('im-a-dev'); } catch (e) { return false; } };
+const devLive = () => !(net && net.started);                          // cheats only work offline: an online match must stay fair
+let devTab = 'perf', devOpen = false, devT = 0;
+const devWire = new Map();
+const DEV_TABS = [['perf', 'Perf'], ['game', 'Game'], ['world', 'World'], ['net', 'Net'], ['log', 'Log']];
+function devBuild(tab) {
+  const b = el('dv-body'); if (!b) return;
+  if (tab === 'perf') b.innerHTML = '<canvas id="dv-graph" width="340" height="64"></canvas><pre id="dv-stat"></pre><div class="drow"><button id="dv-gc">Free memory</button><button id="dv-rep">Copy bug report</button></div>';
+  else if (tab === 'game') b.innerHTML = '<pre id="dv-gst"></pre><h4>Cheats (offline only)</h4><div class="drow"><button id="dv-god">God mode</button><button id="dv-ammo">Infinite ammo</button><button id="dv-frz">Freeze bots</button></div>' +
+    '<label>Game speed <b id="dv-tsv"></b><input id="dv-ts" type="range" min="0.1" max="2" step="0.1" value="1"></label>' +
+    '<h4>Actions</h4><div class="drow"><button id="dv-heal">Heal me</button><button id="dv-kill">K.O. all bots</button><button id="dv-coin">+1000 coins</button><button id="dv-crate">Drop a crate</button><button id="dv-mid">Teleport to centre</button></div>' +
+    '<div class="drow"><select id="dv-wsel" style="flex:1">' + Object.keys(WEAPONS).filter(k => WEAPONS[k] && WEAPONS[k].name).map(k => '<option value="' + k + '">' + WEAPONS[k].name + '</option>').join('') + '</select><button id="dv-give">Give weapon</button></div>' +
+    '<div class="drow"><select id="dv-msel" style="flex:1">' + Object.keys(MAPS).map(k => '<option value="' + k + '">' + MAPS[k].name + '</option>').join('') + '</select><button id="dv-load">Load map</button></div><small id="dv-msg" style="color:#ffd37a"></small>';
+  else if (tab === 'world') b.innerHTML = '<pre id="dv-wst"></pre><h4>Rendering</h4><div class="drow"><button id="dv-wire">Wireframe</button><button id="dv-fog">Fog off</button><button id="dv-shd">Shadows</button></div><h4>Sky</h4><div class="drow"><button id="dv-bolt">Lightning now</button><button id="dv-haze">Sky effects</button><button id="dv-reload">Reload map</button></div>';
+  else if (tab === 'net') b.innerHTML = '<pre id="dv-nst"></pre><div class="drow"><button id="dv-png">Ping server</button><button id="dv-recon">Reconnect</button></div>';
+  else b.innerHTML = '<div class="drow"><button id="dv-lcopy">Copy log</button><button id="dv-lclear">Clear</button><button id="dv-ltest">Add a test line</button></div><div class="lg" id="dv-log"></div>';
+  devWireUp(tab);
+}
+function devSay(t) { const m = el('dv-msg'); if (m) m.textContent = t; }
+function devWireUp(tab) {
+  const on = (id, f) => { const e = el(id); if (e) e.onclick = f; };
+  const guard = f => () => { if (!devLive()) return devSay('Cheats are off during an online match.'); f(); };
+  if (tab === 'perf') { on('dv-gc', () => { devLog('dev', 'memory hint'); try { if (window.gc) window.gc(); } catch (e) { /* ok */ } }); on('dv-rep', () => copyText(bugReport(), ok => toast(ok ? 'Bug report copied' : 'Copy failed'))); }
+  if (tab === 'game') {
+    const tg = (id, k) => on(id, guard(() => { DEVS[k] = !DEVS[k]; devSay(k + ' ' + (DEVS[k] ? 'ON' : 'off')); devSync(); }));
+    tg('dv-god', 'god'); tg('dv-ammo', 'ammo'); tg('dv-frz', 'freeze');
+    const ts = el('dv-ts'); if (ts) { ts.value = DEVS.ts; ts.oninput = guard(() => { DEVS.ts = clamp(+ts.value || 1, 0.1, 2); devSync(); }); }
+    on('dv-heal', guard(() => { player.hp = Math.max(player.hp, cfg.hp || 200); player.dead = false; devSay('healed'); }));
+    on('dv-kill', guard(() => { let n = 0; for (const x of bots) if (!x.isGhost && !x.dead) { x.invuln = 0; x.hit(99999, V(0, 0.3, 1), 6, false, player); n++; } devSay('K.O.d ' + n + ' bots'); }));
+    on('dv-coin', () => { addCoins(1000); devSay('+1000 coins'); save(); });
+    on('dv-crate', guard(() => { const k = spawnDrop(); devSay(k ? 'crate dropped' : 'no crate (6 already out, or no weapons allowed)'); }));
+    on('dv-mid', guard(() => { player.placeAt(0, 0, 3); player.vel.set(0, 0, 0); devSay('teleported'); }));
+    on('dv-give', guard(() => { const k = el('dv-wsel').value; if (WEAPONS[k]) { player.pickup(k); devSay('gave ' + WEAPONS[k].name); } }));
+    on('dv-load', guard(() => { const k = el('dv-msel').value; if (MAPS[k]) { loadMap(k); devSay('loaded ' + MAPS[k].name); } }));
+  }
+  if (tab === 'world') {
+    on('dv-wire', () => { DEVS.wire = !DEVS.wire; scene.traverse(o => { if (o.material && o.isMesh) { if (DEVS.wire) { if (!devWire.has(o.material)) devWire.set(o.material, !!o.material.wireframe); o.material.wireframe = true; } else if (devWire.has(o.material)) o.material.wireframe = devWire.get(o.material); } }); if (!DEVS.wire) devWire.clear(); devSync(); });
+    on('dv-fog', () => { DEVS.nofog = !DEVS.nofog; if (DEVS.nofog && scene.fog) { scene.userData.fogKeep = scene.fog; scene.fog = null; } else if (!DEVS.nofog && scene.userData.fogKeep) { scene.fog = scene.userData.fogKeep; } devSync(); });
+    on('dv-shd', () => { settings.quality = settings.quality === 'low' ? 'high' : 'low'; applyQuality(); syncGfx(); devSync(); });
+    on('dv-bolt', () => { fxSky.lt.wait = 0; fxSky.storm = true; });
+    on('dv-haze', () => { settings.skyFx = !settings.skyFx; syncPro(); devSync(); });
+    on('dv-reload', () => { loadMap(currentMap); });
+  }
+  if (tab === 'net') { on('dv-png', () => { try { srvTx({ op: 'ping', ts: performance.now() }); } catch (e) { /* ok */ } }); on('dv-recon', () => { try { srvOk = null; srvFail = 0; srvConnect(() => {}); } catch (e) { devLog('dev', 'reconnect: ' + e); } }); }
+  if (tab === 'log') { on('dv-lcopy', () => copyText(DEVLOG.map(l => new Date(l.t).toISOString().slice(11, 19) + ' ' + l.k + ' ' + l.m).join('\n'), ok => toast(ok ? 'Log copied' : 'Copy failed'))); on('dv-lclear', () => { DEVLOG.length = 0; }); on('dv-ltest', () => devLog('dev', 'test line')); }
+  devSync();
+}
+function devSync() {
+  const s = (id, v) => { const e = el(id); if (e) e.classList.toggle('on', !!v); };
+  s('dv-god', DEVS.god); s('dv-ammo', DEVS.ammo); s('dv-frz', DEVS.freeze); s('dv-wire', DEVS.wire); s('dv-fog', DEVS.nofog); s('dv-haze', settings.skyFx); s('dv-shd', settings.quality !== 'low');
+  const t = el('dv-tsv'); if (t) t.textContent = DEVS.ts.toFixed(1) + 'x';
+}
+function devUpdate() {
+  const set = (id, t) => { const e = el(id); if (e) e.textContent = t; };
+  set('dv-fps', Math.round(PERF.fps) + ' FPS · ' + PERF.avg.toFixed(1) + ' ms');
+  if (devTab === 'perf') {
+    const inf = renderer.info || { render: {}, memory: {} }, hp = typeof performance !== 'undefined' && performance.memory ? Math.round(performance.memory.usedJSHeapSize / 1048576) + ' MB' : 'n/a';
+    set('dv-stat', 'FPS ' + Math.round(PERF.fps) + '   frame ' + PERF.avg.toFixed(1) + ' ms   worst ' + PERF.max.toFixed(1) + ' ms\nphysics steps/s ' + PERF.stepsPS + '   cap ' + (settings.fpsCap || 'none') + '\nsharpness ' + Math.round(PERF.scale * 100) + '% (auto ' + (settings.autoRes ? 'on' : 'off') + ')   pixel ratio ' + (basePR * PERF.scale).toFixed(2) +
+      '\ndraw calls ' + ((inf.render || {}).calls | 0) + '   triangles ' + ((inf.render || {}).triangles | 0) + '\ngeometries ' + ((inf.memory || {}).geometries | 0) + '   textures ' + ((inf.memory || {}).textures | 0) + '\nJS memory ' + hp + '   errors caught ' + PERF.errs);
+    const c = el('dv-graph');
+    if (c && c.getContext) { const x = c.getContext('2d'), W = c.width, H = c.height; x.clearRect(0, 0, W, H); x.fillStyle = '#06101a'; x.fillRect(0, 0, W, H);
+      for (const [ms, col] of [[16.7, 'rgba(95,227,171,.5)'], [33.3, 'rgba(255,211,122,.5)']]) { const y = H - ms / 50 * H; x.strokeStyle = col; x.beginPath(); x.moveTo(0, y); x.lineTo(W, y); x.stroke(); }
+      for (let i = 0; i < 120; i++) { const v = PERF.ms[(PERF.i + i) % 120], h = Math.min(1, v / 50) * H; x.fillStyle = v > 33 ? '#ff6b6b' : v > 20 ? '#ffd37a' : '#5fe3ab'; x.fillRect(i * (W / 120), H - h, W / 120 - 0.5, h); } }
+  } else if (devTab === 'game') {
+    const alive = fighters.filter(f => !f.dead && !f.elim).length;
+    set('dv-gst', MODES[cfg.mode].name + ' · ' + MAPS[currentMap].name + '\nfighters ' + fighters.length + ' (alive ' + alive + ')   bots ' + bots.length + '   crates ' + pickups.length + '\nme: hp ' + Math.round(player.hp) + '  pos ' + player.pos.x.toFixed(1) + ', ' + player.pos.y.toFixed(1) + ', ' + player.pos.z.toFixed(1) + '\nweapon ' + (player.weapon || '-') + '  ammo ' + Math.round(player.ammo || 0) + '\nrockets ' + rockets.length + '  grenades ' + grenades.length + '  knives ' + knives.length + '  arrows ' + arrows.length + '\nsim time ' + simTime.toFixed(1) + ' s' + (devLive() ? '' : '\n(online match: cheats locked)'));
+  } else if (devTab === 'world') {
+    set('dv-wst', 'sky: ' + (backdrop.noSky ? 'indoor' : backdrop.night ? 'night' : 'day') + '   clouds ' + backdrop.clouds.filter(c => c.visible).length + '   birds ' + backdrop.birds.filter(c => c.visible).length + '\nspeck type ' + backdrop.kind + '   storm ' + (fxSky.storm ? 'yes' : 'no') + '\nsolids ' + solids.length + '   scenery ' + (settings.scenery ? 'on' : 'off') + '   sky fx ' + (settings.skyFx ? 'on' : 'off') + '\nquality ' + settings.quality);
+  } else if (devTab === 'net') {
+    set('dv-nst', 'server: ' + (srvOk === true ? 'connected' : srvOk === false ? 'direct mode' : 'connecting') + '   players online ' + srvOnline + '\nserver ping ' + (PERF.srvRtt >= 0 ? PERF.srvRtt + ' ms' : '-') + '\nroom: ' + (net ? (net.code || net.id || 'yes') + (net.host ? ' (host)' : ' (client)') + (net.started ? ' playing' : ' lobby') : 'none') + '\nroom ping ' + (net && net.ping !== undefined ? net.ping + ' ms' : '-') + '\nbuild ' + NET_BUILD + '   signed in ' + (acct.user ? 'yes' : 'no'));
+  } else if (devTab === 'log') {
+    const lg = el('dv-log'), key = DEVLOG.length + ':' + (DEVLOG.length ? DEVLOG[DEVLOG.length - 1].t : 0);
+    if (lg && lg._k !== key) { lg._k = key; lg.innerHTML = DEVLOG.slice(-80).reverse().map(l => '<div class="' + (/error|crash/.test(l.k) ? 'e' : /warn/.test(l.k) ? 'w' : '') + '">' + new Date(l.t).toISOString().slice(11, 19) + ' [' + l.k + '] ' + String(l.m).replace(/</g, '&lt;') + '</div>').join('') || '<div>(nothing logged)</div>'; }
+  }
+}
+function devToggle(force) {
+  const p = el('dev'); if (!p) return;
+  if (force !== false && !devUnlocked()) { toast('The developer panel is locked. Redeem the developer code in Settings > More.'); return; }
+  devOpen = force === undefined ? !devOpen : !!force; p.classList.toggle('on', devOpen);
+  if (devOpen) {
+    const tb = el('dv-tabs'); if (!tb._built) { tb.innerHTML = DEV_TABS.map(([k, n]) => '<button id="dt-' + k + '">' + n + '</button>').join(''); tb._built = true; DEV_TABS.forEach(([k]) => { el('dt-' + k).onclick = () => devPick(k); }); }
+    devPick(devTab); try { if (document.pointerLockElement && document.exitPointerLock) document.exitPointerLock(); } catch (e) { /* ok */ }
+  }
+}
+function devPick(k) { devTab = k; for (const [id] of DEV_TABS) { const b = el('dt-' + id); if (b) b.classList.toggle('on', id === k); } devBuild(k); devUpdate(); }
+el('dv-x').onclick = () => devToggle(false);
+el('dev-open').onclick = () => devToggle(true);
+document.addEventListener('keydown', e => { if (e.code === 'F2') { e.preventDefault(); devToggle(); } else if (e.code === 'Escape' && devOpen && ui !== 'play') devToggle(false); });
+{ const h = el('dv-head'); let drag = null;
+  if (h && h.addEventListener) {
+    h.addEventListener('pointerdown', e => { if (e.target && e.target.closest && e.target.closest('button')) return; const r = el('dev').getBoundingClientRect(); drag = { dx: e.clientX - r.left, dy: e.clientY - r.top }; });
+    window.addEventListener('pointermove', e => { if (!drag) return; const p = el('dev'); p.style.left = clamp(e.clientX - drag.dx, 0, window.innerWidth - 120) + 'px'; p.style.top = clamp(e.clientY - drag.dy, 0, window.innerHeight - 50) + 'px'; p.style.right = 'auto'; });
+    window.addEventListener('pointerup', () => { drag = null; });
+  } }
+function devShowButton() { const b = el('dev-open'); if (b) b.style.display = devUnlocked() ? '' : 'none'; }
 
 setBotCfg({});
 loadMap(currentMap);
