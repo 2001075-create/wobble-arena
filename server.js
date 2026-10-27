@@ -11,6 +11,8 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { WebSocketServer } = require('ws');
+const accounts = require('./accounts').create();
+const config = { requireAuth: process.env.REQUIRE_LOGIN !== '0' };     // online play needs a logged-in account (REQUIRE_LOGIN=0 turns that off)
 
 const PORT = +process.env.PORT || 3000;
 const PUBLIC_DIR = process.env.PUBLIC_DIR || path.join(__dirname, 'public');
@@ -37,12 +39,14 @@ function findIndex() {
     return f || null;
   } catch (e) { return null; }
 }
+const ipOf = req => (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '?').toString().split(',')[0].trim();
 const server = http.createServer((req, res) => {
+  if (accounts.handle(req, res, ipOf(req))) return;
   let url = '/';
   try { url = decodeURIComponent((req.url || '/').split('?')[0]); } catch (e) { res.writeHead(400); res.end('bad request'); return; }
   if (url === '/health') {
     res.writeHead(200, { 'content-type': 'application/json', 'cache-control': 'no-store' });
-    res.end(JSON.stringify({ ok: true, rooms: rooms.size, players: totalConns }));
+    res.end(JSON.stringify({ ok: true, rooms: rooms.size, players: totalConns, accounts: accounts.kind, saved: accounts.kind === 'upstash' }));
     return;
   }
   let file = url === '/' ? findIndex() : url.replace(/^\/+/, '');
@@ -87,10 +91,14 @@ function send(ws, obj) {
 }
 function leaveRoom(ws) {
   const r = ws.room; if (!r) return;
-  if (ws.role === 'host') {                                          // the host left: the room closes for everyone
-    rooms.delete(r.id);
-    for (const [, c] of r.clients) { c.room = null; c.role = null; c.cid = 0; send(c, { op: 'hostgone' }); }
-    r.clients.clear();
+  if (ws.role === 'host') {
+    const next = [...r.clients.values()].sort((x, y) => x.cid - y.cid)[0];        // the player who has been in the room longest
+    if (!next) { rooms.delete(r.id); }                               // nobody else is here: the room closes
+    else {                                                           // somebody is still here: they become the host and everybody re-joins them
+      r.clients.delete(next.cid); next.role = 'host'; next.cid = 0; r.host = next; r.info.started = false;
+      send(next, { op: 'promoted', id: r.id, pub: r.pub });
+      for (const [cid, c] of r.clients) { send(next, { op: 'peer', cid, ev: 'open' }); send(c, { op: 'rehost', id: r.id }); }
+    }
   } else if (ws.role === 'client') {
     r.clients.delete(ws.cid); send(r.host, { op: 'peer', cid: ws.cid, ev: 'close' });
   }
@@ -108,7 +116,12 @@ function joinRoom(ws, r, build) {
 const handlers = {
   ping(ws, m) { send(ws, { op: 'pong', ts: m.ts }); },
   list(ws) { send(ws, { op: 'rooms', rooms: [...rooms.values()].filter(r => r.pub).map(publicView).sort((a, b) => b.n - a.n), online: totalConns }); },
+  async auth(ws, m) {
+    const a = await accounts.who(String(m.token || ''));
+    ws.user = a ? a.u.u : null; send(ws, a ? { op: 'authed', user: ws.user } : { op: 'noauth' });
+  },
   create(ws, m) {
+    if (config.requireAuth && !ws.user) { send(ws, { op: 'nocreate', reason: 'auth' }); return; }
     if (ws.room) { send(ws, { op: 'nocreate', reason: 'inroom' }); return; }
     if (rooms.size >= LIMITS.rooms) { send(ws, { op: 'nocreate', reason: 'busy' }); return; }
     const pub = !!m.pub; let id;
@@ -119,11 +132,13 @@ const handlers = {
   },
   update(ws, m) { if (ws.role === 'host' && ws.room) ws.room.info = cleanInfo(m.info, ws.room.info); },
   join(ws, m) {
+    if (config.requireAuth && !ws.user) { send(ws, { op: 'nojoin', reason: 'auth' }); return; }
     if (ws.room) { send(ws, { op: 'nojoin', reason: 'inroom' }); return; }
     const r = findRoom(m.id); if (!r) { send(ws, { op: 'nojoin', reason: 'none' }); return; }
     joinRoom(ws, r, str(m.build, 16));
   },
   quick(ws, m) {
+    if (config.requireAuth && !ws.user) { send(ws, { op: 'nomatch', reason: 'auth' }); return; }
     if (ws.room) { send(ws, { op: 'nomatch' }); return; }
     const mode = str(m.mode, 16), build = str(m.build, 16);
     const best = [...rooms.values()].filter(r => r.pub && r.info.mode === mode && (!build || !r.info.build || r.info.build === build) && humans(r) < r.info.max).sort((a, b) => humans(b) - humans(a))[0];
@@ -155,7 +170,7 @@ wss.on('connection', (ws, req) => {
   const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '?').toString().split(',')[0].trim();
   if (totalConns >= LIMITS.conns || (perIp.get(ip) || 0) >= LIMITS.perIp) { ws.close(1013, 'busy'); return; }
   totalConns++; perIp.set(ip, (perIp.get(ip) || 0) + 1);
-  ws.room = null; ws.role = null; ws.cid = 0; ws.alive = true; ws.ip = ip; ws.tokens = LIMITS.rate; ws.tokT = Date.now(); ws.bad = 0;
+  ws.user = null; ws.room = null; ws.role = null; ws.cid = 0; ws.alive = true; ws.ip = ip; ws.tokens = LIMITS.rate; ws.tokT = Date.now(); ws.bad = 0;
   ws.on('pong', () => { ws.alive = true; });
   ws.on('message', (data, isBinary) => {
     if (isBinary) return;
@@ -165,7 +180,9 @@ wss.on('connection', (ws, req) => {
     let m; try { m = JSON.parse(data.toString()); } catch (e) { return; }
     if (!m || typeof m !== 'object' || typeof m.op !== 'string') return;
     const h = Object.prototype.hasOwnProperty.call(handlers, m.op) ? handlers[m.op] : null;
-    if (h) { try { h(ws, m); } catch (e) { console.error('handler error', m.op, e && e.message); } }
+    if (!h) return;
+    const run = () => { try { const p = h(ws, m); if (p && p.then) ws.authP = p.catch(e => console.error('handler error', m.op, e && e.message)).then(() => { ws.authP = null; }); } catch (e) { console.error('handler error', m.op, e && e.message); } };
+    if (ws.authP) ws.authP.then(run); else run();             // while a log-in check is running, the messages behind it wait their turn
   });
   ws.on('close', () => {
     leaveRoom(ws); totalConns--;
@@ -178,11 +195,11 @@ wss.on('connection', (ws, req) => {
 const beat = setInterval(() => {                                      // drop connections that went silent
   for (const ws of wss.clients) { if (!ws.alive) { ws.terminate(); continue; } ws.alive = false; try { ws.ping(); } catch (e) { /* gone */ } }
 }, 20000);
-const sweep = setInterval(() => { for (const [id, r] of rooms) if (r.host.readyState > 1) { leaveRoom(r.host); rooms.delete(id); } }, 30000);
+const sweep = setInterval(() => { for (const [id, r] of rooms) if (r.host.readyState > 1) leaveRoom(r.host); }, 30000);
 
 function start(port) {
   return new Promise(res => server.listen(port === undefined ? PORT : port, () => { console.log('Wobble Arena server on port ' + server.address().port + ' (game files: ' + PUBLIC_DIR + ')'); res(server); }));
 }
-function stop() { clearInterval(beat); clearInterval(sweep); for (const ws of wss.clients) ws.terminate(); return new Promise(res => server.close(() => res())); }
+function stop() { clearInterval(beat); clearInterval(sweep); if (accounts.store.flush) accounts.store.flush(); for (const ws of wss.clients) ws.terminate(); return new Promise(res => server.close(() => res())); }
 if (require.main === module) { start(); process.on('SIGTERM', () => stop().then(() => process.exit(0))); }
-module.exports = { start, stop, rooms, LIMITS, server };
+module.exports = { start, stop, rooms, LIMITS, server, config, accounts };
