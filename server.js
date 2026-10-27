@@ -10,6 +10,8 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
+const crypto = require('crypto');
 const { WebSocketServer } = require('ws');
 const accounts = require('./accounts').create();
 const config = { requireAuth: process.env.REQUIRE_LOGIN !== '0' };     // online play needs a logged-in account (REQUIRE_LOGIN=0 turns that off)
@@ -39,6 +41,33 @@ function findIndex() {
     return f || null;
   } catch (e) { return null; }
 }
+/* the game page is big (about 800 KB): squash it once (brotli / gzip), remember it, and answer "has it changed?" with a tiny 304 */
+const fileCache = new Map();         // full path -> { mtime, size, etag, raw, gz, br }
+const SQUASH = new Set(['.html', '.js', '.css', '.svg', '.json']);
+function serveStatic(req, res, full) {
+  fs.stat(full, (err, st) => {
+    if (err || !st.isFile()) { res.writeHead(404, { 'content-type': 'text/plain' }); res.end('not found'); return; }
+    const ext = path.extname(full).toLowerCase();
+    const send = c => {
+      const hdr = { 'content-type': TYPES[ext] || 'application/octet-stream', 'cache-control': ext === '.html' ? 'no-cache' : 'public, max-age=3600', 'x-content-type-options': 'nosniff', etag: c.etag, vary: 'Accept-Encoding' };
+      if (req.headers['if-none-match'] === c.etag) { res.writeHead(304, hdr); res.end(); return; }
+      const ae = String(req.headers['accept-encoding'] || '');
+      let body = c.raw;
+      if (c.br && /\bbr\b/.test(ae)) { hdr['content-encoding'] = 'br'; body = c.br; }
+      else if (c.gz && /\bgzip\b/.test(ae)) { hdr['content-encoding'] = 'gzip'; body = c.gz; }
+      hdr['content-length'] = body.length;
+      res.writeHead(200, hdr); res.end(req.method === 'HEAD' ? undefined : body);
+    };
+    const hit = fileCache.get(full);
+    if (hit && hit.mtime === st.mtimeMs && hit.size === st.size) return send(hit);
+    fs.readFile(full, (e2, data) => {
+      if (e2) { res.writeHead(404, { 'content-type': 'text/plain' }); res.end('not found'); return; }
+      const c = { mtime: st.mtimeMs, size: st.size, etag: '"' + crypto.createHash('sha1').update(data).digest('hex').slice(0, 20) + '"', raw: data };
+      if (SQUASH.has(ext) && data.length > 1024) { try { c.gz = zlib.gzipSync(data, { level: 9 }); c.br = zlib.brotliCompressSync(data, { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: 9, [zlib.constants.BROTLI_PARAM_SIZE_HINT]: data.length } }); } catch (e) { /* send it as it is */ } }
+      fileCache.set(full, c); send(c);
+    });
+  });
+}
 const ipOf = req => (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '?').toString().split(',')[0].trim();
 const server = http.createServer((req, res) => {
   if (accounts.handle(req, res, ipOf(req))) return;
@@ -53,12 +82,7 @@ const server = http.createServer((req, res) => {
   if (!file) { res.writeHead(404, { 'content-type': 'text/plain' }); res.end('No game file found. Put the game file in the public folder as index.html'); return; }
   const full = path.normalize(path.join(PUBLIC_DIR, file));
   if (!full.startsWith(path.normalize(PUBLIC_DIR + path.sep)) && full !== path.normalize(PUBLIC_DIR)) { res.writeHead(403); res.end('no'); return; }
-  fs.readFile(full, (err, data) => {
-    if (err) { res.writeHead(404, { 'content-type': 'text/plain' }); res.end('not found'); return; }
-    const ext = path.extname(full).toLowerCase();
-    res.writeHead(200, { 'content-type': TYPES[ext] || 'application/octet-stream', 'cache-control': ext === '.html' ? 'no-cache' : 'public, max-age=3600', 'x-content-type-options': 'nosniff' });
-    res.end(data);
-  });
+  serveStatic(req, res, full);
 });
 
 /* ---------------- rooms ---------------- */
