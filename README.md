@@ -33,19 +33,32 @@ Any host that can run a Node.js app and supports WebSockets works. Players need 
 
 **Game page on a different site than the server** (for example the game on itch.io and the server on Render): open the game once with `?server=wss://your-server-address/ws` on the end of its web address. It remembers it. Or write the address into `SERVER_URL` near the top of the online code in the game file.
 
+## Accounts
+
+Players sign up in the game with a username, email and password (no email check). The server keeps the account, and a copy of the player's whole save (coins, outfits, controls, settings, stats) so it follows them to any device. Passwords are stored only as salted scrypt hashes. Online play needs an account; guests can press Play and play offline but nothing is saved.
+
+**Where accounts are kept.** Render's free plan wipes the server's own files on every redeploy, so accounts need a small free database:
+1. Make a free account at upstash.com, then Create Database (Redis). Pick a region near your server (Singapore if Render is in Singapore). Leave the other settings alone.
+2. On the database page, find the **REST API** section and copy **UPSTASH_REDIS_REST_URL** and **UPSTASH_REDIS_REST_TOKEN**.
+3. In Render, open your service, then Environment, and add those two as environment variables. Save. Render redeploys.
+4. Open `/health` on your site. It should say `"accounts":"upstash"` and `"saved":true`. If it says `"file"`, the two values are missing or mistyped, and accounts will be lost on the next redeploy.
+
+Without those two values the server still works (accounts go in a file under `./data`), which is fine on your own computer.
+
 ## Updating
 
 - New game version: replace `public/index.html` and restart. Each build has a version tag, and the server will not let a player on an old build into a room of a new build ("different version, refresh the page"). That stops half-broken matches after an update.
+- The server squashes the game page (brotli or gzip, about 800 KB down to about 215 KB) and remembers it, so friends on slow wifi load it much faster. The page is only re-sent when it changes.
 - Check it is alive: open `/health`. It shows how many rooms and players there are.
 
 ## Settings
 
-Environment variables: `PORT` (default 3000), `PUBLIC_DIR` (default `./public`).
+Environment variables: `PORT` (default 3000), `PUBLIC_DIR` (default `./public`), `REQUIRE_LOGIN` (set to `0` to let guests play online; default is that online needs an account), `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (where accounts are kept, see below), `DATA_DIR` (only used when there is no Upstash: where the accounts file goes).
 Limits are at the top of `server.js` (`LIMITS`): rooms at once (300), connections at once (3000), connections per address (40), biggest message (32 KB), messages per second per player.
 
 ## What it does not do yet (honest list)
 
-- **If the host leaves, the room closes** for everyone. Moving the host duty to another player mid-match is a bigger change that comes later.
+- **If the host leaves, the longest-standing player becomes the host** and everyone is moved back to the lobby of the same room. A match that was running is not carried over: the new host starts a fresh one.
 - **The host's browser still runs the match**, so a player who edits their own game could cheat. Stopping that needs the match to run on the server. That is a rewrite of the game logic, not a small step.
-- **No accounts or moderation yet** (no report or ban). Chat has a mute command only.
+- **No moderation yet** (no report or ban). Chat has a mute command only. Forgotten passwords: there is no email reset. Instead every account gets a one-time **recovery code** when it is made (shown in the game, stored on the server only as a hash). Typing it on the Forgot password screen sets a new password and gives a fresh code. Players can make a new code in Account > Security. Accounts made before build 70 have no code until they make one. Someone who loses both the password and the code needs a new account. Logins last a year and renew every time the game opens.
 - **One server process.** Rooms live in memory, so a restart ends the running games, and you can't run several copies side by side without extra work. One small server is plenty for hundreds of players.

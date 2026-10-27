@@ -52,7 +52,7 @@ function makeStore() {
 }
 
 /* ---------------- helpers ---------------- */
-const TOKEN_DAYS = 90, SAVE_MAX = 250 * 1024;
+const TOKEN_DAYS = 365, SAVE_MAX = 250 * 1024;
 const RESERVED = new Set(['admin', 'administrator', 'mod', 'moderator', 'owner', 'staff', 'support', 'guest', 'system', 'server', 'wobble', 'wobblearena', 'root', 'null', 'undefined']);
 const USER_RE = /^[A-Za-z0-9_]{3,16}$/, EMAIL_RE = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@]{2,}$/;
 const scrypt = (pw, salt) => new Promise((res, rej) => crypto.scrypt(pw, salt, 64, { N: 16384, r: 8, p: 1 }, (e, k) => (e ? rej(e) : res(k))));
@@ -62,6 +62,9 @@ async function checkPw(pw, stored) {
   const k = await scrypt(pw, Buffer.from(s, 'hex')), b = Buffer.from(h, 'hex');
   return k.length === b.length && crypto.timingSafeEqual(k, b);
 }
+const RC_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const newRecovery = () => { const b = crypto.randomBytes(16); let o = ''; for (let i = 0; i < 16; i++) { o += RC_CHARS[b[i] % RC_CHARS.length]; if (i % 4 === 3 && i < 15) o += '-'; } return o; };       // 16 letters and numbers, shown as XXXX-XXXX-XXXX-XXXX
+const cleanRecovery = c => String(c || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
 const newToken = () => crypto.randomBytes(32).toString('hex');
 const lname = u => String(u).toLowerCase();
 
@@ -97,13 +100,14 @@ function create(store) {
       const s = signups.get(ctx.ip); if (s && Date.now() - s.t < 3600000 && s.n >= 40) throw new Fail(429, 'slow', 'Too many new accounts from this network. Try again in a while.');
       const l = lname(un), le = lname(em);
       if (await store.get('user:' + l)) throw new Fail(409, 'username', 'That username is taken.');
-      const user = { u: un, e: em, p: await hashPw(pw), c: Date.now(), l: Date.now() };
+      const rc = newRecovery();
+      const user = { u: un, e: em, p: await hashPw(pw), r: await hashPw(cleanRecovery(rc)), c: Date.now(), l: Date.now() };
       if (!(await store.set('user:' + l, JSON.stringify(user), { nx: true }))) throw new Fail(409, 'username', 'That username is taken.');
       if (!(await store.set('email:' + le, l, { nx: true }))) { await store.del('user:' + l); throw new Fail(409, 'email', 'That email already has an account. Try logging in.'); }
       let t = 0;
       if (b.data && typeof b.data === 'object') { const j = JSON.stringify(b.data); if (j.length <= SAVE_MAX) { t = Date.now(); await store.set('data:' + l, JSON.stringify({ t, d: b.data })); } }
       if (s && Date.now() - s.t < 3600000) s.n++; else signups.set(ctx.ip, { n: 1, t: Date.now() });
-      return { ok: true, token: await issue(l), user: pub(user), data: t ? b.data : null, t };
+      return { ok: true, token: await issue(l), user: pub(user), data: t ? b.data : null, t, recovery: rc };
     },
     async login(b, ctx) {
       const id = String(b.id || '').trim(), pw = String(b.password || '');
@@ -119,7 +123,8 @@ function create(store) {
     async me(b, ctx) {
       const a = await who(ctx.token); if (!a) throw new Fail(401, 'auth', 'Please log in again.');
       const d = await loadData(a.l);
-      return { ok: true, user: pub(a.u), data: d ? d.d : null, t: d ? d.t : 0 };
+      await store.set('tok:' + ctx.token, a.l, { ex: TOKEN_DAYS * 86400 });                // every visit renews the login, so people who keep playing stay logged in
+      return { ok: true, user: pub(a.u), data: d ? d.d : null, t: d ? d.t : 0, hasRecovery: !!a.u.r };
     },
     async save(b, ctx) {
       const a = await who(ctx.token); if (!a) throw new Fail(401, 'auth', 'Please log in again.');
@@ -141,6 +146,26 @@ function create(store) {
       if (!(await checkPw(String(b.old || ''), a.u.p))) { addFail('acc:' + a.l); throw new Fail(401, 'wrong', 'Your current password is wrong.'); }
       a.u.p = await hashPw(np); await putUser(a.l, a.u); return { ok: true };
     },
+    async recovery(b, ctx) {                                              // make a new recovery code (needs the password); the old one stops working
+      const a = await who(ctx.token); if (!a) throw new Fail(401, 'auth', 'Please log in again.');
+      if (failCount('acc:' + a.l) >= 8) throw new Fail(429, 'slow', 'Too many wrong tries. Wait 10 minutes and try again.');
+      if (!(await checkPw(String(b.password || ''), a.u.p))) { addFail('acc:' + a.l); throw new Fail(401, 'wrong', 'That password is wrong.'); }
+      const rc = newRecovery(); a.u.r = await hashPw(cleanRecovery(rc)); await putUser(a.l, a.u);
+      return { ok: true, recovery: rc };
+    },
+    async reset(b, ctx) {                                                 // forgot the password: username or email + recovery code + a new password
+      const id = String(b.id || '').trim(), code = cleanRecovery(b.code), np = String(b.password || '');
+      if (!id || !code) throw new Fail(400, 'missing', 'Type your username (or email) and your recovery code.');
+      if (np.length < 6 || np.length > 72) throw new Fail(400, 'password', 'New passwords are 6 to 72 characters.');
+      const l0 = id.includes('@') ? await store.get('email:' + lname(id)) : lname(id);
+      if (failCount('ip:' + ctx.ip) >= 20 || failCount('acc:' + l0) >= 6) throw new Fail(429, 'slow', 'Too many wrong tries. Wait 10 minutes and try again.');
+      const u = l0 ? await getUser(l0) : null;
+      if (!u || !u.r || !(await checkPw(code, u.r))) { addFail('ip:' + ctx.ip); if (l0) addFail('acc:' + l0); throw new Fail(401, 'wrong', 'That username and recovery code do not match. Check the code (letters and numbers, no mix-ups between O and 0).'); }
+      fails.delete('acc:' + l0);
+      const rc = newRecovery(); u.p = await hashPw(np); u.r = await hashPw(cleanRecovery(rc)); u.l = Date.now(); await putUser(l0, u);
+      const d = await loadData(l0);
+      return { ok: true, token: await issue(l0), user: pub(u), data: d ? d.d : null, t: d ? d.t : 0, recovery: rc };
+    },
     async remove(b, ctx) {
       const a = await who(ctx.token); if (!a) throw new Fail(401, 'auth', 'Please log in again.');
       if (failCount('acc:' + a.l) >= 8) throw new Fail(429, 'slow', 'Too many wrong tries. Wait 10 minutes and try again.');
@@ -149,7 +174,7 @@ function create(store) {
       return { ok: true };
     },
   };
-  const map = { '/api/signup': ['POST', 'signup'], '/api/login': ['POST', 'login'], '/api/me': ['GET', 'me'], '/api/save': ['PUT', 'save'], '/api/logout': ['POST', 'logout'], '/api/password': ['POST', 'password'], '/api/delete': ['POST', 'remove'] };
+  const map = { '/api/signup': ['POST', 'signup'], '/api/login': ['POST', 'login'], '/api/me': ['GET', 'me'], '/api/save': ['PUT', 'save'], '/api/logout': ['POST', 'logout'], '/api/password': ['POST', 'password'], '/api/recovery': ['POST', 'recovery'], '/api/reset': ['POST', 'reset'], '/api/delete': ['POST', 'remove'] };
 
   const CORS = { 'access-control-allow-origin': '*', 'access-control-allow-headers': 'content-type, authorization', 'access-control-allow-methods': 'GET, POST, PUT, OPTIONS', 'access-control-max-age': '86400' };
   const reply = (res, status, obj) => { res.writeHead(status, Object.assign({ 'content-type': 'application/json', 'cache-control': 'no-store' }, CORS)); res.end(JSON.stringify(obj)); };
