@@ -537,12 +537,13 @@
 .modes .mico text{fill:var(--gold)}.modes button.on .mico text{fill:#fff}
 .modes .live{top:auto;bottom:10px}
 /* build 68: accounts */
-#tt-auth,#tt-in{display:flex;flex-direction:column;align-items:center;gap:12px}
-#tt-auth button,#tt-in #start{min-width:290px;max-width:84vw}
-#tt-signup{padding:15px 30px;border:0;border-radius:16px;font-weight:900;font-size:24px;font-family:inherit;letter-spacing:.05em;background:linear-gradient(#ffd96a,#ffb43a);color:#102b35;cursor:pointer;box-shadow:0 6px 0 #c58a1a,0 14px 26px rgba(0,0,0,.3);transition:transform .12s}
-#tt-signup:hover{transform:translateY(-2px)}
-#tt-login{padding:13px 30px;border:3px solid rgba(255,255,255,.45);border-radius:16px;font-weight:900;font-size:19px;font-family:inherit;letter-spacing:.05em;background:rgba(16,43,53,.6);color:#fff;cursor:pointer}
-#tt-login:hover{border-color:#ffcf5a}
+#tt-auth{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:22px}
+#title #start{min-width:290px;max-width:84vw}
+#tt-hi:empty{display:none}
+#au-rec{display:none;text-align:center}#au-code{font-weight:900;font-size:30px;letter-spacing:.12em;padding:14px 10px;margin:6px 0 10px;border-radius:14px;background:rgba(0,0,0,.3);border:2px dashed #ffcf5a;color:#ffcf5a;user-select:all;word-break:break-all}#au-rec .opt{margin:0 auto 8px}#au-rec .help{display:block;margin:0 0 12px}
+#au-forgot{display:none}#sc-reccode{font-weight:900;font-size:24px;letter-spacing:.1em;color:#ffcf5a;margin-top:8px;user-select:all;word-break:break-all}#sc-reccode:empty{display:none}
+#tt-signup{padding:9px 20px;border:2px solid rgba(255,207,90,.8);border-radius:99px;font-weight:800;font-size:15px;font-family:inherit;background:rgba(16,43,53,.55);color:#ffcf5a;cursor:pointer;transition:transform .1s,background .15s}
+#tt-signup:hover{background:rgba(255,207,90,.2);transform:translateY(-2px)}
 .tlink{background:none;border:0;color:#fff;opacity:.8;font-weight:700;font-size:15px;font-family:inherit;text-decoration:underline;cursor:pointer;padding:4px 8px}.tlink:hover{opacity:1}
 #tt-why{max-width:340px;font-size:13px;opacity:.75;line-height:1.45}
 #tt-hi{font-size:22px;font-weight:900;margin:0 0 4px;text-shadow:0 2px 8px rgba(0,0,0,.4)}
@@ -559,7 +560,7 @@
 #au-guest{display:none}
 #guestbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 10px;padding:8px 14px;border-radius:14px;background:rgba(255,160,60,.2);border:1px solid rgba(255,190,90,.5);font-size:13.5px}
 #guestbar b{color:#ffcf5a}#guestbar span{flex:1;min-width:150px;opacity:.9}
-#guestbar button{padding:6px 14px;border-radius:10px;border:0;background:#ffcf5a;color:#102b35;font-weight:900;font-size:13px;font-family:inherit;cursor:pointer}
+#guestbar button.alt{background:rgba(255,255,255,.2);color:#fff}#guestbar button{padding:6px 14px;border-radius:10px;border:0;background:#ffcf5a;color:#102b35;font-weight:900;font-size:13px;font-family:inherit;cursor:pointer}
 .hbtn.lockd{opacity:.92}.hbtn.lockd .hlock{display:inline-block}.hlock{display:none;margin-left:8px;font-size:12px;font-weight:900;padding:2px 9px;border-radius:99px;background:rgba(0,0,0,.28);vertical-align:middle;letter-spacing:.04em}
 .acacct{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px}
 .acacct .who{flex:1;min-width:180px;text-align:left}.acacct .who b{font-size:17px}.acacct .who small{display:block;opacity:.7;margin-top:2px}
@@ -623,23 +624,25 @@
 <body>
 <div id="confirm"><div class="box"><p id="confirm-text"></p><button id="confirm-no">Cancel</button><button class="go" id="confirm-yes">Yes</button></div></div>
 <div id="authov"><div class="abox">
-  <h2 id="au-title">Sign up</h2>
+  <h2 id="au-title">Save your progress</h2>
   <p id="au-sub"></p>
   <form id="au-form" autocomplete="on" novalidate>
     <label class="fld" id="au-f-user"><span id="au-userl">Username</span><input id="au-user" type="text" maxlength="100" autocomplete="username" autocapitalize="off" spellcheck="false"></label>
     <label class="fld" id="au-f-email"><span>Email</span><input id="au-email" type="email" maxlength="100" autocomplete="email" spellcheck="false"></label>
-    <label class="fld"><span>Password</span><input id="au-pass" type="password" maxlength="72" autocomplete="current-password"></label>
+    <label class="fld" id="au-f-code"><span>Recovery code</span><input id="au-code-in" type="text" maxlength="40" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX"></label>
+    <label class="fld"><span id="au-passl">Password</span><input id="au-pass" type="password" maxlength="72" autocomplete="current-password"></label>
     <label class="chk"><input type="checkbox" id="au-show"><span>Show password</span></label>
     <label class="chk" id="au-f-carry"><input type="checkbox" id="au-carry" checked><span id="au-carryt"></span></label>
     <div id="au-err"></div>
-    <button type="submit" class="big" id="au-go">CREATE ACCOUNT</button>
+    <button type="submit" class="big" id="au-go">SAVE PROGRESS</button>
   </form>
-  <div id="au-guest">
-    <label class="fld"><span>Pick a name to show in matches</span><input id="ag-name" type="text" maxlength="12" autocomplete="off" spellcheck="false"></label>
-    <div id="ag-err"></div>
-    <button class="big alt" id="ag-go">CONTINUE AS GUEST</button>
+  <div id="au-rec">
+    <div id="au-code"></div>
+    <button class="opt" id="au-copy" type="button">Copy code</button>
+    <small class="help">Write it down or screenshot it. If you ever forget your password, this code is the only way back in, because there is no email reset. It works once, then you get a new one.</small>
+    <button class="big" id="au-recok" type="button">I SAVED IT, LET'S PLAY</button>
   </div>
-  <div class="aulinks"><button id="au-alt" type="button"></button><button id="au-close" type="button">Cancel</button></div>
+  <div class="aulinks"><button id="au-forgot" type="button">Forgot password?</button><button id="au-alt" type="button"></button><button id="au-close" type="button">Cancel</button></div>
 </div></div>
 <div id="hud">
   <div id="hurt"></div>
@@ -670,14 +673,14 @@
 </div>
 <div id="menu">
   <div class="card">
-    <div class="mhead"><h1>Wobble Arena</h1><p>Build 69</p><span id="coinchip" title="Your coins. Earn them from K.O.s and finished matches">&#129689; <b id="coinn">0</b></span></div>
+    <div class="mhead"><h1>Wobble Arena</h1><p>Build 70</p><span id="coinchip" title="Your coins. Earn them from K.O.s and finished matches">&#129689; <b id="coinn">0</b></span></div>
     <div id="netbanner"><span>ONLINE ROOM &middot; code</span><b id="nb-code"></b><span id="nb-info"></span><button class="opt" id="nb-copy">Copy code</button></div>
     <div id="winner"></div>
     <div id="crumbs-top"></div>
     <div class="mbody">
       <div class="tab on" id="pg-home">
         <div id="greet"></div>
-        <div id="guestbar" style="display:none"><b>Guest mode</b><span>Nothing is saved and online play is locked.</span><button id="gb-signup">Sign up free</button></div>
+        <div id="guestbar" style="display:none"><b>Guest mode</b><span>Save your progress to keep your coins, outfits and stats, and to play online.</span><button id="gb-signup">Save progress</button><button id="gb-login" class="alt">Log in</button></div>
         <div id="pausebox" style="display:none"><div id="pz-online" class="grp" style="display:none;margin:0 0 12px;padding:10px 14px;background:rgba(255,120,90,.25);font-weight:800">⚠ Online match: the game does not pause. Other players can still hit you while this menu is open, so be quick!</div><div class="grp" style="margin:0 0 12px;padding:10px 14px"><h3 style="margin:0 0 6px">Controls</h3><div id="pz-keys"></div></div><button class="big" id="pz-resume" style="background:#8fc7ff;box-shadow:0 7px 0 #4f8fcf">RESUME<small id="pz-sum"></small></button><button class="big alt" id="pz-new" style="display:none;margin-top:10px;background:#bfe8a8;box-shadow:0 7px 0 #7fb064">NEW MATCH<small>You are out. Start again</small></button><button class="big alt" id="pz-menu" style="margin-top:10px;background:#ffb4a8;box-shadow:0 7px 0 #d07a6a">MAIN MENU<small>Leave this match</small></button><div class="row" style="margin-top:10px"><button class="opt" id="go-stats">Match stats</button></div></div>
         <div id="homemain">
           <button class="hbtn hero" id="go-online"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span><b>PLAY ONLINE<span class="hlock">ACCOUNT NEEDED</span></b><small>Quick play, open rooms and friends</small></span><em class="hpill" id="home-pill"></em></button>
@@ -695,7 +698,11 @@
         <small class="help" id="tip" style="margin-top:4px"></small>
         <div id="homehide" style="display:none">
           <div class="feat" id="feat" style="display:none"><div class="th"><img id="feat-img" alt=""></div><span class="ftag">Level of the day</span><b id="feat-name"></b><small id="feat-blurb"></small><button class="chip" id="feat-go">Play this level</button></div>
-          <div class="news" style="display:none"><b>What's new &middot; build 69</b><ul>
+          <div class="news" style="display:none"><b>What's new &middot; build 70</b><ul>
+              <li>Just press Play, nothing to set up. Tap Save your progress (small button on the title screen) to keep your coins and play online. Once you save or log in the game remembers you every time you reopen or reload</li>
+              <li>Forgot your password? Use the recovery code you get when you save your progress. You can make a new code in Account &gt; Security</li>
+              <li>Snowy mountain tops no longer flicker, and the game is calmer right after you unpause</li>
+            </ul><b>Build 69</b><ul>
               <li>Settings has tabs (Controls, Video, Audio &amp; HUD, More) and a search box, with new switches. New options: frame-rate limit, auto resolution, sky effects, menu sounds and reduce motion</li>
               <li>Menus feel nicer: button ripples, click sounds and a soft parallax. Skies got horizon haze, sun glare and lightning in stormy levels</li>
               <li>Behind the scenes: a crash guard keeps the game running if something glitches, saves keep a backup, graphics recover after a reset, and a Copy bug report button helps testers</li>
@@ -844,6 +851,10 @@
             <label class="fld"><span>Current password</span><input id="sc-old" type="password" maxlength="72" autocomplete="current-password"></label>
             <label class="fld"><span>New password (6 or more characters)</span><input id="sc-new" type="password" maxlength="72" autocomplete="new-password"></label>
             <button class="opt" id="sc-change">Change password</button><div class="scmsg" id="sc-msg1"></div></div>
+          <div class="grp"><h3>Recovery code</h3>
+            <small class="help" style="margin:0 0 8px">Lets you reset your password if you forget it (there is no email reset). Making a new one cancels the old one. Accounts made before build 70 do not have one yet.</small>
+            <label class="fld"><span>Your password</span><input id="sc-rpw" type="password" maxlength="72" autocomplete="current-password"></label>
+            <button class="opt" id="sc-rec">Make a new recovery code</button><div class="scmsg" id="sc-msg3"></div><div id="sc-reccode"></div></div>
           <div class="grp"><h3>Delete account</h3>
             <small class="help" style="margin:0 0 8px">This permanently deletes your account and everything saved to it. You can make a new one afterwards with the same username.</small>
             <label class="fld"><span>Your password</span><input id="sc-del" type="password" maxlength="72" autocomplete="current-password"></label>
@@ -1094,15 +1105,15 @@
 <div id="title">
   <div id="logo"></div>
   <p>Wobbly low-poly brawls. Bring your friends (and a bat).</p>
-  <div id="tt-in" style="display:none"><div id="tt-hi"></div><button id="start">PLAY</button><button class="tlink" id="tt-out">Not you? Log out</button></div>
+  <div id="tt-hi"></div>
+  <button id="start">PLAY</button>
   <div id="tt-auth" style="display:none">
-    <button id="tt-signup">SIGN UP FREE</button>
-    <button id="tt-login" class="alt">LOG IN</button>
-    <button class="tlink" id="tt-guest">Play as guest</button>
-    <div id="tt-why">A free account saves your coins, outfits, controls and stats, and lets you play online with friends.</div>
+    <button id="tt-signup">&#9733; Save your progress</button>
+    <button class="tlink" id="tt-login">Already saved? Log in</button>
   </div>
+  <button class="tlink" id="tt-out" style="display:none">Not you? Log out</button>
   <div class="tc" style="top:10%;--d:75s"></div><div class="tc" style="top:34%;--d:110s;left:-60%;transform:scale(1.4)"></div><div class="tc" style="top:70%;--d:90s;left:-45%"></div>
-  <small id="titlesmall">Build 69 &middot; Esc opens the menu any time</small>
+  <small id="titlesmall">Build 70 &middot; Esc opens the menu any time</small>
 </div>
 <div id="boot">
   <div id="bootlogo"></div>
@@ -1236,7 +1247,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xbfe3f2);
 scene.fog = new THREE.Fog(0xbfe3f2, 50, 160);
 
-const camera = new THREE.PerspectiveCamera(72, window.innerWidth / window.innerHeight, 0.1, 400);
+const camera = new THREE.PerspectiveCamera(72, window.innerWidth / window.innerHeight, 0.2, 400);
 
 const hemi = new THREE.HemisphereLight(0xffffff, 0x9bb7c4, 0.95);
 scene.add(hemi);
@@ -1678,7 +1689,7 @@ function buildFar(kind, m, env, id) {
   const peaks = (n, r0, r1, h0, h1, w0, w1, col, seg, snow, fade) => ringEach(n, r0, r1, (a, r) => {
     const h = R(h0, h1), w = R(w0, w1), ry = R(0, 3), x = Math.cos(a) * r, z = Math.sin(a) * r;
     put(far, Cone(w, h, seg), hz(col, R(0, 0.12)), x, FAR_Y + h / 2, z, { ry });
-    if (snow && h > h0 + (h1 - h0) * 0.3) put(far, Cone(w * 0.4, h * 0.4, seg), hz(0xffffff, fade), x, FAR_Y + h * 0.8, z, { ry });
+    if (snow && h > h0 + (h1 - h0) * 0.3) put(far, Cone(w * 0.44, h * 0.41, seg), hz(0xffffff, fade), x, FAR_Y + h * 0.807, z, { ry });   // a touch wider than the peak under it, so the two surfaces never share the same depth (that made the snow flicker)
   });
   const mount = (snow = true) => { peaks(15, 286, 296, 90, 150, 48, 70, hz(rock, 0.66), 5, snow, 0.4); peaks(13, 236, 262, 42, 84, 34, 52, hz(mixHex(rock, 0x4f7a58, 0.35), 0.32), 6, false, 0); };
   const pines = (n, r0, r1, col = 0x2f6a48, hs = 1) => ringEach(n, r0, r1, (a, r) => { const h = R(16, 30) * hs, x = Math.cos(a) * r, z = Math.sin(a) * r, c = hz(col, 0.3); put(far, Cone(h * 0.36, h * 0.65, 6), c, x, FAR_Y + h * 0.32, z); put(far, Cone(h * 0.27, h * 0.5, 6), c, x, FAR_Y + h * 0.62, z); }, 0.6);
@@ -1705,7 +1716,7 @@ function buildFar(kind, m, env, id) {
   };
   S.fuji = () => {
     const a0 = sunAz + 2.3, fc = hz(rock, 0.5);
-    put(far, Cone(125, 170, 8), fc, Math.cos(a0) * 274, FAR_Y + 85, Math.sin(a0) * 274); put(far, Cone(52, 71, 8), hz(0xffffff, 0.32), Math.cos(a0) * 274, FAR_Y + 170 * 0.79, Math.sin(a0) * 274);
+    put(far, Cone(125, 170, 8), fc, Math.cos(a0) * 274, FAR_Y + 85, Math.sin(a0) * 274); put(far, Cone(57.5, 72, 8), hz(0xffffff, 0.32), Math.cos(a0) * 274, FAR_Y + 135, Math.sin(a0) * 274);
     peaks(12, 240, 262, 38, 80, 32, 50, hz(mixHex(rock, 0x3a4a6a, 0.3), 0.3), 6, false, 0);
     for (let i = 0; i < 3; i++) {
       const g = grp(sunAz + 0.9 + i * 1.6 + R(-0.2, 0.2), R(205, 228)), wall = hz(0x5a2a3a, 0.28), roof = hz(0x2a2438, 0.22);
@@ -3892,6 +3903,7 @@ const skinRar = k => k === 'none' || FREE_SKINS.includes(k) ? 'common' : CODE_SK
 const skinPrice = k => (SKIN_SHOP[k] || [0])[0];
 const CODES = { 'im-a-dev': { skin: 'dev', emote: 'devspin', name: 'Developer pack' }, 'beta-tester': { skin: 'beta', emote: 'betahop', name: 'Beta Tester pack' } };
 function redeem(raw) {
+  if (!acct.user) { needAcct('Codes are saved to your profile. Save your progress first, then enter the code.'); return 'Save your progress to use codes.'; }
   const k = String(raw || '').trim().toLowerCase(), c = CODES[k];
   if (!k) return 'Type a code first.';
   { const m = /^coins_(\d{1,4})$/.exec(k); if (m && +m[1] > 0) { addCoins(+m[1]); save(); sfx('pickup'); return +m[1] + ' coins added!'; } }      // coins_### gives that many coins, as often as you like
@@ -3937,10 +3949,12 @@ function grantSkinEmotes(k) {                         // an outfit that comes wi
   return got;
 }
 function buySkin(k) {
+  if (!needAcct('Outfits are saved to your profile, so you keep them for good. Save your progress to buy this one.')) return false;
   const pr = skinPrice(k); if (!SKINS[k] || !SKIN_SHOP[k] || wallet.skins.includes(k) || wallet.coins < pr) return false;
   wallet.coins -= pr; wallet.skins.push(k); const got = grantSkinEmotes(k); look.skin = k; applyLook(); sfx('pickup'); toast('Bought ' + skinName(k) + '! Equipped.' + (got.length ? ' You also got the ' + got.join(', ') + ' emote.' : '')); save(); updateCoins(); renderShop(); return true;
 }
 function buyEmote(k) {
+  if (!needAcct('Emotes are saved to your profile, so you keep them for good. Save your progress to buy this one.')) return false;
   const E = EMOTES[k]; if (!E || E.code || E.skin || wallet.owned.includes(k) || wallet.coins < E.price) return false;
   wallet.coins -= E.price; wallet.owned.push(k);
   const free = wallet.slots.indexOf(null); if (free >= 0) wallet.slots[free] = k;          // goes straight into an empty slot
@@ -7244,14 +7258,18 @@ document.addEventListener('keydown', e => {
   }
 });
 
-function titleState() {                                              // the title screen shows Play when you are logged in, or the sign up / log in / guest choices
+function titleState() {                                              // Play is always there; the big Sign up button only shows until you have an account
   const inn = !!acct.user;
-  el('tt-in').style.display = inn ? 'flex' : 'none'; el('tt-auth').style.display = inn ? 'none' : 'flex';
+  el('tt-auth').style.display = inn ? 'none' : 'flex'; el('tt-out').style.display = inn ? '' : 'none';
   el('tt-hi').textContent = inn ? 'Welcome back, ' + (settings.name || acct.user) + '!' : '';
 }
 function startGame() {
-  if (!acct.user && !acct.guest) { if (settings.name) acct.guest = true; else { openAuth('signup'); return; } }
+  if (!acct.user && !acct.guest) { acct.guest = true; if (!settings.name) settings.name = 'Guest' + (100 + Math.floor(Math.random() * 900)); }
   initAudio(); setUi('lobby');
+}
+function needAcct(why) {                                             // guests get a friendly sign up window instead of a locked button
+  if (acct.user) return true;
+  openAuth('signup', why); return false;
 }
 el('start').onclick = startGame;
 document.addEventListener('keydown', e => { if (ui === 'title' && acct.user && el('authov').style.display !== 'flex' && (e.code === 'Enter' || e.code === 'Space')) startGame(); });
@@ -7266,32 +7284,37 @@ function carrySource() {                                             // the prog
 }
 function openAuth(mode, why) {
   auMode = mode; auBusy = false; const ov = el('authov'); ov.style.display = 'flex';
-  const T = { signup: ['Create your account', 'Free. No email check. Your coins, outfits, controls and stats are saved to it, so they follow you to any device.'], online: ['Sign up to play online', 'Online play is for accounts, so players have a name that is theirs. It is free and takes ten seconds.'], login: ['Log in', 'Welcome back! Your progress loads as soon as you are in.'], guest: ['Play as a guest?', 'Guests are welcome, but: nothing you earn is saved (coins, outfits, stats and settings are gone when you close the page), and online play is locked.'] }[mode];
+  const T = { signup: ['Save your progress', 'Free. Your coins, outfits, controls and stats are saved to it, so they follow you to any device.'], login: ['Log in', 'Welcome back! Your progress loads as soon as you are in.'], reset: ['Reset your password', 'Type your username (or email), the recovery code you were shown when you signed up, and a new password.'] }[mode] || ['Save your progress', ''];
   el('au-title').textContent = T[0]; el('au-sub').textContent = why || T[1];
-  const g = mode === 'guest', su = mode === 'signup' || mode === 'online';
-  el('au-form').style.display = g ? 'none' : 'block'; el('au-guest').style.display = g ? 'block' : 'none';
-  el('au-f-email').style.display = su ? 'block' : 'none'; el('au-userl').textContent = su ? 'Username (3 to 16 letters, numbers or _)' : 'Username or email';
-  el('au-user').autocomplete = su ? 'username' : 'username'; el('au-pass').autocomplete = su ? 'new-password' : 'current-password';
-  el('au-go').textContent = su ? 'CREATE ACCOUNT' : 'LOG IN';
+  const su = mode === 'signup', rs = mode === 'reset';
+  el('au-form').style.display = 'block'; el('au-rec').style.display = 'none';
+  el('au-f-email').style.display = su ? 'block' : 'none'; el('au-f-code').style.display = rs ? 'block' : 'none';
+  el('au-userl').textContent = su ? 'Username (3 to 16 letters, numbers or _)' : 'Username or email'; el('au-passl').textContent = rs ? 'New password (6 or more characters)' : 'Password';
+  el('au-pass').autocomplete = su || rs ? 'new-password' : 'current-password';
+  el('au-go').textContent = su ? 'SAVE PROGRESS' : rs ? 'RESET PASSWORD' : 'LOG IN';
   const cs = su ? carrySource() : null; el('au-f-carry').style.display = cs ? 'flex' : 'none'; if (cs) { el('au-carryt').textContent = cs.t; el('au-carry').checked = true; }
-  el('au-alt').textContent = g ? 'Create a free account instead' : su ? 'I already have an account' : 'Make a new account';
-  el('au-err').textContent = ''; el('ag-err').textContent = '';
-  if (g) { const n = el('ag-name'); if (!n.value) n.value = settings.name || 'Guest' + (100 + Math.floor(Math.random() * 900)); setTimeout(() => { try { n.focus(); n.select(); } catch (e) { /* x */ } }, 50); }
-  else setTimeout(() => { try { el('au-user').focus(); } catch (e) { /* x */ } }, 50);
+  el('au-alt').style.display = ''; el('au-alt').textContent = su ? 'I already saved before' : rs ? 'Back to log in' : 'Save your progress instead';
+  el('au-forgot').style.display = mode === 'login' ? 'inline-block' : 'none'; el('au-close').style.display = '';
+  el('au-err').textContent = ''; el('au-pass').value = ''; el('au-pass').type = el('au-show').checked ? 'text' : 'password';
+  setTimeout(() => { try { el('au-user').focus(); } catch (e) { /* x */ } }, 50);
 }
-function closeAuth() { el('authov').style.display = 'none'; if (acct.expired) { acct.expired = false; titleState(); } }
+let recPending = false;
+function showRecovery(code) {                                         // after sign up (or a reset) the code is shown once; the game reloads when they carry on
+  recPending = true; const ov = el('authov'); ov.style.display = 'flex';
+  el('au-title').textContent = 'Your recovery code'; el('au-sub').textContent = 'Account made! Keep this code somewhere safe.';
+  el('au-form').style.display = 'none'; el('au-rec').style.display = 'block'; el('au-code').textContent = code;
+  el('au-alt').style.display = 'none'; el('au-forgot').style.display = 'none'; el('au-close').style.display = 'none';
+}
+function closeAuth() { if (recPending) { location.reload(); return; } el('authov').style.display = 'none'; if (acct.expired) { acct.expired = false; titleState(); } }
 el('authov').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Escape') closeAuth(); }); el('authov').addEventListener('keyup', e => e.stopPropagation());
 el('au-close').onclick = closeAuth;
-el('au-alt').onclick = () => openAuth(auMode === 'login' || auMode === 'guest' ? 'signup' : 'login');
+el('au-alt').onclick = () => openAuth(auMode === 'login' ? 'signup' : 'login');
+el('au-forgot').onclick = () => openAuth('reset');
+el('au-recok').onclick = () => location.reload();
+el('au-copy').onclick = async () => { const t = el('au-code').textContent; try { await navigator.clipboard.writeText(t); el('au-copy').textContent = 'Copied!'; } catch (e) { try { const r = document.createRange(); r.selectNodeContents(el('au-code')); const sl = getSelection(); sl.removeAllRanges(); sl.addRange(r); el('au-copy').textContent = 'Selected: press Ctrl+C'; } catch (e2) { /* x */ } } };
 el('au-show').onchange = e => { el('au-pass').type = e.target.checked ? 'text' : 'password'; };
-el('tt-signup').onclick = () => openAuth('signup'); el('tt-login').onclick = () => openAuth('login'); el('tt-guest').onclick = () => openAuth('guest');
-el('gb-signup').onclick = () => openAuth('signup');
-el('ag-go').onclick = () => {
-  const n = String(el('ag-name').value || '').trim().slice(0, 12);
-  if (!n) { el('ag-err').textContent = 'Type a name first.'; return; }
-  settings.name = n; acct.guest = true; el('authov').style.display = 'none'; refreshHome(); startGame();
-};
-el('ag-name').onkeydown = e => { e.stopPropagation(); if (e.key === 'Enter') el('ag-go').onclick(); };
+el('tt-signup').onclick = () => openAuth('signup'); el('tt-login').onclick = () => openAuth('login');
+el('gb-signup').onclick = () => openAuth('signup'); el('gb-login').onclick = () => openAuth('login');
 function authSuccess(r, carried) {                                   // we are in: keep the token and the saved progress, then start over clean with a reload
   try {
     const old = legacyBlob(); if (old && !localStorage.getItem('wobbleArenaOld')) localStorage.setItem('wobbleArenaOld', JSON.stringify(old));      // never throw away what was on this device
@@ -7299,20 +7322,24 @@ function authSuccess(r, carried) {                                   // we are i
     localStorage.setItem('wobbleAuth', JSON.stringify({ user: r.user.username, token: r.token, email: r.user.email, t: r.t || 0, dirty: false }));
     sessionStorage.setItem('waSkip', '1');
   } catch (e) { el('au-err').textContent = 'Your browser would not let the game remember you. Check that cookies and site data are allowed.'; auBusy = false; el('au-go').disabled = false; return; }
+  if (r.recovery) { showRecovery(r.recovery); return; }
   location.reload();
 }
 el('au-form').onsubmit = async e => {
   e.preventDefault(); if (auBusy) return;
-  const su = auMode === 'signup' || auMode === 'online', id = String(el('au-user').value || '').trim(), em = String(el('au-email').value || '').trim(), pw = String(el('au-pass').value || ''), err = t => { el('au-err').textContent = t; };
+  const su = auMode === 'signup', rs = auMode === 'reset', id = String(el('au-user').value || '').trim(), em = String(el('au-email').value || '').trim(), pw = String(el('au-pass').value || ''), code = String(el('au-code-in').value || '').trim(), err = t => { el('au-err').textContent = t; };
+  const label = su ? 'SAVE PROGRESS' : rs ? 'RESET PASSWORD' : 'LOG IN';
   if (!id) return err(su ? 'Pick a username.' : 'Type your username or email.');
   if (su && !/^[A-Za-z0-9_]{3,16}$/.test(id)) return err('Usernames are 3 to 16 letters, numbers or underscores.');
   if (su && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) return err('Type your email (it is only used for your account).');
-  if (!pw) return err('Type your password.'); if (su && pw.length < 6) return err('Passwords need at least 6 characters.');
-  auBusy = true; el('au-go').disabled = true; err(''); el('au-go').textContent = su ? 'Creating…' : 'Logging in…';
+  if (rs && !code) return err('Type your recovery code.');
+  if (!pw) return err(rs ? 'Type a new password.' : 'Type your password.'); if ((su || rs) && pw.length < 6) return err('Passwords need at least 6 characters.');
+  auBusy = true; el('au-go').disabled = true; err(''); el('au-go').textContent = su ? 'Creating…' : rs ? 'Resetting…' : 'Logging in…';
   let r;
-  if (su) { const cs = el('au-carry').checked ? carrySource() : null; const data = cs ? cs.d : undefined; if (data && !(data.set && data.set.name)) { data.set = Object.assign({}, data.set || {}, { name: id.slice(0, 12) }); } r = await api('POST', '/api/signup', { username: id, email: em, password: pw, data }); }
+  if (su) { const cs = el('au-carry').checked ? carrySource() : null; const data = cs ? cs.d : undefined; if (data && !(data.set && data.set.name && !/^Guest\d{3}$/.test(data.set.name))) { data.set = Object.assign({}, data.set || {}, { name: id.slice(0, 12) }); } r = await api('POST', '/api/signup', { username: id, email: em, password: pw, data }); }
+  else if (rs) r = await api('POST', '/api/reset', { id, code, password: pw });
   else r = await api('POST', '/api/login', { id, password: pw });
-  auBusy = false; el('au-go').disabled = false; el('au-go').textContent = su ? 'CREATE ACCOUNT' : 'LOG IN';
+  auBusy = false; el('au-go').disabled = false; el('au-go').textContent = label;
   if (!r.ok) return err(r.msg || 'Something went wrong. Try again.');
   authSuccess(r);
 };
@@ -7334,7 +7361,7 @@ function acctSyncText() {
 function renderAcctBox() {
   const b = el('ac-acct'); b.className = 'grp acacct' + (acct.user ? '' : ' guest');
   if (acct.user) { b.innerHTML = '<div class="who"><b>' + escH(acct.user) + '</b><small>' + escH(acct.email) + ' &middot; <span id="ac-sync"></span></small></div><button id="ac-logout">Log out</button>'; el('ac-logout').onclick = doLogout; }
-  else { b.innerHTML = '<div class="who"><b>You are playing as a guest</b><small>Nothing is saved and online play is locked.</small></div><button class="pri" id="ac-su">Sign up free</button><button id="ac-li">Log in</button>'; el('ac-su').onclick = () => openAuth('signup'); el('ac-li').onclick = () => openAuth('login'); }
+  else { b.innerHTML = '<div class="who"><b>You are playing as a guest</b><small>Save your progress to keep your stuff and play online.</small></div><button class="pri" id="ac-su">Save progress</button><button id="ac-li">Log in</button>'; el('ac-su').onclick = () => openAuth('signup'); el('ac-li').onclick = () => openAuth('login'); }
   el('at-security').style.display = acct.user ? '' : 'none'; acctSyncText();
 }
 el('sc-change').onclick = async () => {
@@ -7342,6 +7369,11 @@ el('sc-change').onclick = async () => {
   const o = el('sc-old').value, n = el('sc-new').value; if (!o || n.length < 6) return set('Type your current password and a new one (6 or more characters).', false);
   set('Changing…', true); const r = await api('POST', '/api/password', { old: o, next: n }, acct.token);
   if (r.ok) { set('Password changed.', true); el('sc-old').value = el('sc-new').value = ''; } else if (r.err === 'auth') authExpired(); else set(r.msg || 'Could not change it.', false);
+};
+el('sc-rec').onclick = async () => {
+  const m = el('sc-msg3'), pw = el('sc-rpw').value; if (!pw) { m.textContent = 'Type your password first.'; m.className = 'scmsg bad'; return; }
+  m.textContent = 'Making it…'; m.className = 'scmsg good'; const r = await api('POST', '/api/recovery', { password: pw }, acct.token);
+  if (r.ok) { el('sc-reccode').textContent = r.recovery; m.textContent = 'Save this code now. It will not be shown again.'; m.className = 'scmsg good'; el('sc-rpw').value = ''; } else if (r.err === 'auth') authExpired(); else { m.textContent = r.msg || 'Could not make one.'; m.className = 'scmsg bad'; }
 };
 el('sc-delete').onclick = () => {
   const m = el('sc-msg2'), pw = el('sc-del').value; if (!pw) { m.textContent = 'Type your password to confirm.'; m.className = 'scmsg bad'; return; }
@@ -7351,7 +7383,7 @@ el('sc-delete').onclick = () => {
     try { localStorage.removeItem('wobbleAuth'); rmSave(); } catch (e) { /* x */ } location.reload();
   });
 };
-for (const id of ['sc-old', 'sc-new', 'sc-del']) { el(id).onkeydown = e => e.stopPropagation(); el(id).onkeyup = e => e.stopPropagation(); }
+for (const id of ['sc-old', 'sc-new', 'sc-del', 'sc-rpw', 'au-code-in']) { el(id).onkeydown = e => e.stopPropagation(); el(id).onkeyup = e => e.stopPropagation(); }
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') cloudBeacon(); });
 window.addEventListener('pagehide', cloudBeacon);
 async function verifyLogin() {                                       // at start-up: is the saved login still good, and is the cloud save newer than this device's copy?
@@ -7563,7 +7595,7 @@ el('settings-reset').onclick = () => askConfirm('Reset ALL settings (keys, sensi
 });
 
 /* ============================== online play (test) ============================== */
-const NET_PREFIX = 'wobble-arena-', NET_HZ = 30, NET_MAX = 8, NET_BUILD = 'b69.0', PUB_SLOTS = 24;   // PUB_SLOTS: public rooms live at fixed spots (pub0, pub1, ...) so anybody can look them up
+const NET_PREFIX = 'wobble-arena-', NET_HZ = 30, NET_MAX = 8, NET_BUILD = 'b70.0', PUB_SLOTS = 24;   // PUB_SLOTS: public rooms live at fixed spots (pub0, pub1, ...) so anybody can look them up
 const slotCap = () => net.started && net.slots ? net.slots.length : NET_MAX;
 function netStatus(t) {
   t = t || ''; const busy = /(\u2026|\.\.\.)$/.test(t); if (t && !busy) netUnlock();
@@ -7744,7 +7776,7 @@ function netHostSrv(opts) {
   srvAsk({ op: 'create', pub, info: srvInfo(n) }, ['created', 'nocreate'], 7000, m => {
     netUnlock();
     if (net) { if (m && m.op === 'created') srvTx({ op: 'leave' }); return; }
-    if (!m || m.op !== 'created') { netStatus(!m ? 'The game server did not answer. Try again in a moment.' : m.reason === 'auth' ? 'Log in to play online. Open Account to sign up or log in.' : m.reason === 'busy' ? 'The server is full right now. Try again in a moment.' : 'Could not open a room. Try again.'); return; }
+    if (!m || m.op !== 'created') { netStatus(!m ? 'The game server did not answer. Try again in a moment.' : m.reason === 'auth' ? 'Log in to play online. Open Account to save your progress or log in.' : m.reason === 'busy' ? 'The server is full right now. Try again in a moment.' : 'Could not open a room. Try again.'); return; }
     n.code = m.id; net = n; if (opts.pre) net.prevCfg = opts.pre; net.out = hostOut; net.lastInfo = JSON.stringify(srvInfo(n));
     netStatus(pub ? 'Your room is open. It shows up in everyone\'s room list.' : 'Room ready! Tell your friend the code. Friends can join any time, even after the match starts.'); netShowLobby();
     if (opts.auto) netStartHosted();
@@ -7761,7 +7793,7 @@ function netJoinSrv(code, jo) {
     if (!m) { netStatus('The game server did not answer. Try again in a moment.'); return; }
     if (m.op === 'nojoin') {
       if (jo.quick && (m.reason === 'none' || m.reason === 'full')) { netQuickPlay(jo.quick, (jo.tries | 0) + 1, jo.pre); return; }
-      netStatus(m.reason === 'auth' ? 'Log in to play online. Open Account to sign up or log in.' : m.reason === 'build' ? 'That room is running a different version of the game. Refresh the page to get the newest one.' : m.reason === 'full' ? 'That room is full.' : m.reason === 'inroom' ? 'You are already in a room.' : 'No room with that code. Check the letters, and make sure the host still has the room open.'); return;
+      netStatus(m.reason === 'auth' ? 'Log in to play online. Open Account to save your progress or log in.' : m.reason === 'build' ? 'That room is running a different version of the game. Refresh the page to get the newest one.' : m.reason === 'full' ? 'That room is full.' : m.reason === 'inroom' ? 'You are already in a room.' : 'No room with that code. Check the letters, and make sure the host still has the room open.'); return;
     }
     const c = { open: true, send: x => srvTx({ op: 'tohost', m: x }), close: () => srvTx({ op: 'leave' }) };
     net = { host: false, id: -1, code: m.id, srv: true, peer: null, conn: c, roster: [], started: false, ghosts: {}, ai: {}, slotKind: ['human', 'bot', 'bot', 'bot'], slots: null, sendT: 0, cid: 0, optMax: 4, optBots: true, optLim: 0, limit: 0, quick: jo.quick || null, tries: jo.tries | 0, rv: new Set(), rvList: [], rvTotal: 0 };
@@ -8221,7 +8253,7 @@ function netRematchUi() {
 }
 function netEnterMatch() { setUi('lobby'); showPage('online'); try { el('play').onclick(); } catch (e) { /* the browser wants a click first: the big button is on screen */ } }
 { const ti = setInterval(() => { if (ONL.includes(page) && page !== 'onlobby' && !net && !document.hidden) netRefreshRooms(); }, 10000); if (ti && ti.unref) ti.unref(); }
-el('go-online').onclick = () => { if (!acct.user) { openAuth('online'); return; } showPage('online'); };
+el('go-online').onclick = () => { if (!needAcct('Online play needs a saved profile, so every player has a name that is theirs. It is free and takes ten seconds.')) return; showPage('online'); };
 el('oh-quick').onclick = () => showPage('onquick'); el('oh-rooms').onclick = () => showPage('onrooms'); el('oh-create').onclick = () => showPage('oncreate'); el('oh-join').onclick = () => showPage('onjoin');
 el('on-modes').innerHTML = MODE_ORDER.filter(k => MODES[k] && netMode(k) === k).map(k => '<button id="onq-' + k + '">' + modeIco(k) + escH(MODES[k].name) + '<small>' + escH(MODES[k].desc || '') + '</small><em class="live" id="onl-' + k + '"></em></button>').join('');
 for (const k of MODE_ORDER) { const b = MODES[k] && netMode(k) === k && el('onq-' + k); if (b) b.onclick = () => netQuickPlay(k); }
@@ -8258,6 +8290,7 @@ el('pz-menu').onclick = () => { if (net && net.started) netLeave('You left the m
 
 document.addEventListener('pointerlockchange', () => {
   locked = document.pointerLockElement === canvas;
+  PERF.grace = performance.now() + 3500; PERF.lowN = 0; PERF.hiN = 0; try { perfAcc = 0; perfN = 0; perfT0 = 0; prevNow = 0; } catch (e) { /* x */ }
   if (locked) setUi('play'); else if (ui === 'play') setUi('lobby');
   if (!locked) { mouse.l = mouse.r = false; scopeHeld = scopeToggled = false; for (const k in keys) keys[k] = false; }
 });
@@ -9008,7 +9041,7 @@ function perfTick(ms, now) {                                        // frame tim
   const avg = perfAcc / Math.max(1, perfN); PERF.avg = avg; PERF.fps = 1000 / Math.max(0.1, avg); let mx = 0; for (let i = 0; i < 120; i++) if (PERF.ms[i] > mx) mx = PERF.ms[i]; PERF.max = mx;
   PERF.stepsPS = simCount; simCount = 0; perfAcc = 0; perfN = 0; perfT0 = now;
   const playing = (locked || (net && net.started)) && !(typeof document !== 'undefined' && document.hidden), target = settings.fpsCap ? 1000 / settings.fpsCap : 16.7;
-  if (settings.autoRes && playing) {
+  if (settings.autoRes && playing && now > (PERF.grace || 0)) {
     if (avg > Math.max(26, target * 1.45)) { PERF.lowN++; PERF.hiN = 0; } else if (avg < target * 1.12) { PERF.hiN++; PERF.lowN = 0; } else { PERF.lowN = 0; PERF.hiN = 0; }
     if (PERF.lowN >= 2 && PERF.scale > 0.55) { PERF.scale = Math.max(0.55, +(PERF.scale - 0.1).toFixed(2)); PERF.lowN = 0; applyScale(); devLog('perf', 'resolution ' + Math.round(PERF.scale * 100) + '%'); }
     else if (PERF.hiN >= 8 && PERF.scale < 1) { PERF.scale = Math.min(1, +(PERF.scale + 0.1).toFixed(2)); PERF.hiN = 0; applyScale(); devLog('perf', 'resolution ' + Math.round(PERF.scale * 100) + '%'); }
