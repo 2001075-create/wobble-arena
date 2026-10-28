@@ -328,7 +328,7 @@
   .card input[type=text],.card input[type=number],.card input:not([type]),.card select{background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;padding:7px 10px;font-family:inherit;font-weight:700;transition:border-color .15s,background .15s}
   .card input[type=text]:focus,.card input[type=number]:focus,.card select:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.16)}
   .card select option{color:#102b35}
-  input[type=range]{-webkit-appearance:none;appearance:none;height:8px;border-radius:8px;background:linear-gradient(90deg,rgba(255,207,90,.7),rgba(255,255,255,.18));outline:none;vertical-align:middle;cursor:pointer}
+  input[type=range]{-webkit-appearance:none;appearance:none;height:8px;border-radius:8px;background:linear-gradient(90deg,var(--gold,#ffcf5a) 0,var(--gold,#ffcf5a) var(--p,50%),rgba(255,255,255,.18) var(--p,50%));outline:none;vertical-align:middle;cursor:pointer}
   input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid var(--gold);box-shadow:0 2px 6px rgba(0,0,0,.4);transition:transform .12s cubic-bezier(.3,1.6,.5,1)}
   input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
   input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--gold)}
@@ -686,6 +686,70 @@
 @media(max-width:900px){#menu.homefx #pg-home{grid-template-columns:minmax(0,1fr);padding:4vh 5vw 14vh;overflow:auto}#menu.homefx #hright,#menu.homefx #homesmall{display:none}#menu.homefx #hlogo{font-size:min(15vw,70px);margin-top:30px}#menu.homefx #hlogo div+div{margin-left:0}#menu.homefx #guestbar{left:3vw;right:3vw;max-width:none;bottom:6vh}#menu.homefx .hbtn.hero b{font-size:26px}}
 @media(max-height:620px){#menu.homefx #hsub{display:none}#menu.homefx .hrow .hbtn{padding:.8vh 10px}#menu.homefx #hcards{display:none}}
 @media(prefers-reduced-motion:reduce){#hlogo span,.hbtn.hero,.hbtn.hero svg,.hcard .hci,.hcard.ready{animation:none !important}}
+
+/* ---- build 75: the Shop and the Locker, in the same look as the home screen ---- */
+#menu.storefx{--card:linear-gradient(160deg,rgba(26,66,82,.96),rgba(13,34,44,.97));--rim:inset 0 0 0 1px rgba(255,255,255,.09);
+  background:radial-gradient(ellipse at center,rgba(16,43,53,.35),rgba(16,43,53,.7)),linear-gradient(90deg,rgba(16,43,53,.55),rgba(16,43,53,.2) 50%,rgba(16,43,53,.45)),linear-gradient(0deg,rgba(16,43,53,.5),transparent 24%);backdrop-filter:none;-webkit-backdrop-filter:none;display:flex}
+#menu.storefx #hbg{display:none}
+#menu.storefx .card{width:100vw;max-width:none;height:100vh;max-height:none;border-radius:0;background:none;box-shadow:none;padding:0;animation:none;position:relative}
+#menu.storefx .mbody{overflow:hidden;padding:0;margin:0}
+#menu.storefx .mhead{position:absolute;top:20px;right:28px;z-index:3}#menu.storefx .mhead h1,#menu.storefx .mhead p{display:none}
+#menu.storefx #coinchip{font-size:20px;font-weight:900;padding:7px 18px;border-radius:99px;background:rgba(255,207,90,.22);color:#ffe9a8;box-shadow:inset 0 0 0 2px rgba(255,207,90,.4)}
+#menu.storefx #crumbs-top,#menu.storefx #crumbs,#menu.storefx #greet{display:none}
+#menu.homefx #netbanner,#menu.storefx #netbanner{position:absolute;top:14px;right:28px;z-index:5;margin:0;white-space:nowrap;background:rgba(40,34,12,.92);box-shadow:0 5px 0 rgba(0,0,0,.35)}
+#menu.homefx.inroom .mhead,#menu.storefx.inroom .mhead{top:70px}#menu.homefx.inroom #homesmall{top:72px}
+#menu.storefx #pg-shop.on,#menu.storefx #pg-locker.on{display:grid;grid-template-columns:minmax(250px,31%) 1fr;grid-template-rows:auto minmax(0,1fr);column-gap:2.4vw;height:100vh;box-sizing:border-box;padding:3.6vh 5vw 11vh;animation:none}
+#menu.storefx h2.step{grid-column:1/-1;margin:0 0 1.6vh;font-size:clamp(38px,8.4vh,72px);line-height:1;font-weight:900;letter-spacing:.05em;text-align:left;color:#fff;text-shadow:0 6px 0 rgba(16,43,53,.55),0 0 40px rgba(255,207,90,.35);display:flex;align-items:center;flex-wrap:wrap;gap:0 16px}
+#menu.storefx h2.step .ptitle>span{display:inline-block;animation:wob 1.7s ease-in-out infinite}#menu.storefx h2.step .ptitle>span:nth-child(even){color:#ffcf5a}
+#menu.storefx h2.step small{font-size:15px;font-weight:800;letter-spacing:.04em;opacity:1;margin:0;padding:6px 16px;border-radius:99px;background:var(--card);box-shadow:var(--rim);color:#ffe9a8;text-shadow:none;white-space:nowrap}
+#menu.storefx h2.step small:empty{display:none}
+#menu.storefx .vwrap{display:contents}
+#menu.storefx .vcol{grid-column:1;grid-row:2;position:static;display:flex;flex-direction:column;align-items:center;gap:1.4vh;min-height:0;text-align:center;overflow:auto;padding:2px 4px 8px}
+#menu.storefx #shopcv,#menu.storefx #lockcv{width:100%;max-width:min(360px,100%);height:auto;aspect-ratio:4/5;max-height:58vh;object-fit:contain;border-radius:22px;background:radial-gradient(circle at 50% 35%,#7fb6e8,#2a4a6e);box-shadow:var(--rim),0 8px 0 rgba(0,0,0,.4)}
+#menu.storefx .vcol .help{max-width:360px;margin:0;font-size:13px;font-weight:700;line-height:1.35;color:rgba(255,255,255,.78)}
+#menu.storefx .vmain{grid-column:2;grid-row:2;display:flex;flex-direction:column;min-height:0;min-width:0}
+#menu.storefx .vmain>.row{gap:10px;margin:0 0 1.2vh;flex:0 0 auto}
+#menu.storefx .vmain>.row .opt{flex:0 0 auto;padding:11px 26px;border-radius:14px;border:0;font-weight:900;font-size:16px;letter-spacing:.05em;color:#fff;background:var(--card);box-shadow:var(--rim),0 5px 0 rgba(0,0,0,.4);transition:transform .1s,filter .15s}
+#menu.storefx .vmain>.row .opt:hover{transform:translateY(-2px);filter:brightness(1.12)}
+#menu.storefx .vmain>.row .opt.on{background:#ffcf5a;color:#102b35;box-shadow:0 5px 0 #c79a2c}
+#menu.storefx .vmain>.row .opt:active{transform:translateY(3px)}
+#menu.storefx .vmain>small.help,#menu.storefx #lock-hats>small.help,#menu.storefx #lock-emotes>small.help{display:block;margin:0 0 .6vh;font-size:13px;font-weight:700;color:rgba(255,255,255,.72)}
+#menu.storefx #lock-skins,#menu.storefx #lock-hats,#menu.storefx #lock-emotes{min-height:0;flex:1;overflow:auto;padding-right:6px}
+#menu.storefx #lock-skins[style*="none"],#menu.storefx #lock-hats[style*="none"],#menu.storefx #lock-emotes[style*="none"]{display:none}
+#menu.storefx .eshelf{grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:16px 14px;margin:6px 0 0;padding:6px 8px 18px 2px;overflow:auto;min-height:0}
+#menu.storefx .vmain>.eshelf{flex:1}
+#menu.storefx .ecard{--rc:#8b96a3;border:0;border-radius:18px;padding:16px 12px 12px;background:var(--card);box-shadow:var(--rim),0 6px 0 rgba(0,0,0,.4);overflow:hidden;transition:transform .12s,filter .15s}
+#menu.storefx .ecard::before{content:"";position:absolute;left:0;right:0;top:0;height:7px;background:var(--rc)}
+#menu.storefx .ecard:hover{transform:translateY(-3px);filter:brightness(1.1)}
+#menu.storefx .ecard .rl{position:absolute;top:13px;left:10px;font-size:10px;letter-spacing:.08em;padding:2px 9px;background:var(--rc);color:#102b35;font-weight:900}
+#menu.storefx .ecard .ei{font-size:50px;margin:16px 0 4px}
+#menu.storefx .ecard b{font-size:16px;font-weight:900;letter-spacing:.02em;margin:2px 0 3px;color:#fff}
+#menu.storefx .ecard small{font-size:13px;font-weight:800;opacity:1;color:#ffe9a8;min-height:16px}
+#menu.storefx .ecard small.inc{color:#9fe8c0;font-size:11px;font-weight:700}
+#menu.storefx .ecard button{width:calc(50% - 4px);margin:9px 2px 0;padding:9px 4px;border-radius:12px;border:0;font-weight:900;font-size:13px;letter-spacing:.05em;color:#fff;background:rgba(255,255,255,.14);box-shadow:0 4px 0 rgba(0,0,0,.35);cursor:pointer;transition:transform .1s}
+#menu.storefx .ecard button:only-of-type{width:calc(100% - 4px)}
+#menu.storefx .ecard button:hover{transform:translateY(-1px)}#menu.storefx .ecard button:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+#menu.storefx .ecard button.buy,#menu.storefx .ecard button.buyE,#menu.storefx .ecard button.wear,#menu.storefx .ecard button.eq,#menu.storefx .ecard button.hatwear,#menu.storefx .ecard button#lk-shop,#menu.storefx .ecard button#lk-shop2{background:#ffcf5a;color:#102b35;box-shadow:0 4px 0 #c79a2c}
+#menu.storefx .ecard button:disabled{background:rgba(255,255,255,.1);color:rgba(255,255,255,.5);box-shadow:none;cursor:default;transform:none}
+#menu.storefx .ecard.sel{box-shadow:var(--rim),0 0 0 3px #ffcf5a,0 0 24px rgba(255,207,90,.55),0 6px 0 rgba(0,0,0,.4)}
+#menu.storefx .ecard.r-common{--rc:#8b96a3}#menu.storefx .ecard.r-uncommon{--rc:#3fd070}#menu.storefx .ecard.r-rare{--rc:#4a9cf0}#menu.storefx .ecard.r-epic{--rc:#b86cf0}#menu.storefx .ecard.r-legendary{--rc:#ffb02e}
+#menu.storefx .ecard.r-mythic{--rc:#ff3d9a;background:var(--card);animation:none}
+#menu.storefx .ecard.r-mythic::before{background:linear-gradient(90deg,#ff3d9a,#7a3dff,#2ff0ff,#ff3d9a);background-size:300% 100%;animation:myth 4s linear infinite}
+#menu.storefx .ecard.r-mythic{box-shadow:var(--rim),0 6px 0 rgba(0,0,0,.4),0 0 22px rgba(255,61,154,.28)}
+#menu.storefx .eslots{gap:12px;margin:8px 0 2px}
+#menu.storefx .eslots button{padding:13px 6px;border-radius:14px;border:0;background:var(--card);box-shadow:var(--rim),0 5px 0 rgba(0,0,0,.4);font-weight:900;font-size:15px}
+#menu.storefx .eslots button small{font-weight:700;opacity:.8}
+#menu.storefx .eslots button.on{background:#ffcf5a;color:#102b35;box-shadow:0 5px 0 #c79a2c}#menu.storefx .eslots button.on small{color:#102b35}
+#menu.storefx .mfoot{position:absolute;left:5vw;bottom:3.2vh;margin:0;gap:12px;z-index:3}
+#menu.storefx .mfoot #back{flex:0 0 auto;padding:13px 30px;border-radius:16px;border:0;font-weight:900;font-size:18px;letter-spacing:.05em;color:#fff;background:var(--card);box-shadow:var(--rim),0 6px 0 rgba(0,0,0,.4);transition:transform .1s,filter .15s}
+#menu.storefx .mfoot #back:hover{transform:translateY(-3px);filter:brightness(1.12)}#menu.storefx .mfoot #back:active{transform:translateY(4px);box-shadow:var(--rim),0 2px 0 rgba(0,0,0,.4)}
+#menu.storefx .eshelf{grid-auto-rows:max-content;align-content:start}
+#menu.storefx h2.step::before,#menu.storefx h2.step::after{display:none}
+#menu.storefx #shopcoins,#menu.storefx #lockcoins{display:none}
+#menu.storefx .vmain>.grp{display:none}
+#menu.storefx .mfoot #back{white-space:nowrap;flex:0 0 auto !important;width:auto}
+@media(max-width:900px){#menu.storefx #pg-shop.on,#menu.storefx #pg-locker.on{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr);overflow:auto;padding:3vh 4vw 13vh}#menu.storefx .vcol{grid-column:1;grid-row:2;flex-direction:row;flex-wrap:wrap;justify-content:center;overflow:visible}#menu.storefx #shopcv,#menu.storefx #lockcv{max-width:200px;max-height:none}#menu.storefx .vmain{grid-column:1;grid-row:3;overflow:visible}#menu.storefx .eshelf{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
+@media(prefers-reduced-motion:reduce){#menu.storefx h2.step .ptitle>span,#menu.storefx .ecard.r-mythic::before{animation:none !important}}
 </style>
 </head>
 <body>
@@ -741,8 +805,8 @@
 <div id="menu">
   <div id="hbg"></div>
   <div class="card">
-    <div class="mhead"><h1>Wobble Arena</h1><p>Build 74</p><span id="coinchip" title="Your coins. Earn them from K.O.s and finished matches">&#129689; <b id="coinn">0</b></span></div>
-    <div id="netbanner"><span>ONLINE ROOM &middot; code</span><b id="nb-code"></b><span id="nb-info"></span><button class="opt" id="nb-copy">Copy code</button></div>
+    <div class="mhead"><h1>Wobble Arena</h1><p>Build 76</p><span id="coinchip" title="Your coins. Earn them from K.O.s and finished matches">&#129689; <b id="coinn">0</b></span></div>
+    <div id="netbanner"><span>ONLINE ROOM &middot; code</span><b id="nb-code"></b><span id="nb-info"></span><button class="opt" id="nb-copy">Copy code</button><button class="opt" id="nb-leave">Leave room</button></div>
     <div id="winner"></div>
     <div id="crumbs-top"></div>
     <div class="mbody">
@@ -774,10 +838,23 @@
           </div>
         </div>
         <small class="help" id="tip" style="margin-top:4px"></small>
-        <div id="hbuild">Build 74</div>
+        <div id="hbuild">Build 76</div>
         <div id="homehide" style="display:none">
           <div class="feat" id="feat" style="display:none"><div class="th"><img id="feat-img" alt=""></div><span class="ftag">Level of the day</span><b id="feat-name"></b><small id="feat-blurb"></small><button class="chip" id="feat-go">Play this level</button></div>
-          <div class="news" style="display:none"><b>What's new &middot; build 74</b><ul>
+          <div class="news" style="display:none"><b>What's new &middot; build 76</b><ul>
+              <li>Sunny Farm is bigger, with a big barn you can walk into (hay bales inside and stairs up to a covered hayloft). The animals are gone so it is less crowded. It now sits where the Warehouse used to be in the level list</li>
+              <li>The Warehouse level is removed</li>
+              <li>New level: Lava Pillars, the same eight pillars and rules as Pillars but over a lake of lava under a burning sky</li>
+              <li>New Mega Damage level: Squeeze Chamber. A long room whose two ends close in faster than the Shrink Zone, with crates in the middle for cover</li>
+              <li>Crates drop about twice as often, and more can be on the floor at once</li>
+              <li>The bot slider's yellow bar now follows the circle, and leaving an online room puts the rules back to normal with 3 bots</li>
+              <li>The Shop and Locker now have the live bot battle behind them, and the bots keep fighting behind the menu while you wait in an online room</li>
+              <li>The online room bar now has a Leave room button, and the coins and buttons sit below it instead of under it</li>
+              <li>Level page: the spinning view is a bit higher and closer, with a strip of background showing</li>
+              <li>The city background is redone as a cleaner skyline</li>
+            </ul><b>Build 75</b><ul>
+              <li>The Shop and the Locker are redone to match the main menu: full screen, a big wobbly title, your wobbler in a card with a sharper preview, and a grid of rarity-coloured item cards with gold Buy and Wear buttons</li>
+            </ul><b>Build 74</b><ul>
               <li>New level: Sunny Farm. A big red barn with a hayloft, a chicken coop with chickens and chicks, a tractor, cows, a pig pen, a haystack to climb in the middle, a windmill, a silo, a duck pond, a crop field with a scarecrow, and a farm skyline with barns, windmills and doves</li>
               <li>The level backgrounds are now much lighter on the graphics card, so they cost far less speed</li>
               <li>Level backgrounds: trees on every level, a huge detailed castle on a mountain, a new city skyline with a needle tower, domed hall and bridge, many more pink and white cones on Candy Land, a bigger haunted mansion with a dead forest, ghosts and bats, and a deep-space Moonbase with nebulas, a space station, asteroids and a comet</li>
@@ -1166,12 +1243,12 @@
           <b>Q</b> quick spatula hit · <b>E</b> shove · <b>F</b> kick · <b>T</b> taunt · <b>M</b> mute · <b>B / N</b> place / remove a block (Build Your Own level) · <b>W / S</b> walk into a ladder to climb, <b>Space</b> to jump off
         </small>
       </div>
-      <div class="tab" id="pg-shop"><h2 class="step">Shop <small id="shopcoins"></small></h2>
+      <div class="tab" id="pg-shop"><h2 class="step"><span class="ptitle" id="shoptitle">Shop</span> <small id="shopcoins"></small></h2>
         <div class="vwrap"><div class="vcol"><canvas id="shopcv" width="240" height="300"></canvas><small class="help" id="shoptry">Press Try to see an outfit or emote on your wobbler</small><div id="shopbind" style="display:none"></div></div>
           <div class="vmain"><div class="row" style="gap:8px;margin:0 0 6px"><button class="opt on" id="shoptab-skins">Outfits</button><button class="opt" id="shoptab-emotes">Emotes</button></div>
             <small class="help">Earn coins from K.O.s (+5 each) and finished matches (+40, and +60 more for a win).</small>
             <div class="eshelf" id="eshop"></div></div></div></div>
-      <div class="tab" id="pg-locker"><h2 class="step">Locker <small id="lockname"></small> <small id="lockcoins"></small></h2>
+      <div class="tab" id="pg-locker"><h2 class="step"><span class="ptitle" id="lockertitle">Locker</span> <small id="lockname"></small> <small id="lockcoins"></small></h2>
         <div class="vwrap"><div class="vcol"><canvas id="lockcv" width="240" height="300"></canvas><small class="help" id="lockinc">Your wobbler. Pick an outfit or emote to see it</small></div>
           <div class="vmain"><div class="row" style="gap:8px;margin:0 0 6px"><button class="opt on" id="locktab-skins">Outfits</button><button class="opt" id="locktab-emotes">Emotes</button><button class="opt" id="locktab-hats">Hats</button></div>
             <div id="lock-skins"><div class="eshelf" id="lskins"></div></div>
@@ -1210,7 +1287,7 @@
   </div>
   <button class="tlink" id="tt-out" style="display:none">Not you? Log out</button>
   <div class="tc" style="top:10%;--d:75s"></div><div class="tc" style="top:34%;--d:110s;left:-60%;transform:scale(1.4)"></div><div class="tc" style="top:70%;--d:90s;left:-45%"></div>
-  <small id="titlesmall">Build 74 &middot; Esc opens the menu any time</small>
+  <small id="titlesmall">Build 76 &middot; Esc opens the menu any time</small>
 </div>
 <div id="boot">
   <div id="bootlogo"></div>
@@ -1541,26 +1618,6 @@ MAPS.temple = {
 };
 /* ---- more levels: sky, rooms, obstacle, underground and the customisable sandbox ---- */
 const ringPts = (n, r, a0 = 0) => Array.from({ length: n }, (_, i) => [Math.round(Math.cos(a0 + i * 6.2832 / n) * r * 10) / 10, Math.round(Math.sin(a0 + i * 6.2832 / n) * r * 10) / 10]);
-MAPS.warehouse = {
-  name: 'Warehouse', cat: 'rooms', tags: ['Indoor', 'Catwalk'], blurb: 'Shelving, crates and a catwalk running round the walls. Fight high or low.',
-  sky: 0x8d99a8, voidColor: 0x5f6a78, hills: [0x707c8a, 0x667280, 0x7a8694, 0x5c6876], shadow: 40, orbit: 58, orbitH: 34, hemi: 0.8, sunI: 1.0, fog: [70, 220],
-  spawns: [[-20, 10], [20, -10], [-20, -8], [20, 8], [0, 12], [0, -12]],
-  player: [0, 12], bots: [[-20, 10], [20, -10], [-20, -8], [20, 8], [0, -12]], wander: 22,
-  drops: [[-24, 0], [24, 0], [0, 6], [0, -6], [-8, 14], [8, -14], [-22, -18.7, 4.5], [22, 18.7, 4.5], [0, 18.7, 4.5], [0, -18.7, 4.5], [-26.7, 0, 4.5], [26.7, 0, 4.5]],
-  build() {
-    addBox(0, 0, 60, 44, 2, 0xb5b9c2, -2); addFloorPad(40, 0xc9cdd6);
-    addLadder(-18, -16.2, 0, 1, 0, 4.5); addLadder(18, 16.2, 0, -1, 0, 4.5);
-    addBox(0, -22, 60.5, 0.6, 10, 0x6b7787); addBox(0, 22, 60.5, 0.6, 10, 0x6b7787); addBox(-30, 0, 0.6, 44.5, 10, 0x6b7787); addBox(30, 0, 0.6, 44.5, 10, 0x6b7787);
-    addBox(0, -18.7, 59, 5, 0.5, 0x9aa6b8, 4.0); addBox(0, 18.7, 59, 5, 0.5, 0x9aa6b8, 4.0);          // catwalk ring (top at 4.5)
-    addBox(-26.7, 0, 5, 33, 0.5, 0x9aa6b8, 4.0); addBox(26.7, 0, 5, 33, 0.5, 0x9aa6b8, 4.0);
-    for (const x of [-24, -8, 8, 24]) for (const z of [-16, 16]) addBox(x, z, 0.8, 0.8, 4.0, 0x5d6978);
-    addStairs(-12, 5.5, 0, 1, 15, 0.3, 0.7, 3, 0xd9b48a, 0xe8c9a3);
-    addStairs(12, -5.5, 0, -1, 15, 0.3, 0.7, 3, 0xd9b48a, 0xe8c9a3);
-    addBox(-14, -6, 10, 2, 3.2, 0xc98f4f); addBox(14, 6, 10, 2, 3.2, 0xc98f4f); addBox(-14, -10, 10, 2, 2.2, 0xd9a35f); addBox(14, 10, 10, 2, 2.2, 0xd9a35f);   // shelving
-    addBox(0, 0, 3, 3, 1.2, 0xe9a64f); addBox(3, 0, 3, 3, 2.4, 0xd98a3d); addBox(-3, 3.2, 2.4, 2.4, 1.2, 0xf2c16b);                       // crate stack
-    addBox(22, -6, 3, 3, 1.2, 0xe9a64f); addBox(-22, 6, 3, 3, 1.2, 0xe9a64f);
-  },
-};
 MAPS.rooftops = {
   name: 'Rooftops', cat: 'sky', tags: ['Climb', 'Bridges'], blurb: 'Nine rooftops, bridges between them and the street far below. Highest roof wins.',
   sky: 0xffcfa8, voidColor: 0xd9a58a, hills: [0xd88f8f, 0xc77f8f, 0xe8a598, 0xb86f85], shadow: 46, orbit: 60, orbitH: 36,
@@ -1581,7 +1638,7 @@ MAPS.rooftops = {
   },
 };
 MAPS.shrink = {
-  name: 'Shrink Zone', cat: 'arena', tags: ['Shrinking', '3 lives'], blurb: 'The floor keeps getting smaller, then grows back out before it gets too cramped. Stay on it. If everyone falls it comes back at half size.',
+  shrinks: true, name: 'Shrink Zone', cat: 'arena', tags: ['Shrinking', '3 lives'], blurb: 'The floor keeps getting smaller, then grows back out before it gets too cramped. Stay on it. If everyone falls it comes back at half size.',
   sky: 0xf2c6a8, voidColor: 0xd9967a, hills: [0xe0a98d, 0xd49a80, 0xeab79a, 0xc98a70], shadow: 50, orbit: 62, orbitH: 36,
   spawns: [[-12, 9], [12, -9], [0, 18], [-15, -12], [15, 12], [0, -18]],
   player: [0, 12], bots: [[-12, 9], [12, -9], [0, -18], [-15, -12], [15, 12]],
@@ -1589,8 +1646,23 @@ MAPS.shrink = {
   get drops() { const r = Math.max(2, (shrink ? shrink.size : 64) / 2 - 3); return [[r * 0.5, 0], [-r * 0.5, 0], [0, r * 0.5], [0, -r * 0.5], [r * 0.8, r * 0.6], [-r * 0.8, -r * 0.6]]; },
   build() {
     const S0 = 64, mesh = addBox(0, 0, S0, S0, 2, 0xf6e2cf, -2), box = solids[solids.length - 1];
-    shrink = { S0, size: S0, start: S0, min: 16, max: 40, dir: -1, cycle: 0, hold: 5, mesh, box };
+    shrink = { S0, size: S0, start: S0, min: 16, max: 40, dir: -1, cycle: 0, hold: 5, mesh, box, both: true, D: S0 };
     { const pad = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.04, 2.2), lm(0xe3566b)); pad.position.set(0, 0.02, 0); pad.receiveShadow = true; addDecor(pad); }      // a red marker in the middle, flush with the floor
+  },
+};
+MAPS.squeeze = {
+  shrinks: true, name: 'Squeeze Chamber', cat: 'arena', tags: ['Shrinking', '3 lives', 'Walls close in'], blurb: 'A long chamber whose two ends keep closing in, faster than the Shrink Zone, then opening back out. The sides stay put, so the fight gets squeezed into a tight lane. Crates in the middle for cover.',
+  sky: 0x2a1f5a, voidColor: 0x1a1440, hills: [0x3a2a6a, 0x2c2058, 0x483a7a, 0x241a4c], shadow: 50, orbit: 62, orbitH: 34,
+  spawns: [[-18, 6], [18, -6], [-26, -8], [26, 8], [0, 12], [0, -12]],
+  player: [-18, 6], bots: [[18, -6], [-26, -8], [26, 8], [0, 12], [0, -12]],
+  get wander() { return Math.max(3, (shrink ? shrink.size : 80) / 2 - 3); },
+  get drops() { const r = Math.max(2, (shrink ? shrink.size : 80) / 2 - 3); return [[r * 0.6, 4], [-r * 0.6, -4], [r * 0.9, -7], [-r * 0.9, 7], [r * 0.3, 8], [-r * 0.3, -8]]; },
+  build() {
+    const W0 = 80, D = 36, mesh = addBox(0, 0, W0, D, 2, 0xd9d4f0, -2), box = solids[solids.length - 1];
+    shrink = { S0: W0, size: W0, start: W0, min: 22, max: 58, dir: -1, cycle: 0, hold: 5, mesh, box, both: false, D, rate: 34 };
+    addBox(0, 0, 3.2, 3.2, 1.5, 0x8a7ac8); addBox(0, 0, 3.6, 3.6, 0.16, 0xb8a8f0, 1.5);                        // a block in the very middle
+    addBox(0, 9, 2, 2, 1.2, 0x6a5ab0); addBox(0, -9, 2, 2, 1.2, 0x6a5ab0);                                       // and a low crate each side of it
+    for (const pz of [14, -14]) { const pad = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.04, 2.2), lm(0x4affb0)); pad.position.set(0, 0.02, pz); pad.receiveShadow = true; addDecor(pad); }
   },
 };
 MAPS.tower = {
@@ -1680,6 +1752,8 @@ const ENV_DEFAULT = {
   fortress: { scene: 'castle', speck: 'dust', clouds: 'fluffy' },
   temple: { scene: 'mesas', speck: 'petal', mesaTop: 0x4f9a56, rock: 0x7a8a6a, waterfall: true },
   tower: { scene: 'meadow', balloons: 4, top: 0x4a86e0 },
+  squeeze: { scene: 'crags', clouds: 'none', speck: 'ember', aurora: [0x4aff9a, 0x4a8aff], birds: false, top: 0x1a1440, mid: 0x6a4aa0 },
+  pillars2: { scene: 'volcano', clouds: 'smoke', birds: false, top: 0x2a0c1c, mid: 0xc8402a, sunElev: 0.28, sunSize: 1.6, sunColor: 0xff7a3a },
   shrink: { scene: 'mountains', top: 0x6a5aa8, mid: 0xf0a8a0, sunElev: 0.36, sunSize: 1.4, sunColor: 0xffb878, rock: 0x9a7a8a },
   gunrange: { scene: 'mesas', turbines: 5, rock: 0xc4764c, sunElev: 0.8 },
   blast: { scene: 'industrial', clouds: 'smoke', speck: 'ember', top: 0x4a3566, mid: 0xc4727e, sunElev: 0.26, sunSize: 1.6, sunColor: 0xff9a5a },
@@ -1850,56 +1924,33 @@ function buildFar(kind, m, env, id) {
   const S = {};
   S.mountains = () => { mount(true); tallPines(30, 195, 250); oaks(24, 190, 245); };
   S.meadow = () => { mount(true); pines(26, 205, 240); tallPines(26, 195, 250); oaks(46, 190, 250); };
-  S.city = () => {
+  S.city = () => {                                                // a clean skyline: simple towers in a few shapes, shaded by distance, with a crown or spire each and one needle tower
     const lit = !!env.lit, warmCity = lit || lowSun, base = env.bld !== undefined ? env.bld : mixHex(hill, 0x6a7090, 0.5);
-    const wcache = {};
-    const facade = (c, h, bw) => {                                // a painted window grid for the sides of a building (made once per colour)
-      const k = c + '_' + warmCity; if (wcache[k]) return wcache[k];
-      let mt;
-      try {
-        const cv = document.createElement('canvas'); cv.width = 64; cv.height = 128; const g = cv.getContext('2d');
-        const css = '#' + ('000000' + c.toString(16)).slice(-6); g.fillStyle = css; g.fillRect(0, 0, 64, 128);
-        for (let y = 0; y < 16; y++) for (let x = 0; x < 6; x++) {
-          const on = warmCity && ((x * 7 + y * 13 + (c & 15)) % 5 < 2);
-          g.fillStyle = on ? '#ffd77a' : warmCity ? '#2a2640' : '#' + ('000000' + mixHex(c, 0x1a2a4a, 0.45).toString(16)).slice(-6); g.fillRect(4 + x * 10, 3 + y * 8, 6, 5);
-        }
-        const tx = new THREE.CanvasTexture(cv); tx.wrapS = tx.wrapT = THREE.RepeatWrapping; if (THREE.SRGBColorSpace) tx.colorSpace = THREE.SRGBColorSpace; mt = new THREE.MeshBasicMaterial({ map: tx, fog: false });
-      } catch (e) { mt = new THREE.MeshBasicMaterial({ color: c, fog: false }); }
-      backdrop.farMats.push(mt); return (wcache[k] = mt);
-    };
-    const tower = (x, z, w, d, h, c, ry, steps) => {              // a building with window rows and optional stepped top
-      let cw = w, cd = d, y = 0;
-      for (let st = 0; st < steps; st++) {
-        const sh = st === steps - 1 ? h - y : h * (0.55 - st * 0.1), geo = Box(cw, sh, cd);
-        try { const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * cw / 8, uv.getY(i) * sh / 16); } catch (e) { /* plain colour then */ }
-        const me = new THREE.Mesh(geo, facade(c, sh, cw)); me.position.set(x, FAR_Y + y + sh / 2, z); me.rotation.y = ry; far.add(me);
-        put(far, Box(cw + 0.8, 0.9, cd + 0.8), mixHex(c, 0x000000, 0.25), x, FAR_Y + y + sh + 0.45, z, { ry });
-        y += sh; cw *= 0.72; cd *= 0.72;
+    const tints = [base, mixHex(base, 0xffffff, 0.16), mixHex(base, 0x000000, 0.16), mixHex(base, 0x3a5a8a, 0.22)];
+    const tower = (x, z, w, d, h, c, a, kind, t) => {
+      const ry = -a;
+      if (kind === 0) {                                               // a plain slab with a roof cap and a small rooftop box
+        put(far, Box(w, h, d), c, x, FAR_Y + h / 2, z, { ry }); put(far, Box(w + 0.8, 1, d + 0.8), hz(mixHex(c, 0x000000, 0.3), t), x, FAR_Y + h + 0.5, z, { ry });
+        if (rng() < 0.6) put(far, Box(w * 0.4, 3, d * 0.4), hz(mixHex(c, 0x000000, 0.2), t), x, FAR_Y + h + 2.5, z, { ry }); return h + 1;
       }
-      return y;
+      if (kind === 1) {                                               // a tower with one setback
+        const h1 = h * 0.7, h2 = h - h1;
+        put(far, Box(w, h1, d), c, x, FAR_Y + h1 / 2, z, { ry }); put(far, Box(w * 0.66, h2, d * 0.66), hz(mixHex(c, 0xffffff, 0.08), t), x, FAR_Y + h1 + h2 / 2, z, { ry });
+        put(far, Box(w * 0.7, 0.9, d * 0.7), hz(mixHex(c, 0x000000, 0.3), t), x, FAR_Y + h + 0.45, z, { ry }); return h + 1;
+      }
+      put(far, Box(w, h, d), c, x, FAR_Y + h / 2, z, { ry });         // a tower with a spire
+      put(far, Cone(Math.min(w, d) * 0.5, 9, 4), hz(mixHex(c, 0x000000, 0.25), t), x, FAR_Y + h + 4.5, z, { ry: ry + Math.PI / 4 }); put(far, Cyl(0.25, 0.4, 14, 4), hz(0x9098a8, t), x, FAR_Y + h + 14, z); return h + 14;
     };
-    const tints = [base, mixHex(base, 0xffffff, 0.18), mixHex(base, 0x000000, 0.18), mixHex(base, 0x3a5a8a, 0.25), mixHex(base, 0x8a5a6a, 0.2)];
-    for (const [n, r0, r1, hMin, hMax, t, wmin] of [[40, 286, 296, 80, 190, 0.5, 18], [34, 250, 280, 50, 130, 0.36, 16], [30, 205, 245, 22, 70, 0.2, 14]]) ringEach(n, r0, r1, (a, r, i) => {
-      const bw = R(wmin, wmin + 12), bd2 = R(wmin, wmin + 12), h = R(hMin, hMax), x = Math.cos(a) * r, z = Math.sin(a) * r, c = hz(pick(tints), t);
-      const top = tower(x, z, bw, bd2, h, c, -a, h > 100 ? 3 : h > 55 ? 2 : 1);
-      const k = rng();
-      if (k < 0.3) put(far, Cyl(0.3, 0.7, R(14, 30), 4), hz(0x808090, t), x, FAR_Y + top + 8, z);                          // antenna
-      else if (k < 0.5) { put(far, Cyl(bw * 0.2, bw * 0.2, 4, 8), hz(0x8a8a98, t), x, FAR_Y + top + 3, z); put(far, Box(bw * 0.3, 2.4, bw * 0.3), hz(0xc0402a, t), x + 2, FAR_Y + top + 6, z); }   // water tank
-      else if (k < 0.62) put(far, Box(bw * 0.6, 4, bd2 * 0.6), hz(0x4a9a6a, t), x, FAR_Y + top + 2, z, { ry: -a });          // a roof garden
+    for (const [n, r0, r1, hMin, hMax, t, wmin] of [[36, 286, 296, 80, 180, 0.5, 18], [32, 252, 280, 45, 120, 0.34, 16], [28, 205, 245, 20, 60, 0.18, 13]]) ringEach(n, r0, r1, (a, r) => {
+      const bw = R(wmin, wmin + 10), bd2 = R(wmin, wmin + 10), h = R(hMin, hMax), x = Math.cos(a) * r, z = Math.sin(a) * r, c = hz(pick(tints), t);
+      tower(x, z, bw, bd2, h, c, a, Math.floor(rng() * 3), t);
+      if (warmCity && t < 0.45) {                                     // lit windows as tall warm stripes down the side that faces you
+        const off = bw / 2 + 0.2, nrm = [-Math.cos(a), -Math.sin(a)], tan = [-Math.sin(a), Math.cos(a)];
+        for (let k = -1; k <= 1; k++) { if (rng() < 0.3) continue; const lh = h * R(0.4, 0.8); put(far, Box(0.3, lh, 1.1), 0xffd77a, x + nrm[0] * off + tan[0] * k * bd2 * 0.28, FAR_Y + R(3, h - lh) + lh / 2, z + nrm[1] * off + tan[1] * k * bd2 * 0.28, { basic: true, ry: -a }); }
+      }
     }, 0.45);
-    // landmarks: a needle tower with a saucer, a domed hall and a big arched bridge
-    { const a = sunAz + 2.6, g = grp(a, 272), c = hz(0xd8dce8, 0.3);
-      put(g, Cyl(2.2, 4.4, 150, 6), c, 0, 75, 0); put(g, Cyl(16, 7, 8, 14), c, 0, 140, 0); put(g, Cyl(12, 16, 3, 14), hz(0x4a7ac8, 0.3), 0, 146, 0); put(g, Cyl(7, 12, 4, 14), c, 0, 150, 0); put(g, Cone(1.4, 34, 6), c, 0, 172, 0); put(g, Box(0.6, 1, 0.6), 0xff4a4a, 0, 190, 0, { basic: true }); }
-    { const a = sunAz + 1.2, g = grp(a, 268), c = hz(0xe8e0d0, 0.32);
-      put(g, Box(86, 24, 36), c, 0, 12, 0); for (let k = 0; k < 9; k++) put(g, Cyl(1.7, 1.9, 22, 8), hz(0xf4eee0, 0.3), -36 + k * 9, 11, 19); put(g, Cyl(24, 28, 12, 18), c, 0, 30, 0); put(g, Sph(24, 16, 8, 0, BD_T2, 0, Math.PI / 2), hz(0x6aa8a0, 0.3), 0, 36, 0); put(g, Cyl(1, 1, 12, 5), c, 0, 66, 0); }
-    { const a = sunAz + 4.4, g = grp(a, 255), c = hz(0xc0443a, 0.3);                                                       // a big suspension bridge
-      for (const sx of [-1, 1]) { put(g, Box(4, 90, 4), c, sx * 36, 35, 0); put(g, Box(5, 3, 6), c, sx * 36, 62, 0); }
-      put(g, Box(130, 3, 7), hz(0x606878, 0.3), 0, 10, 0);
-      for (let k = -17; k <= 17; k++) { const x = k * 3.6, u = Math.abs(x) / 36, top = 10 + 62 * (0.12 + 0.88 * u * u); if (Math.abs(x) <= 36) put(g, Box(0.3, top - 10, 0.3), c, x, 10 + (top - 10) / 2, 0); put(g, Box(3.8, 0.4, 0.4), c, x, top, 0); }
-    }
-    if (!lit && !lowSun) for (let i = 0; i < 4; i++) { const a = R(0, BD_T2); const bg = new THREE.Group(); farA.add(bg); put(bg, Box(7, 1.6, 2.4), 0xf4f4f8, 0, 0, 0); put(bg, Box(1, 0.5, 5), 0xf4f4f8, 0, 0, 0); const sp = R(0.01, 0.02) * (i % 2 ? 1 : -1), r = R(150, 230), y0 = R(70, 120);   // little planes between the towers
-      bg.userData = { a };
-      backdrop.anim.push((t, dt) => { const u = bg.userData; u.a += sp * dt; bg.position.set(Math.cos(u.a) * r, y0, Math.sin(u.a) * r); bg.rotation.y = -u.a + (sp > 0 ? 0 : Math.PI); }); }
+    { const a = sunAz + 2.6, g = grp(a, 272), c = hz(0xd8dce8, 0.3);                                                      // the needle tower
+      put(g, Cyl(2.2, 4.4, 150, 6), c, 0, 75, 0); put(g, Cyl(12, 7, 6, 14), c, 0, 142, 0); put(g, Cone(1.4, 34, 6), c, 0, 165, 0); put(g, Box(0.6, 1, 0.6), 0xff4a4a, 0, 183, 0, { basic: true }); }
     oaks(26, 190, 215, [0x4f9a4a, 0x6aae52]);                       // trees in the parks at the foot of the city
   };
   S.fuji = () => {
@@ -2598,12 +2649,12 @@ const MODES = {
 const LOWG_KEYS = ['shotgun', 'mammoth', 'revolver', 'sniper', 'rocket', 'glauncher', 'cluster', 'ak', 'smg', 'uzi', 'minigun', 'net'];   // Moon Drift: seven that shove (shotgun, Mammoth, revolver, sniper, rocket, grenade and cluster launchers) and five that don't (AK, SMG, Uzis, minigun, net). No melee, flamethrower, ninja gear or bow
 MODES.lowg = { name: 'Moon Drift', desc: 'Super low gravity. Float, soar and knock rivals around', preset: { hp: 200, limit: 0, count: 3, behav: 'brawl', ffa: true, grav: 0.15 }, allow: k => k === 'heal' || LOWG_KEYS.includes(k), start: 'smg' };
 MODES.classic.maps = null;                                                 // null = every level
-MODES.melee.maps = ['arena', 'park', 'ice', 'warehouse', 'rooftops', 'cloud', 'tower', 'brawlpit'];
-MODES.guns.maps = ['arena', 'temple', 'warehouse', 'rooftops', 'gunrange'];
-MODES.ninja.maps = ['temple', 'cloud', 'rooftops', 'tower', 'warehouse'];
+MODES.melee.maps = ['arena', 'park', 'ice', 'rooftops', 'cloud', 'tower', 'brawlpit'];
+MODES.guns.maps = ['arena', 'temple', 'rooftops', 'gunrange'];
+MODES.ninja.maps = ['temple', 'cloud', 'rooftops', 'tower'];
 MODES.sandbox.maps = ['custom'];
-MODES.mega.maps = ['shrink']; MODES.pillars.maps = ['pillars']; MODES.lowg.maps = ['craterdome', 'capsule'];
-const TEAM_MAPS = ['arena', 'park', 'ice', 'temple', 'warehouse', 'rooftops'];
+MODES.mega.maps = ['shrink', 'squeeze']; MODES.pillars.maps = ['pillars', 'pillars2']; MODES.lowg.maps = ['craterdome', 'capsule'];
+const TEAM_MAPS = ['arena', 'park', 'ice', 'temple', 'rooftops'];
 MODES.duel.maps = MODES.t2.maps = MODES.t3.maps = MODES.t4.maps = TEAM_MAPS;
 
 /* ---- build 55: big arenas for the team modes (3v3 and 4v4) ---- */
@@ -2967,6 +3018,11 @@ MAPS.pillars = {
     });
   },
 };
+MAPS.pillars2 = Object.assign({}, MAPS.pillars, {              // the same eight pillars and rules, over a sea of lava under a red sky
+  name: 'Lava Pillars', tags: ['Pillars', 'Height', 'Lava'], blurb: 'The same eight tall pillars, now over a lake of lava under a burning sky. The gaps are too wide to jump, so you need a dash (any weapon can dash here). Every 10 seconds a new weapon lands in your inventory. Fall and you are out for the match. Most K.O.s when the clock ends wins.',
+  env: { speck: 'ember', speckColor: 0xffb070 }, peaks: false,
+  sky: 0xff9a60, skyTop: 0x3a1020, voidColor: 0xff5a1e, hills: [0x7a2a1e, 0x642018, 0x8a362a, 0x521812], fog: [70, 230],
+});
 MAPS.playroom = {
   name: "Giant's Playroom", cat: 'obstacle', tags: ['Giant', 'Toys', 'Cover'], only: 'giant', blurb: 'A kid\'s room as seen by a giant. A teddy bear in the corner, a tennis ball, dice, a toy car, building bricks, a book stack to climb, crayons for cover and bounce pads between.',
   sky: 0xfde8c8, skyTop: 0x8fc3ee, voidColor: 0xb89a78, hills: [0xd9b88a, 0xe6c79a, 0xc9a574, 0xdfc08f], shadow: 62, orbit: 82, orbitH: 46, hemi: 0.95, sunI: 0.85,
@@ -3021,11 +3077,11 @@ MAPS.playroom = {
 };
 
 MAPS.farm = {
-  name: 'Sunny Farm', cat: 'arena', tags: ['Farm', 'Barn', 'Cover'], blurb: 'A busy farm on a sunny morning. Climb the big red barn, hide behind hay bales and cows, fight round the tractor and chicken coop, or race over the haystack in the middle. Watch out for the pigs in the mud.',
+  name: 'Sunny Farm', cat: 'arena', tags: ['Farm', 'Barn', 'Cover'], blurb: 'A big farm on a sunny morning. Run into the big red barn and up to its hayloft, hide behind hay bales, fight round the tractor and the coop, or race over the haystack in the middle.',
   env: { speck: 'pollen', peaks: true }, sunColor: 0xfff2c8,
-  sky: 0xbfe6fa, skyTop: 0x4f9ee8, voidColor: 0x7fbf5a, hills: [0x8fd06a, 0x7cc05a, 0xa8dc78, 0x6bb04e], shadow: 42, orbit: 46, orbitH: 26,
-  spawns: [[-18, 3], [18, 3], [0, -20], [0, 20], [-17, 17], [17, 18]], player: [0, 20], bots: [[-18, 3], [18, 3], [0, -20], [-17, 17], [17, 18]], wander: 18,
-  drops: [[-13, 1], [19, -4], [-6, -8], [7, -9], [-9, 17], [9, 3], [-4, 8], [12, 11], [0, 0, 3.2], [-14, -15, 3.4]],
+  sky: 0xbfe6fa, skyTop: 0x4f9ee8, voidColor: 0x7fbf5a, hills: [0x8fd06a, 0x7cc05a, 0xa8dc78, 0x6bb04e], shadow: 56, orbit: 62, orbitH: 36,
+  spawns: [[-18, 3], [18, 3], [0, 20], [-17, 21], [17, 18], [-27, -8], [27, -12], [-26, 24], [26, 26]], player: [0, 20], bots: [[-18, 3], [18, 3], [-17, 21], [17, 18], [-27, -8], [27, -12], [-26, 24], [26, 26]], wander: 26,
+  drops: [[-13, 1], [19, -4], [-6, -8], [7, -9], [-9, 17], [9, 3], [-4, 8], [12, 11], [0, 0, 3.2], [0, -29, 3.4], [-4, -23], [3, -21], [-26, 4], [26, 2], [-26, 26], [26, 28], [0, 28], [-24, -12], [25, -20]],
   build() {
     const GR = 0x8fcf6a, DIRT = 0xb48a5a, WOOD = 0xa87244, RED = 0xc8382f, WHITE = 0xf6efe2, HAY = 0xe8c24a;
     const flat = (x, z, w, d, c, y = 0.015, ry = 0) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, d), lm(c)); m.rotation.x = -Math.PI / 2; m.rotation.z = ry; m.position.set(x, y, z); m.receiveShadow = true; return addDecor(m); };
@@ -3035,7 +3091,7 @@ MAPS.farm = {
     const part = (g, geo, c, x, y, z, rx = 0, ry = 0, rz = 0, sc) => { const m = new THREE.Mesh(geo, lm(c)); m.position.set(x, y, z); m.rotation.set(rx, ry, rz); if (sc) m.scale.set(sc[0], sc[1], sc[2]); m.castShadow = true; g.add(m); return m; };
     const roofP = (x, y, z, w, d, h, c) => dec(Co(1, h, 4), c, x, y + h / 2, z, 0, Math.PI / 4, 0, [w / 1.4142, 1, d / 1.4142]);        // a pyramid roof over a w by d box
     // ---- ground: grass, a dirt road, a mown patch round the middle ----
-    addBox(0, 0, 46, 46, 2, GR, -2); addFloorPad(42, 0x9ad874);
+    addBox(0, 0, 64, 64, 2, GR, -2); addFloorPad(60, 0x9ad874);
     flat(0, -13, 4.6, 20, DIRT); flat(0, 14.5, 4.6, 15, DIRT); flat(-12, 6, 11, 3.2, DIRT, 0.016, 0.4);
     for (let i = 0; i < 26; i++) { const a = i * 2.399, r = 3 + (i * 7 % 17); flat(Math.cos(a) * r, Math.sin(a) * r, 1.3 + (i % 3) * 0.5, 1.1 + (i % 2) * 0.6, i % 2 ? 0x82c460 : 0xa4dc7c, 0.018, i); }   // lighter and darker grass patches
     // ---- the haystack in the middle (three tiers to jump up) ----
@@ -3043,15 +3099,6 @@ MAPS.farm = {
     for (let k = 0; k < 3; k++) { dec(Bx(10.05, 0.1, 0.12), 0x9a7a2a, 0, 0.35 + k * 0.28, 5.03); dec(Bx(0.12, 0.1, 10.05), 0x9a7a2a, 5.03, 0.35 + k * 0.28, 0); }
     dec(Cy(0.07, 0.07, 3.6, 5), 0x7a5a2a, 0, 4.8, 0); dec(Bx(1.1, 0.7, 0.05), RED, 0.55, 5.6, 0);                                                      // a flag on a pitchfork pole
     for (let k = 0; k < 3; k++) dec(Cy(0.03, 0.03, 1.1, 4), 0x555555, -0.25 + k * 0.25, 2.55, 0.9, 0.5);
-    // ---- the big red barn (climb the steps to the hayloft) ----
-    addBox(-14, -15, 12, 8, 3.4, RED); addBox(-14, -15, 12.6, 8.6, 0.3, 0x7a2a22, 3.4);
-    addBox(-14, -18.8, 12, 0.7, 3.2, RED, 3.7); for (const sx of [-1, 1]) addBox(-14 + sx * 5.7, -15, 0.6, 8, 1.2, 0xa22e26, 3.7);             // back wall and side rails round the loft
-    for (let k = 0; k < 5; k++) dec(Bx(0.5, 3.2, 0.05), WHITE, -19 + k * 2.5, 1.7, -10.97); dec(Bx(5.4, 0.3, 0.05), WHITE, -14, 3.2, -10.97);   // white trim on the front
-    dec(Bx(4.2, 2.6, 0.08), 0x7a2a22, -14, 1.3, -10.96); dec(Bx(4.2, 0.2, 0.1), WHITE, -14, 1.3 + 0.1, -10.94, 0, 0, 0.62, [1.5, 1, 1]); dec(Bx(4.2, 0.2, 0.1), WHITE, -14, 1.3, -10.94, 0, 0, -0.62, [1.5, 1, 1]);   // the X door
-    dec(Bx(2.2, 1.6, 0.08), 0x3a2a20, -14, 2.8, -10.96, 0, 0, 0, [1, 0.01, 1]);
-    for (const [hx, hz, hs] of [[-17, -17, 1], [-11.5, -16.5, 0.8], [-12, -18, 0.7]]) dec(Ic(1.0 * hs), HAY, hx, 3.9 + 0.5 * hs, hz, 0, 0, 0, [1.2, 0.75, 1]);   // hay up in the loft
-    addStairs(-14, -6.5, 0, -1, 5, 0.68, 0.9, 3, 0xc79a63, 0xb5894f);
-    { const g = grp(-8.4, 4.4, -18.8); part(g, Cy(0.06, 0.06, 2.2, 5), 0x333333, 0, 1.1, 0); part(g, Bx(1.2, 0.08, 0.08), 0x333333, 0, 1.9, 0); part(g, Ic(0.3), 0xe8a020, 0.5, 2.3, 0, 0, 0, 0, [1.2, 0.8, 0.6]); part(g, Co(0.12, 0.34, 4), 0xd8382f, 0.62, 2.55, 0); }   // a weather-cock
     // ---- the chicken coop ----
     addBox(15, -15, 6, 4, 1.6, 0xb98a55); addBox(15, -15, 6.8, 4.8, 0.2, 0x8a5a34, 1.6);
     roofP(15, 1.85, -15, 6.8, 4.8, 0.7, 0xc8382f);
@@ -3068,10 +3115,25 @@ MAPS.farm = {
     // ---- hay bales dotted about ----
     const bale = (x, z, yb = 0, w = 2, d = 1.5) => { addBox(x, z, w, d, 1.0, HAY, yb); dec(Bx(w + 0.03, 0.08, 0.1), 0x9a7a2a, x, yb + 0.3, z + d / 2 + 0.01); dec(Bx(w + 0.03, 0.08, 0.1), 0x9a7a2a, x, yb + 0.7, z + d / 2 + 0.01); };
     bale(-8, 7); bale(-8, 7, 1, 1.4, 1.2); bale(-5.6, 8.1); bale(-9.6, -3); bale(-6.5, -4.2); bale(-8.2, -3.6, 1, 1.5, 1.2); bale(12, -4, 0, 1.5, 2); bale(10.5, -6.5); bale(19.5, 8); bale(20, 5.8, 0, 1.4, 1.4);
+    // ---- the big barn: walk in through the doors, hay bales inside, stairs up to a covered hayloft ----
+    { const BZ = -25, RED2 = 0xb8342c, DK = 0x7a2a22;
+      addBox(0, BZ - 5.6, 20, 0.8, 4.4, RED2); addBox(-9.6, BZ, 0.8, 12, 4.4, RED2); addBox(9.6, BZ, 0.8, 12, 4.4, RED2);               // back and side walls
+      addBox(-6.5, BZ + 5.6, 7, 0.8, 4.4, RED2); addBox(6.5, BZ + 5.6, 7, 0.8, 4.4, RED2); addBox(0, BZ + 5.6, 6, 0.8, 0.8, RED2, 3.6);     // the front wall with a wide door in the middle
+      flat(0, BZ, 18.4, 11.2, 0x9a7a52, 0.02);                                                                                              // wooden floor
+      for (let k = 0; k < 7; k++) { dec(Bx(0.3, 4.3, 0.06), WHITE, -9 + k * 3, 2.15, BZ + 6.03); } dec(Bx(20.4, 0.3, 0.1), WHITE, 0, 4.3, BZ + 6.04);   // white trim along the front
+      for (const sx of [-1, 1]) { dec(Bx(3, 3.4, 0.14), DK, sx * 3.4, 1.7, BZ + 6.2, 0, sx * -0.9, 0); dec(Bx(3, 0.18, 0.18), WHITE, sx * 3.4, 1.7, BZ + 6.3, 0, sx * -0.9, 0.9); }   // the big doors, swung open
+      addBox(0, BZ - 3.2, 18.4, 5.2, 0.4, 0xb5894f, 2.8);                                                                                   // the hayloft floor (top 3.2) across the back
+      addStairs(-7.2, BZ + 3.6, 0, -1, 5, 0.64, 0.9, 3, 0xc79a63, 0xb5894f);                                                                // stairs up to it from the left
+      dec(Bx(20.8, 0.3, 6.2), DK, 0, 4.6, BZ - 3.2); for (let k = 0; k < 5; k++) dec(Bx(0.3, 1.6, 0.3), 0x5a3a20, -9 + k * 4.5, 3.8, BZ - 0.1);    // a roof over the loft, held up on posts
+      dec(Bx(20.8, 0.3, 6.4), DK, 0, 5.2, BZ - 3.2, -0.25); dec(Bx(20.8, 0.3, 6.4), 0xa22e26, 0, 5.9, BZ - 3.2, 0.2);
+      for (const [hx, hz, hs] of [[-5, BZ - 4, 1], [3, BZ - 4.4, 1.1], [7, BZ - 3, 0.8]]) dec(Ic(1.0 * hs), HAY, hx, 3.7 + 0.5 * hs, hz, 0, 0, 0, [1.4, 0.8, 1]);   // hay up in the loft
+      bale(5.5, BZ + 2.6); bale(-2, BZ + 1.5, 0, 1.6, 1.6); bale(-2, BZ + 1.5, 1, 1.2, 1.2); bale(4, BZ - 1.2, 0, 1.4, 2);                       // bales inside
+      for (const sx of [-1, 1]) { dec(Cy(0.07, 0.07, 3, 5), 0x7a5a2a, sx * 8.6, 1.5, BZ + 5.3); dec(Bx(0.5, 0.65, 0.25), 0xffe9a8, sx * 8.6, 2.9, BZ + 5.3); }   // lanterns by the door
+      dec(Bx(3.4, 1.0, 0.1), WHITE, 0, 5.3, BZ + 6.05); dec(Bx(2.4, 0.5, 0.12), RED, 0, 5.3, BZ + 6.06);                                         // sign over the doors
+    }
     // ---- the pig pen with mud ----
     flat(-16.5, 12.5, 9, 8, 0x7a5a38, 0.02); flat(-16.5, 12.5, 6, 5, 0x5a4026, 0.022, 0.3);
     for (const [fx, fz, w, d] of [[-16.5, 8.4, 9.4, 0.25], [-16.5, 16.6, 9.4, 0.25], [-21.1, 12.5, 0.25, 8.4], [-12, 15.6, 0.25, 2.2], [-12, 9.4, 0.25, 2.2]]) { addBox(fx, fz, w, d, 0.95, 0xe3c58e); dec(Bx(w + 0.1, 0.12, d + 0.1), 0xa87244, fx, 1.0, fz); }
-    for (const [px, pz, ry] of [[-17.5, 11.5, 0.5], [-15, 14, 2.2], [-18.5, 14.5, -0.6]]) { const g = grp(px, 0, pz, ry); part(g, Bx(1.5, 0.85, 0.85), 0xf2a0b0, 0, 0.7, 0); part(g, Bx(0.6, 0.6, 0.7), 0xf2a0b0, 0.95, 0.8, 0); part(g, Cy(0.2, 0.2, 0.18, 6), 0xe08a9a, 1.3, 0.78, 0, 0, 0, Math.PI / 2); part(g, Co(0.14, 0.24, 3), 0xe08a9a, 0.85, 1.18, 0.22); part(g, Co(0.14, 0.24, 3), 0xe08a9a, 0.85, 1.18, -0.22); for (const [lx, lz] of [[-0.5, 0.28], [0.5, 0.28], [-0.5, -0.28], [0.5, -0.28]]) part(g, Bx(0.2, 0.4, 0.2), 0xe08a9a, lx, 0.2, lz); part(g, Cy(0.04, 0.04, 0.4, 4), 0xe08a9a, -0.85, 0.8, 0, Math.PI / 2, 0, 0.6); }
     dec(Bx(2.4, 0.5, 0.9), 0x6a7a8a, -13.8, 0.25, 11.0); dec(Bx(2.1, 0.12, 0.6), 0x6ab8e8, -13.8, 0.52, 11.0);
     // ---- the silo ----
     addBox(19, 14, 3.8, 3.8, 9, 0xd8dce6); dec(new THREE.SphereGeometry(2.15, 10, 6, 0, Math.PI * 2, 0, Math.PI / 2), 0x8a94a6, 19, 9, 14, 0, 0, 0, [1, 0.9, 1]);
@@ -3083,19 +3145,7 @@ MAPS.farm = {
     // ---- the duck pond (flat, safe to walk through) ----
     flat(-3, -9, 7.5, 5.2, 0x8a7a50, 0.02, 0.2); flat(-3, -9, 6.6, 4.4, 0x4fa8d8, 0.025, 0.2);
     for (const [lx, lz] of [[-1.6, -8], [-4.4, -10.2], [-2.6, -10.6]]) dec(Cy(0.45, 0.45, 0.04, 8), 0x3a9a4a, lx, 0.05, lz);
-    for (const [dx, dz] of [[-3.4, -8.4], [-2.2, -9.6]]) { const g = grp(dx, 0.1, dz, dx); part(g, Ic(0.3), 0xf4d03a, 0, 0.2, 0, 0, 0, 0, [1.3, 0.8, 0.9]); part(g, Ic(0.17), 0xf4d03a, 0.34, 0.45, 0); part(g, Co(0.07, 0.18, 4), 0xf08a20, 0.55, 0.43, 0, 0, 0, -Math.PI / 2); }
     for (let k = 0; k < 7; k++) { const a = k / 7 * 6.283; dec(Cy(0.03, 0.03, 0.9, 4), 0x4a8a3a, -3 + Math.cos(a) * 3.9, 0.45, -9 + Math.sin(a) * 2.6); dec(Cy(0.09, 0.09, 0.3, 6), 0x6a4a2a, -3 + Math.cos(a) * 3.9, 0.95, -9 + Math.sin(a) * 2.6); }   // reeds and cattails
-    // ---- cows (solid, great cover) ----
-    const cow = (x, z, turn, patch) => {
-      const along = !turn, w = along ? 3.2 : 1.5, d = along ? 1.5 : 3.2;
-      addBox(x, z, w, d, 1.3, WHITE, 0.55);
-      const g = grp(x, 0, z, turn ? Math.PI / 2 : 0);
-      part(g, Bx(1.2, 0.9, 1.52), 0x2a2a2e, patch, 1.35, 0); part(g, Bx(0.8, 0.5, 1.54), 0x2a2a2e, -patch * 0.9, 1.5, 0); part(g, Bx(1.0, 0.95, 0.9), WHITE, 1.9, 1.5, 0); part(g, Bx(0.45, 0.4, 0.8), 0xf2b8b8, 2.45, 1.3, 0); part(g, Bx(0.12, 0.18, 0.16), 0x333333, 2.7, 1.32, 0.18); part(g, Bx(0.12, 0.18, 0.16), 0x333333, 2.7, 1.32, -0.18);
-      for (const sz of [-1, 1]) { part(g, Co(0.1, 0.4, 4), 0xeee8d0, 1.8, 2.15, sz * 0.4, 0, 0, sz * 0.5); part(g, Bx(0.1, 0.1, 0.4), 0x2a2a2e, 1.5, 1.85, sz * 0.55); }
-      for (const [lx, lz] of [[-1.1, 0.5], [-1.1, -0.5], [1.1, 0.5], [1.1, -0.5]]) part(g, Bx(0.3, 0.7, 0.3), WHITE, lx, 0.35, lz);
-      part(g, Cy(0.05, 0.05, 1.1, 4), WHITE, -1.7, 1.2, 0, 0, 0, 0.35); part(g, Ic(0.14), 0x2a2a2e, -1.9, 0.62, 0); part(g, Ic(0.3), 0xf8c8c8, -0.3, 0.55, 0, 0, 0, 0, [1, 0.6, 1.2]);
-    };
-    cow(-6, -18.6, false, 0.3); cow(5, 15.3, false, -0.4); cow(21, -3, true, 0.2);
     // ---- fences and a gate along the east field ----
     for (const [fx, fz, w, d] of [[8, -2, 0.25, 4.4], [8, 4.8, 0.25, 6.6], [14.2, -4.6, 12.4, 0.25], [14.2, 9.2, 12.4, 0.25]]) { addBox(fx, fz, w, d, 0.95, 0xe3c58e); dec(Bx(w + 0.1, 0.12, d + 0.1), WOOD, fx, 1.0, fz); }
     // ---- the crop field with a scarecrow ----
@@ -3104,6 +3154,10 @@ MAPS.farm = {
     // ---- trees, an orchard of apple trees round the edge ----
     const tree = (x, z, s = 1, fruit = true) => { addBox(x, z, 0.8 * s, 0.8 * s, 3.2 * s, 0x7a5232); dec(Ic(2.2 * s), 0x4fa04a, x, 4.2 * s, z, 0, 0, 0, [1, 0.85, 1]); dec(Ic(1.6 * s), 0x5fb458, x + 0.9 * s, 5.2 * s, z - 0.4 * s); dec(Ic(1.4 * s), 0x46964a, x - 0.9 * s, 4.7 * s, z + 0.6 * s);
       if (fruit) for (let k = 0; k < 7; k++) { const a = k * 0.9; dec(Ic(0.17 * s), 0xe83a3a, x + Math.cos(a) * 1.9 * s, (3.8 + (k % 3) * 0.6) * s, z + Math.sin(a) * 1.9 * s); } };
+    for (const [tx, tz, ts] of [[-29, -20, 1.1], [-30, -4, 1], [-29, 10, 1.1], [-30, 29, 1.2], [-14, 30, 1], [14, 30, 1.1], [29, 29, 1.1], [30, 12, 1], [29, -2, 1.2], [30, -22, 1], [20, -30, 1.1], [-20, -31, 1]]) tree(tx, tz, ts, ts > 1);
+    for (let r = 0; r < 4; r++) for (let k = 0; k < 6; k++) dec(Co(0.34, 0.8, 5), r % 2 ? 0x4fb04a : 0x68c848, -28.5 + k * 1.1, 0.4, 14 + r * 2.4);   // a second crop patch
+    for (const [fx, fz, w, d] of [[-27, -17, 8, 0.25], [-27, -25, 8, 0.25], [-31, -21, 0.25, 8.4], [-23, -21, 0.25, 8.4]]) { addBox(fx, fz, w, d, 0.95, 0xe3c58e); dec(Bx(w + 0.1, 0.12, d + 0.1), WOOD, fx, 1.0, fz); }   // an empty paddock
+    bale(26, 14, 0, 2, 1.5); bale(27.5, 12.5, 0, 1.5, 1.5); bale(-27, -3, 0, 2, 1.5); bale(-26, 18, 0, 1.6, 1.6); bale(-26, 18, 1, 1.2, 1.2); bale(24, -26, 0, 2, 1.5); bale(-25, -30, 0, 1.5, 2);
     tree(-21, -2, 1.1); tree(-21.5, 19.5, 1.2); tree(21.5, -9, 1); tree(3, 21.5, 1.1, false); tree(-10, 21.5, 1, false); tree(21.5, 21.5, 1.1);
     // ---- windmill ----
     addBox(-21, -22, 4.4, 4.4, 2.4, 0xe8e0d0); addBox(-21, -22, 3.5, 3.5, 2.4, 0xd8d0be, 2.4); addBox(-21, -22, 2.6, 2.6, 2.4, 0xe8e0d0, 4.8);
@@ -3116,16 +3170,11 @@ MAPS.farm = {
     { const g = grp(6.5, 0, -14, 0.5); part(g, Bx(1.5, 0.4, 0.9), 0x3a8a4a, 0, 0.75, 0, 0, 0, 0, [1, 1, 1]); part(g, Cy(0.3, 0.3, 0.1, 8), 0x333333, 0.8, 0.3, 0, Math.PI / 2); for (const sz of [-1, 1]) part(g, Bx(1.0, 0.07, 0.07), WOOD, -1.0, 0.95, sz * 0.4, 0, 0, 0.2); }
     addBox(10.5, 16.6, 3.2, 1.1, 0.7, 0x7a8a9a); dec(Bx(2.8, 0.1, 0.8), 0x6ab8e8, 10.5, 0.72, 16.6);
     for (const [x, z, s] of [[-8, 18, 1], [-6.6, 19, 0.8], [-9.4, 19.4, 0.9], [-7.4, 20.4, 0.7]]) { addBox(x, z, 1.1 * s, 1.1 * s, 0.9 * s, 0xf08a2a); dec(Cy(0.05, 0.05, 0.3, 4), 0x4a6a2a, x, 1.0 * s, z); }
-    for (let k = 0; k < 14; k++) { const x = -21 + k * 3.2; dec(Cy(0.05, 0.05, 2.4, 4), 0x4a8a3a, x, 1.2, -22.4); dec(Cy(0.42, 0.42, 0.16, 8), 0xf4c820, x, 2.45, -22.4, Math.PI / 2 - 0.3); dec(Cy(0.2, 0.2, 0.18, 8), 0x5a3a1a, x, 2.45, -22.28, Math.PI / 2 - 0.3); }
+    for (let k = 0; k < 14; k++) { const x = -21 + k * 3.2; if (x > -11 && x < 11) continue; dec(Cy(0.05, 0.05, 2.4, 4), 0x4a8a3a, x, 1.2, -22.4); dec(Cy(0.42, 0.42, 0.16, 8), 0xf4c820, x, 2.45, -22.4, Math.PI / 2 - 0.3); dec(Cy(0.2, 0.2, 0.18, 8), 0x5a3a1a, x, 2.45, -22.28, Math.PI / 2 - 0.3); }
     for (let k = 0; k < 34; k++) { const a = k * 2.1, x = Math.cos(a) * (6 + (k * 5 % 14)), z = Math.sin(a) * (6 + (k * 5 % 14)); if (Math.abs(x) < 5.6 && Math.abs(z) < 5.6) continue; if (x > 8 && x < 20 && z > -5 && z < 9) continue; dec(Cy(0.02, 0.02, 0.4, 3), 0x4a8a3a, x, 0.2, z); dec(Ic(0.13), [0xff5a8a, 0xffe03a, 0xffffff, 0xb48cff][k % 4], x, 0.45, z); }
-    // ---- chickens everywhere ----
-    const chicken = (x, y, z, ry, c = WHITE) => { const g = grp(x, y, z, ry); part(g, Ic(0.36), c, 0, 0.45, 0, 0, 0, 0, [1.05, 0.85, 1.2]); part(g, Co(0.2, 0.4, 4), c, -0.42, 0.62, 0, 0, 0, 1.1); part(g, Ic(0.19), c, 0.34, 0.82, 0); part(g, Co(0.07, 0.24, 3), 0xd8282a, 0.36, 1.05, 0); part(g, Co(0.07, 0.26, 3), 0xf08a20, 0.55, 0.8, 0, 0, 0, -Math.PI / 2); part(g, Ic(0.07), 0xd8282a, 0.5, 0.65, 0); for (const sz of [-1, 1]) { part(g, Cy(0.03, 0.03, 0.32, 4), 0xf08a20, 0, 0.16, sz * 0.14); part(g, Bx(0.4, 0.07, 0.3), c === WHITE ? 0xeee6d6 : 0xa0602a, -0.06, 0.5, sz * 0.36, 0, sz * 0.2); } return g; };
-    [[13.4, 0, -12.2, 1.2], [14.8, 0, -11.9, 3], [16.5, 0, -12.4, 0.2, 0xb8682a], [17.4, 0, -11.4, 2, 0xf2d6a0], [-4.5, 0, 6.2, 1.6], [-3, 0, 5, 4], [9.6, 0, 4.9, 0.7, 0xb8682a], [5.6, 0, 18, 2.4], [-12.5, 0, -8.8, 5], [-15.5, 0, -9.4, 0.4, 0xb8682a]].forEach(([x, y, z, r, c]) => chicken(x, y, z, r, c));
-    chicken(15, 1.8, -15.6, 1, 0xb8682a); chicken(-8.5, 2, 7, 4); chicken(19.8, 1.0, 8, 2.4); chicken(-12, 4.05, -17, 0.8, 0xb8682a); chicken(-16, 4.05, -14, 3, 0xf2d6a0);
-    for (const [x, z] of [[14.3, -11.6], [15.5, -11.2], [13.6, -11.0]]) { const g = grp(x, 0, z, x); part(g, Ic(0.17), 0xf8e04a, 0, 0.17, 0); part(g, Ic(0.11), 0xf8e04a, 0.14, 0.32, 0); part(g, Co(0.04, 0.1, 3), 0xf08a20, 0.25, 0.31, 0, 0, 0, -Math.PI / 2); }   // chicks
     for (const [x, z] of [[14.5, -13], [16.2, -13]]) dec(Bx(0.6, 0.3, 0.45), 0xe8d8a8, x, 0.15, z + 0.2);
     // ---- the far fence all the way along two edges (decoration) ----
-    for (let k = 0; k < 24; k++) { const x = -22.5 + k * 1.95; dec(Bx(0.18, 1.1, 0.18), 0xa87244, x, 0.55, 22.9); dec(Bx(0.18, 1.1, 0.18), 0xa87244, 22.9, 0.55, x); if (k) { dec(Bx(1.95, 0.12, 0.08), 0xc99250, x - 0.98, 0.85, 22.9); dec(Bx(1.95, 0.12, 0.08), 0xc99250, x - 0.98, 0.45, 22.9); dec(Bx(0.08, 0.12, 1.95), 0xc99250, 22.9, 0.85, x - 0.98); dec(Bx(0.08, 0.12, 1.95), 0xc99250, 22.9, 0.45, x - 0.98); } }
+    for (let k = 0; k < 33; k++) { const x = -31.5 + k * 1.95; dec(Bx(0.18, 1.1, 0.18), 0xa87244, x, 0.55, 31.9); dec(Bx(0.18, 1.1, 0.18), 0xa87244, 31.9, 0.55, x); if (k) { dec(Bx(1.95, 0.12, 0.08), 0xc99250, x - 0.98, 0.85, 31.9); dec(Bx(1.95, 0.12, 0.08), 0xc99250, x - 0.98, 0.45, 31.9); dec(Bx(0.08, 0.12, 1.95), 0xc99250, 31.9, 0.85, x - 0.98); dec(Bx(0.08, 0.12, 1.95), 0xc99250, 31.9, 0.45, x - 0.98); } }
     addBouncePad(-13, -3);
   },
 };
@@ -3139,8 +3188,8 @@ MODES.giant.maps = ['playroom'].concat(BIG_ARENAS);                  // Giant: i
 MODES.explosive.maps = ['blast', 'arena', 'park', 'ice'].concat(BIG_ARENAS);   // Explosive: its own map, the small arenas, then the big ones. No rooms or sky maps
 for (const m in MODES) if (m !== 'explosive') { const old = MODES[m].allow; MODES[m].allow = k => k !== 'meteor' && old(k); }   // the Meteor Launcher belongs to Explosive only
 MODES.melee.maps = MODES.melee.maps.filter(k => k !== 'cloud').concat(BIG_ARENAS); MODES.guns.maps = MODES.guns.maps.concat(BIG_ARENAS);
-MODES.ninja.maps = ['dojo', 'arenaxl', 'fortress', 'temple', 'rooftops', 'tower', 'warehouse'];      // Ninja: its own map first, then the Grand Arena and Fortress Yard, then Temple Ruins, then the rest
-const MAP_ORDER = ['test', 'practice', 'dojo', 'blast', 'gunrange', 'brawlpit', 'craterdome', 'capsule', 'playroom', 'arena', 'park', 'ice', 'arenaxl', 'rinkxl', 'colosseum', 'fortress', 'temple', 'warehouse', 'rooftops', 'tower', 'shrink', 'moonbase', 'candy', 'haunted', 'beach', 'volcano', 'farm', 'pirate', 'pillars', 'custom'];   // big open arenas first, then rooms and sky levels, the odd one-offs last
+MODES.ninja.maps = ['dojo', 'arenaxl', 'fortress', 'temple', 'rooftops', 'tower'];      // Ninja: its own map first, then the Grand Arena and Fortress Yard, then Temple Ruins, then the rest
+const MAP_ORDER = ['test', 'practice', 'dojo', 'blast', 'gunrange', 'brawlpit', 'craterdome', 'capsule', 'playroom', 'arena', 'park', 'ice', 'arenaxl', 'rinkxl', 'colosseum', 'fortress', 'temple', 'farm', 'rooftops', 'tower', 'shrink', 'squeeze', 'moonbase', 'candy', 'haunted', 'beach', 'volcano', 'pirate', 'pillars', 'pillars2', 'custom'];   // big open arenas first, then rooms and sky levels, the odd one-offs last
 { const old = Object.assign({}, MAPS); for (const k of Object.keys(MAPS)) delete MAPS[k]; for (const k of MAP_ORDER) if (old[k]) MAPS[k] = old[k]; for (const k in old) if (!MAPS[k]) MAPS[k] = old[k]; }
 for (const m in MODES) if (MODES[m].maps) MODES[m].maps = MODES[m].maps.filter(k => MAPS[k]).sort((a, b) => MAP_ORDER.indexOf(a) - MAP_ORDER.indexOf(b));
 MODES.classic.icon = 'Everything drops'; MODES.sandbox.icon = 'Your level';
@@ -4438,9 +4487,11 @@ function previewEmote(id) { pvOn = true; pvPrep(); player.emote = { id, t: 0, du
 function previewEnd() { if (pvOn && page !== 'shop' && page !== 'locker') { pvOn = false; pvSkin = null; player.emote = null; try { applyLook(); } catch (e) { /* cosmetic */ } pvSettle(6); } }
 function drawPreview(cv) {
   if (!cv || !cv.getContext || typeof document.createElement !== 'function') return;
+  const pvis = [player.root.visible, player.arm.visible]; player.root.visible = true; player.arm.visible = true;      // the live menu battle keeps the player hidden; the picture needs them
   const hid = [], cp = camera.position.clone(), cq = camera.quaternion.clone(), fov = camera.fov, asp = camera.aspect, bg = scene.background ? scene.background.getHex() : 0, fn = scene.fog ? scene.fog.near : 0, ff = scene.fog ? scene.fog.far : 0;
   try {
     const g2 = cv.getContext('2d'); if (!g2) return;
+    try { const r = cv.getBoundingClientRect(); if (r.width > 60) { const w = Math.round(Math.min(560, Math.max(200, r.width * Math.min(window.devicePixelRatio || 1, 2)))); if (Math.abs(cv.width - w) > 8) { cv.width = w; cv.height = Math.round(w * 1.25); } } } catch (e) { /* the picture keeps its size */ }
     const hideObj = o => { if (o && o.visible) { o.visible = false; hid.push(o); } };
     for (const f of fighters) if (f !== player) { hideObj(f.root); hideObj(f.arm); }
     for (const o of scene.children) if (o !== player.root && o !== player.arm && o !== PVF && !o.isLight) hideObj(o);                 // nothing else from the match (guns, bots' arms, shots, sparks) gets into the picture
@@ -4456,6 +4507,7 @@ function drawPreview(cv) {
   } catch (e) { /* the picture just stays as it was */ }
   finally {
     for (const o of hid) o.visible = true; PVF.visible = false;
+    player.root.visible = pvis[0]; player.arm.visible = pvis[1];
     camera.position.copy(cp); camera.quaternion.copy(cq); camera.fov = fov; camera.aspect = asp; camera.updateProjectionMatrix();
     if (scene.background && scene.background.setHex) scene.background.setHex(bg); if (scene.fog) { scene.fog.near = fn; scene.fog.far = ff; }
     try { renderer.setSize(window.innerWidth, window.innerHeight); } catch (e) { /* cosmetic */ }
@@ -4984,7 +5036,7 @@ class Fighter {
     if (cfg.lives) { this.lives--; if (this.lives <= 0) { eliminate(this, true); return; } }
     const spots = MAPS[currentMap].spawns;
     let s = spots[Math.floor(Math.random() * spots.length)];
-    if (currentMap === 'shrink' && shrink) { const rr = Math.random() * Math.max(0, shrink.size / 2 - 2.5), an = Math.random() * 6.283; s = [Math.cos(an) * rr, Math.sin(an) * rr]; }
+    if (MAPS[currentMap].shrinks && shrink) { if (shrink.both) { const rr = Math.random() * Math.max(0, shrink.size / 2 - 2.5), an = Math.random() * 6.283; s = [Math.cos(an) * rr, Math.sin(an) * rr]; } else { const hx = Math.max(0, shrink.size / 2 - 2.5), hz2 = shrink.D / 2 - 2.5; s = [(Math.random() * 2 - 1) * hx, (Math.random() * 2 - 1) * hz2]; } }
     if (this.home) s = this.home;                        // range dummies come back where they stood
     this.placeAt(s[0], s[1], this.home ? 0.01 : (MAPS[currentMap].spawnY || 4));
     this.invuln = this.home ? 0.3 : 2.5;                                   // spawn protection: throbs white, can't be hurt
@@ -5764,7 +5816,7 @@ DROP_BASE.heal = 3.2; DROP_BASE.speed = 0.9; DROP_BASE.rage = 0.7; DROP_BASE.shi
 DROP_BASE.blower = 0.6;                              // air blowers were dropping a bit too often
 DROP_BASE.meteor = 1.4; DROP_BASE.flame = 0.5; DROP_BASE.glauncher = 0.5; DROP_BASE.cluster = 0.5;   // flamethrowers and grenade launchers were turning up far too much
 const CRATE_MULT = { off: 0, rare: 0.3, normal: 1, often: 3 };
-const CRATE_RATE = { slow: 2.0, normal: 0.72, fast: 0.55, chaos: 0.28 };
+const CRATE_RATE = { slow: 1.2, normal: 0.42, fast: 0.28, chaos: 0.15 };      // crates come about twice as often as before
 function pickCrateKey() {                           // weighted by each weapon's setting in the menu
   let tot = 0; const ents = [];
   for (const k of Object.keys(DROP_BASE)) {
@@ -5794,7 +5846,7 @@ function makeCrateNet(col, band) {
   return { g, set };
 }
 function spawnDrop(forceKey, at, spotOverride) {
-  if (pickups.length >= 6 && !forceKey) return null;
+  if (pickups.length >= 10 && !forceKey) return null;
   const key = forceKey || pickCrateKey();
   if (!key) return null;
   let spot;
@@ -6875,13 +6927,14 @@ function ggGive(f) {
   f.clearInventory(); f.setWeapon('spatula'); if (k !== 'spatula') f.pickup(k);
 }
 function ggAdvance(killer) {
-  if (!killer || killer.isGhost || matchOver) return;
-  killer.ggRung = (killer.ggRung || 0) + 1;
+  if (!killer || matchOver) return;
+  killer.ggRung = (killer.ggRung || 0) + 1;                      // every machine counts every fighter's rung (online too), so everybody agrees on who finishes first
   if (killer.ggRung >= GG.length) { killer.ggRung = GG.length - 1; endMatch(killer); return; }
+  if (killer.isGhost) return;                                    // an online player's own machine swaps their weapon
   if (!killer.dead) { ggGive(killer); killer.invuln = Math.max(killer.invuln, 1.0); }          // a short white spawn-style shield while the weapon swaps
   if (killer.isPlayer) { toast('Weapon ' + (killer.ggRung + 1) + ' of ' + GG.length + ': ' + (WEAPONS[GG[killer.ggRung]] || { name: 'Spatula' }).name); sfx('pickup'); }
 }
-function initLadder() { for (const f of fighters) { f.ggRung = 0; if (cfg.mode === 'gungame') ggGive(f); } }
+function initLadder() { for (const f of fighters) { f.ggRung = 0; if (cfg.mode === 'gungame' && !f.isGhost) ggGive(f); } }
 let pil = null;
 function initPillars() { pil = cfg.mode === 'pillars' ? { t: 180, next: 1.2 } : null; const h = el('pilhud'); if (h) h.style.display = pil ? 'block' : 'none'; }
 function pillarGive(f) {                              // a random weapon goes into the inventory; whatever you were holding stays in your hand
@@ -6937,25 +6990,26 @@ function updatePotato(dt) {
   }
 }
 function updateShrink(dt) {
-  const s = shrink; if (!s || matchOver || currentMap !== 'shrink') return;
+  const s = shrink; if (!s || matchOver || !MAPS[currentMap].shrinks) return;
   if (s.hold > 0) { s.hold -= dt; return; }
   if (s.dir === 1) { s.size = Math.min(s.max, s.size + 1.8 * dt); if (s.size >= s.max) { s.dir = -1; s.start = s.max; s.hold = 3; } }          // it grows back out before it can get too cramped
-  else if (s.size > s.min) s.size = Math.max(s.min, s.size - (s.start - s.min) / 55 * dt);
+  else if (s.size > s.min) s.size = Math.max(s.min, s.size - (s.start - s.min) / (s.rate || 55) * dt);
   else if (fighters.every(f => f.dead || f.elim || f.pos.y < -2)) {     // everyone fell: bring the arena back at half the original size
     s.cycle++; s.start = Math.max(14, Math.round(s.S0 * 0.5)); s.size = s.start; s.hold = 4; toast('Arena reset at half size!'); sfx('pickup');
   } else {                                                                 // at its smallest: a short breather, then it starts growing again
     s.rest = (s.rest === undefined ? 5 : s.rest) - dt;
     if (s.rest <= 0) { s.rest = undefined; s.dir = 1; toast('The arena is growing!'); sfx('pickup'); }
   }
-  s.box.minX = s.box.minZ = -s.size / 2; s.box.maxX = s.box.maxZ = s.size / 2;
-  s.mesh.scale.set(s.size / s.S0, 1, s.size / s.S0); s.mesh.updateMatrixWorld(true);
-  for (let i = pickups.length - 1; i >= 0; i--) { const q = pickups[i]; if (Math.abs(q.x) > s.size / 2 || Math.abs(q.z) > s.size / 2) { scene.remove(q.g); pickups.splice(i, 1); } }   // crates on the collapsed edge go with it
+  const hd = s.both ? s.size / 2 : s.D / 2;
+  s.box.minX = -s.size / 2; s.box.maxX = s.size / 2; s.box.minZ = -hd; s.box.maxZ = hd;
+  s.mesh.scale.set(s.size / s.S0, 1, s.both ? s.size / s.S0 : 1); s.mesh.updateMatrixWorld(true);
+  for (let i = pickups.length - 1; i >= 0; i--) { const q = pickups[i]; if (Math.abs(q.x) > s.size / 2 || Math.abs(q.z) > hd) { scene.remove(q.g); pickups.splice(i, 1); } }   // crates on the collapsed edge go with it
 }
 function updateModeHud() {
   let t = '';
   if (pot && !matchOver) t = pot.holder ? '\u{1F4A3} ' + (pot.holder.isPlayer ? 'YOU HAVE THE BOMB! Hit someone! ' : nameOf(pot.holder) + ' has the bomb ') + Math.max(0, pot.fuse).toFixed(1) : '\u{1F4A3} Get ready...';
   else if (cfg.mode === 'gungame' && !matchOver) t = 'Weapon ' + ((player.ggRung || 0) + 1) + ' of ' + GG.length + ' \u00b7 ' + (WEAPONS[GG[player.ggRung || 0]] || { name: 'Spatula' }).name;
-  else if (shrink && currentMap === 'shrink' && !matchOver) t = 'Arena ' + Math.round(shrink.size) + 'm' + (shrink.hold > 0 ? ' · shrinking soon' : shrink.dir === 1 ? ' · growing' : shrink.size <= shrink.min ? ' · smallest' : '');
+  else if (shrink && MAPS[currentMap].shrinks && !matchOver) t = 'Arena ' + Math.round(shrink.size) + 'm' + (shrink.hold > 0 ? ' · shrinking soon' : shrink.dir === 1 ? ' · growing' : shrink.size <= shrink.min ? ' · smallest' : '');
   const m = el('modehud'); if (m.textContent !== t) m.textContent = t; m.style.display = t ? 'block' : 'none';
 }
 function feedAdd(killer, victim) {
@@ -7000,6 +7054,9 @@ function updateEnding(dt) {
   if (endT <= 0) finishMatch();
 }
 
+function syncRanges() { try { for (const r of document.querySelectorAll('input[type=range]')) { const mn = +r.min || 0, mx = +r.max || 100, v = Math.max(mn, Math.min(mx, +r.value)); r.style.setProperty('--p', ((v - mn) / (mx - mn || 1) * 100) + '%'); } } catch (e) { /* cosmetic */ } }
+document.addEventListener('input', e => { if (e.target && e.target.type === 'range') syncRanges(); }, true);
+setInterval(syncRanges, 400);
 function setBotCfg(patch) {
   Object.assign(cfg, patch);
   cfg.count = Math.max(0, Math.min(12, Math.round(cfg.count)));
@@ -7028,11 +7085,11 @@ function setBotCfg(patch) {
   on('mode-versus', VS.includes(cfg.mode)); for (const k of VS) on('vs-' + k, cfg.mode === k);
   el('modedesc').textContent = MODES[cfg.mode].desc + (MODES[cfg.mode].ex ? '. ' + MODES[cfg.mode].ex : '');
   el('bn').disabled = !!cfg.teams;
-  el('bn').value = cfg.count; el('bn-val').textContent = cfg.count;
-  for (const n of [0, 5, 10, 20]) on('match-' + n, cfg.limit === n);
-  for (const n of [100, 150, 200, 300, 500]) on('hp-' + n, cfg.hp === n);
+  { const rc = cfgReal(); el('bn').value = rc.count; el('bn-val').textContent = rc.count; syncRanges();
+  for (const n of [0, 5, 10, 20]) on('match-' + n, rc.limit === n);
+  for (const n of [100, 150, 200, 300, 500]) on('hp-' + n, rc.hp === n); }
   el('grp-hp').style.display = cfg.mode === 'explosive' ? 'none' : '';      // Explosive health is fixed, so there is no choice to show
-  for (const k of Object.keys(CRATE_RATE)) on('rate-' + k, cfg.crate === k);
+  for (const k of Object.keys(CRATE_RATE)) on('rate-' + k, cfgReal().crate === k);
   renderChips();
   updateKoText();
   // difficulty/FFA only matter for brawlers
@@ -7439,7 +7496,7 @@ function showPage(pg) {
   if (editFlow && pg !== 'mods') editFlow = false;
   el('play').textContent = hostFlow && pg === 'mods' ? 'CREATE ROOM' : editFlow && pg === 'mods' ? 'SAVE SETTINGS' : el('play').textContent;
   { const rf = (hostFlow || editFlow) && pg === 'mods'; el('bn').max = rf ? 7 : 12; if (rf && cfg.count > 7) setBotCfg({ count: 7 }); el('bn-lbl').textContent = rf ? 'Bots in the room (players take their seats)' : 'How many'; el('row-ffa').style.display = rf ? 'none' : ''; }
-  { const mv = el('mode-versus'), ms = el('mode-sandbox'), mp = el('mode-pillars'), mg = el('mode-gungame'); if (mg) mg.style.display = hostFlow ? 'none' : ''; if (mv) mv.style.display = hostFlow ? 'none' : ''; if (ms) ms.style.display = hostFlow ? 'none' : ''; if (mp) mp.style.display = ''; }
+  { const mv = el('mode-versus'), ms = el('mode-sandbox'), mp = el('mode-pillars'), mg = el('mode-gungame'); if (mg) mg.style.display = ''; if (mv) mv.style.display = hostFlow ? 'none' : ''; if (ms) ms.style.display = hostFlow ? 'none' : ''; if (mp) mp.style.display = ''; }
   if (ONL.includes(pg)) { netShowLobby(); netPill(); if (!net) { srvConnect(() => {}); if (pg === 'online' || pg === 'onquick' || pg === 'onrooms') setTimeout(netRefreshRooms, 50); } }
   if (pg === 'shop') renderShop();
   if (pg === 'locker') { previewSkin(look.skin); renderLocker(); }
@@ -7453,7 +7510,7 @@ function applyPauseUi() {                            // while a game is paused: 
   const pb = el('pausebox'); if (pb) pb.style.display = p ? 'block' : 'none';
   const po = el('pz-online'); if (po) po.style.display = p && net && net.started ? 'block' : 'none';
   for (const id of ['homemain', 'go-account', 'go-test']) { const e = el(id); if (e) e.style.display = p ? 'none' : ''; }
-  try { el('menu').classList.toggle('homefx', page === 'home' && !p); } catch (e) { /* cosmetic */ }
+  try { el('menu').classList.toggle('homefx', page === 'home' && !p); el('menu').classList.toggle('storefx', (page === 'shop' || page === 'locker') && !p); } catch (e) { /* cosmetic */ }
   const sm = el('pz-sum'); if (sm) sm.textContent = MODES[cfg.mode].name + ' \u00b7 ' + MAPS[currentMap].name;
 }
 const TIPS = ['Hold the scope key and left-click: you can shoot while scoped.', 'Spring Glove does no damage, but it launches people off the edge.', 'Boomerangs come back for the catch, but every throw uses one of your 5, even a miss.', 'Shuriken: both hands throw, and the stars curve into your target.', 'Try the Build Your Own level: B places a block, N removes one.', 'Turn the radar on in Settings to see who is above or below you.', 'Underground levels are dark: use the pillars as cover.', 'Free-for-all makes the bots fight each other too.', 'Gravity and knockback can be changed in Modifiers.'];
@@ -7493,10 +7550,11 @@ el('hd-go').onclick = claimDaily;
 {
   const mk = (w, c, a) => '<span>' + w.split('').map((ch, i) => '<span style="animation-delay:' + (a + i * 0.09).toFixed(2) + 's">' + ch + '</span>').join('') + '</span>';
   el('hlogo').innerHTML = '<div>' + mk('WOBBLE', 0, 0) + '</div><div>' + mk('ARENA', 0, 0.6) + '</div>';
+  for (const [id, t] of [['shoptitle', 'SHOP'], ['lockertitle', 'LOCKER']]) { const e = el(id); if (e) e.innerHTML = mk(t, 0, 0); }   // the Shop and Locker titles wobble like the logo
   const bg = el('hbg'); let h = '';
   bg.innerHTML = h;
 }
-for (const id of ['quick', 'go-practice', 'go-play', 'go-test', 'go-online', 'go-locker', 'go-shop', 'go-me', 'hl-go']) { const b = el(id); if (b) b.addEventListener('click', () => { try { showStop(true); } catch (e) { /* x */ } }, true); }
+for (const id of ['quick', 'go-practice', 'go-play', 'go-test', 'go-online', 'go-me', 'hl-go']) { const b = el(id); if (b) b.addEventListener('click', () => { try { showStop(true); } catch (e) { /* x */ } }, true); }
 el('quick').onclick = () => {
   leaveTest();
   const modes = Object.keys(MODES).filter(k => k !== 'sandbox'), m = modes[Math.floor(Math.random() * modes.length)];
@@ -7596,6 +7654,7 @@ for (const [k] of CATS) el('cat-' + k).onclick = () => applyCat(k);
 // rules
 const tog = (id, on) => { el(id).classList.toggle('on', !!on); el(id).textContent = on ? 'On' : 'Off'; };
 function syncRules() {
+  const cfg = cfgReal();
   for (const v of [0.15, 0.5, 1, 1.5]) el('grav-' + v).classList.toggle('on', cfg.grav === v);
   el('grav-0.15').style.display = cfg.mode === 'lowg' ? '' : 'none';      // Drift gravity only exists in Moon Drift
   for (const v of [0.5, 1, 1.5, 2, 3]) el('kb-' + v).classList.toggle('on', cfg.kb === v);
@@ -8096,7 +8155,7 @@ el('settings-reset').onclick = () => askConfirm('Reset ALL settings (keys, sensi
 });
 
 /* ============================== online play (test) ============================== */
-const NET_PREFIX = 'wobble-arena-', NET_HZ = 30, NET_MAX = 8, NET_BUILD = 'b74.0', PUB_SLOTS = 24;   // PUB_SLOTS: public rooms live at fixed spots (pub0, pub1, ...) so anybody can look them up
+const NET_PREFIX = 'wobble-arena-', NET_HZ = 30, NET_MAX = 8, NET_BUILD = 'b76.0', PUB_SLOTS = 24;   // PUB_SLOTS: public rooms live at fixed spots (pub0, pub1, ...) so anybody can look them up
 const slotCap = () => net.started && net.slots ? net.slots.length : NET_MAX;
 function netStatus(t) {
   t = t || ''; const busy = /(\u2026|\.\.\.)$/.test(t); if (t && !busy) netUnlock();
@@ -8143,15 +8202,16 @@ const cleanInfo = (m, id) => ({ id, name: String(m.name || 'Player').slice(0, 12
 const infoOfBot = (b, slot) => ({ id: slot, name: b.botName, skin: b.skinKey || 'none', hat: b.hatName || 'none', color: b.botColor });
 function netBannerUpdate() {                                        // the "you are in a room" strip shows on every page except the lobby itself
   el('netbanner').style.display = net && page !== 'onlobby' ? 'flex' : 'none';
+  try { el('menu').classList.toggle('inroom', !!net && page !== 'onlobby'); } catch (e) { /* cosmetic */ }
   if (net) { el('nb-code').textContent = net.pub ? net.roomName : net.code; el('nb-copy').style.display = net.pub ? 'none' : ''; }
 }
 let netPending = false, netPendT = 0;                               // one connection attempt at a time (double clicks do nothing)
 const netLock = () => { if (netPending && performance.now() - netPendT < 20000) return false; netPending = true; netPendT = performance.now(); return true; };
 const netUnlock = () => { netPending = false; };
 const BHV_NAME = { dummy: 'Dummies', brawl: 'Brawlers' }, DIFF_NAME = { easy: 'Easy', normal: 'Normal', hard: 'Hard', insane: 'Insane' };
-function roomOpts() { const pil = netMode(cfg.mode) === 'pillars', c = cfg.count; return { max: pil ? 8 : c > 0 ? Math.max(2, Math.min(8, c + 1)) : 4, bots: pil || c > 0, lim: [0, 5, 10, 20].includes(cfg.limit) ? cfg.limit : 0, bhv: cfg.behav === 'dummy' ? 'dummy' : 'brawl' }; }
+function roomOpts() { const pil = netMode(cfg.mode) === 'pillars', c = cfg.count; return { max: pil ? 8 : c > 0 ? Math.max(2, Math.min(8, c + 1)) : 4, bots: pil || c > 0, lim: !MODES[netMode(cfg.mode)].ladder && [0, 5, 10, 20].includes(cfg.limit) ? cfg.limit : 0, bhv: cfg.behav === 'dummy' ? 'dummy' : 'brawl' }; }
 function roomSumParts() {
-  const sc = netMode(cfg.mode), self = MODES[sc].lives || sc === 'pillars', diff = net.host ? cfg.diff : (net.hdiff || 'normal'), bhv = net.bhv || 'brawl';
+  const sc = netMode(cfg.mode), self = MODES[sc].lives || MODES[sc].ladder || sc === 'pillars', diff = net.host ? cfg.diff : (net.hdiff || 'normal'), bhv = net.bhv || 'brawl';
   return [['Fighters', 'up to ' + net.optMax], ['Bots', net.optBots ? BHV_NAME[bhv] + (bhv === 'brawl' ? ', ' + DIFF_NAME[diff] : '') : 'none (players only)'], ['Ends', self ? 'by itself' : net.optLim ? 'first to ' + net.optLim : 'free play']];
 }
 const roomSumText = () => roomSumParts().map(([k, v]) => k.toLowerCase() === 'ends' ? 'ends ' + v : v + (k === 'Fighters' ? ' fighters' : k === 'Bots' ? ' bots' : '')).join(', ');
@@ -8451,16 +8511,18 @@ function netSlotChanged(slot, kind, info) {                // everyone else: tha
   if (g) { g.botName = info.name; g.setHat(info.hat); g.setSkin(info.skin); g.botColor = SKINS[info.skin] ? SKINS[info.skin].col : info.color; g.recolor(g.botColor, false); }
   netShowLobby(); toast(info.name + (kind === 'human' ? ' joined!' : ' (bot) is back'));
 }
-const netMode = m => MODES[m] && !MODES[m].teams && m !== 'sandbox' && m !== 'gungame' ? m : 'classic';          // team modes, Sandbox and the Weapon Ladder are not online yet
-function ruleSnap() { return { mode: netMode(cfg.mode), hp: cfg.hp, crate: cfg.crate, wstate: cfg.wstate, grav: cfg.grav, kb: cfg.kb, inf: cfg.inf, pp: net && net.pp ? net.pp : undefined }; }
+const netMode = m => MODES[m] && !MODES[m].teams && m !== 'sandbox' ? m : 'classic';          // team modes and Sandbox are not online yet
+function cfgReal() { return SHOW.on && SHOW.saved ? Object.assign({}, cfg, SHOW.saved.cfg) : cfg; }      // the player's own settings, not the menu battle's
+function ruleSnap() { const cfg = cfgReal(); return { mode: netMode(cfg.mode), hp: cfg.hp, crate: cfg.crate, wstate: cfg.wstate, grav: cfg.grav, kb: cfg.kb, inf: cfg.inf, pp: net && net.pp ? net.pp : undefined }; }
 function netStartMatch(slots, mapId, custom, isHost, limit, rules) {
+  try { if (SHOW.on) showStop(true); } catch (e) { /* x */ }          // the menu battle gives the room's own settings back before the match is set up
   const wasStarted = !!net.started;
   if (!net.prevCfg) net.prevCfg = netCfgSnap();                      // what to go back to when you leave (saved once per room)
   net.rv = new Set(); net.rvList = []; net.rvTotal = 0; net.myVote = false; if (net.rvTimer) { clearTimeout(net.rvTimer); net.rvTimer = null; }
   net.slots = slots; net.slotKind = slots.map(x => x.kind); net.started = true; net.map = MAPS[mapId] ? mapId : 'arena';
   if (mapId === 'custom' && custom) for (const k of ['size', 'obs', 'plat', 'walls', 'pads', 'seed', 'theme', 'ice']) if (custom[k] !== undefined) cfg.custom[k] = custom[k];
   if (isHost && !rules) { net.pp = null; rules = ruleSnap(); }                          // the host plays by the rules it picked (before, they were thrown away and everything ran as Classic)
-  { const r = rules || {}; const rm = netMode(r.mode); net.limit = MODES[rm].lives || rm === 'pillars' ? 0 : limit || 0; setBotCfg({ mode: rm, behav: isHost && net.bhv === 'dummy' ? 'dummy' : 'brawl', ffa: true, count: slots.length - 1, limit: net.limit, hp: [100, 150, 200, 300, 500].includes(r.hp) ? r.hp : 100, crate: CRATE_RATE[r.crate] ? r.crate : cfg.crate, wstate: r.wstate && typeof r.wstate === 'object' ? r.wstate : cfg.wstate, grav: [0.5, 1, 1.5].includes(r.grav) || (r.mode === 'lowg' && r.grav === 0.15) ? r.grav : 1, kb: [0.5, 1, 1.5, 2, 3].includes(r.kb) ? r.kb : 1, inf: !!r.inf }); }
+  { const r = rules || {}; const rm = netMode(r.mode); net.limit = MODES[rm].lives || MODES[rm].ladder || rm === 'pillars' ? 0 : limit || 0; setBotCfg({ mode: rm, behav: isHost && net.bhv === 'dummy' ? 'dummy' : 'brawl', ffa: true, count: slots.length - 1, limit: net.limit, hp: [100, 150, 200, 300, 500].includes(r.hp) ? r.hp : 100, crate: CRATE_RATE[r.crate] ? r.crate : cfg.crate, wstate: r.wstate && typeof r.wstate === 'object' ? r.wstate : cfg.wstate, grav: [0.5, 1, 1.5].includes(r.grav) || (r.mode === 'lowg' && r.grav === 0.15) ? r.grav : 1, kb: [0.5, 1, 1.5, 2, 3].includes(r.kb) ? r.kb : 1, inf: !!r.inf }); }
   loadMap(net.map);
   net.pp = null;                                                     // Pillars: who starts on which pillar is shuffled by the host every match and sent to everybody
   if (cfg.mode === 'pillars') {
@@ -8504,6 +8566,7 @@ function netLeave(msg) {
   try { n.peer.destroy(); } catch (e) { /* ignore */ }
   netResetLocal(n);
   el('netinfo').style.display = 'none'; netShowLobby(); netStatus(msg || '');
+  try { if (!SHOW.on) setBotCfg({ count: MODE_DEFAULTS.count, hp: MODE_DEFAULTS.hp, grav: 1, kb: 1, inf: false, crate: 'normal' }); else if (SHOW.saved) Object.assign(SHOW.saved.cfg, { count: MODE_DEFAULTS.count, hp: MODE_DEFAULTS.hp, grav: 1, kb: 1, inf: false, crate: 'normal' }); } catch (e) { /* x */ }     // back to normal rules, 3 bots
 }
 function netMigrate(me) {                                            // the host left but the room lives on: the longest-standing player (me = true) takes over, everybody else re-joins them
   const o = net, oldHost = ((o.roster || []).find(r => r.id === 0) || {}).name || 'The host';
@@ -8647,7 +8710,7 @@ function netStep(dt, pre) {
     if (!g.dead) ghostEquip(g, s.w || 'spatula');
   }
 }
-function netCfgSnap() { return { mode: cfg.mode, count: cfg.count, behav: cfg.behav, ffa: cfg.ffa, limit: cfg.limit, hp: cfg.hp, crate: cfg.crate, wstate: cfg.wstate, grav: cfg.grav, kb: cfg.kb, inf: cfg.inf, map: currentMap }; }
+function netCfgSnap() { const cfg = cfgReal(), mp = SHOW.on && SHOW.saved ? SHOW.saved.map : currentMap; return { mode: cfg.mode, count: cfg.count, behav: cfg.behav, ffa: cfg.ffa, limit: cfg.limit, hp: cfg.hp, crate: cfg.crate, wstate: cfg.wstate, grav: cfg.grav, kb: cfg.kb, inf: cfg.inf, map: mp }; }
 function netStartHosted() {                                          // the host starts the match: empty spots are bots (all the pillars in Pillars)
   if (!net || !net.host || net.started) return;
   const mapId = !isTM(currentMap) && MAPS[currentMap] ? currentMap : 'arena';
@@ -8775,6 +8838,7 @@ el('on-start').onclick = () => netStartHosted();
 el('on-go').onclick = () => el('play').onclick();
 el('on-leave').onclick = () => netLeave('You left the room.');
 el('on-copy').onclick = () => el('nb-copy').onclick();
+el('nb-leave').onclick = () => { if (net) { netLeave('You left the room.'); try { netBannerUpdate(); } catch (e) { /* x */ } } };
 el('nb-copy').onclick = () => { if (!net) return; try { navigator.clipboard.writeText(net.code).then(() => toast('Code copied: ' + net.code)).catch(() => toast('Room code: ' + net.code)); } catch (e) { toast('Room code: ' + net.code); } };
 el('on-edit').onclick = () => { if (!net || !net.host || net.started) return; editFlow = true; showPage('mods'); };
 // your name lives in the Account page; the online hub just shows it
@@ -9052,7 +9116,7 @@ let simTime = 0;
 function giantSizes() { const K = giantOn() ? 1.5 : 1; if (Math.abs(R - 0.45 * K) > 1e-6) { R = 0.45 * K; STEP = 0.55 * K; FH = 2.3 * K; } }
 /* ---- build 72: a live bot battle behind the title screen and the main menu ---- */
 const SHOW_SCENES = [
-  { map: 'arena' }, { map: 'park' }, { map: 'ice' }, { map: 'arenaxl' }, { map: 'rinkxl' }, { map: 'colosseum' }, { map: 'fortress' }, { map: 'warehouse' }, { map: 'rooftops' },
+  { map: 'arena' }, { map: 'park' }, { map: 'ice' }, { map: 'arenaxl' }, { map: 'rinkxl' }, { map: 'colosseum' }, { map: 'fortress' }, { map: 'rooftops' },
   { map: 'farm' }, { map: 'moonbase' }, { map: 'candy' }, { map: 'haunted' }, { map: 'beach' }, { map: 'volcano' }, { map: 'tower' }, { map: 'temple' },
   { map: 'dojo', mode: 'ninja', theme: 'ninja' }, { map: 'dojo', mode: 'ninja', theme: 'ninja' }, { map: 'temple', mode: 'ninja', theme: 'ninja' }, { map: 'fortress', mode: 'ninja', theme: 'ninja' },
   { map: 'pirate', theme: 'pirate' }, { map: 'pirate', theme: 'pirate' }, { map: 'blast', mode: 'explosive', theme: 'explosive' }, { map: 'gunrange', mode: 'guns', theme: 'guns' },
@@ -9066,9 +9130,9 @@ const SHOW_WEAPONS = {
   guns: ['uzi', 'ak', 'smg', 'shotgun', 'minigun', 'revolver'],
 };
 function showWanted() {
-  if (!settings.menuBattle || net) return false;
+  if (!settings.menuBattle || (net && (net.started || page === 'map'))) return false;     // waiting in an online room is fine (the bots keep fighting behind the menu); a started match, or picking a level, is not
   const m = MAPS[currentMap]; if (!m || m.range || currentMap === 'custom') return false;
-  return ui === 'title' || (ui === 'boot' && bootTour) || (ui === 'lobby' && (page === 'home' || page === 'map') && !(inMatch && !matchOver));
+  return ui === 'title' || (ui === 'boot' && bootTour) || (ui === 'lobby' && (page === 'home' || page === 'map' || page === 'shop' || page === 'locker') && !(inMatch && !matchOver));
 }
 function showSync() { if (showWanted()) { if (SHOW.on && (page === 'map') !== !!SHOW.fixed) showStop(true); if (!SHOW.on) showStart(); } else if (SHOW.on) showStop(true); }
 function showLoad(sc) {
@@ -9937,7 +10001,7 @@ function mapBounds() {
 /* the preview view: low and wide enough to see the level AND the scenery on the horizon (the old one looked down so far that the backdrop never showed). Returns the distance used */
 function bdFollow(cp) { try { backdrop.dome.position.copy(cp); backdrop.stars.position.copy(cp); backdrop.sunG.position.copy(cp).addScaledVector(backdrop.sunDir, 315); backdrop.sunG.lookAt(cp); if (backdrop.stars.visible) { backdrop.moonM.position.copy(backdrop.sunDir).multiplyScalar(300); backdrop.moonM.lookAt(cp); } } catch (e) { /* cosmetic */ } }
 function previewCam(bd, aspect, ang) {
-  const d = bd.r * 2 + 14, hc = d * 0.36, yt = hc - d * 0.15;
+  const d = bd.r * 1.88 + 13, hc = d * 0.46, yt = d * 0.07;     // a bit higher and a bit closer: the whole level in frame with a strip of background above it
   camera.fov = 56; camera.aspect = aspect; camera.updateProjectionMatrix();
   camera.position.set(bd.cx + Math.sin(ang) * d, hc, bd.cz + Math.cos(ang) * d); camera.lookAt(bd.cx, yt, bd.cz);
   bdFollow(camera.position);
